@@ -1,63 +1,320 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Triple Comparison Test</title>
-    <link rel="stylesheet" href="./static/css/index.css">
-    <script src="./static/js/script.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .test-container {
-            width: 800px;
-            margin: 20px auto;
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>MSCD-GS: Motion-Separated Cooperative Deblurring Dynamic Reconstruction via Gaussian Splitting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/script.js"></script>
+  <script src="./static/js/dual-slider.js"></script>
+
 </head>
+
 <body>
-    <div class="test-container">
-        <h1>Triple Comparison Test</h1>
-
-        <div id="test-triple" class="triple-container-small">
-            <div class="triple-left">
-                <img src="./static/images/comparsion/gs_cake.png">
-                <div class="triple-leftPosition leftLabel">
-                    3D-GS
-                </div>
-            </div>
-
-            <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-                <img src="./static/images/comparsion/cake.png">
-                <div class="triple-middlePosition middleLabel">
-                    Baseline
-                </div>
-            </div>
-
-            <div class="triple-right">
-                <img src="./static/images/comparsion/cake.png">
-                <div class="triple-rightPosition rightLabel" style="z-index:1;">
-                    Ours
-                </div>
-            </div>
-
-            <div class="triple-handle-left" style="left: 33.33%;">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
-            </div>
-
-            <div class="triple-handle-right" style="left: 66.66%;">
-                <span class="handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
-            </div>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">MSCD-GS: Motion-Separated Cooperative Deblurring Dynamic Reconstruction via Gaussian Splitting</h1>
+          </div>
         </div>
+      </div>
     </div>
+  </section>
 
-    <script>
-        new TripleComparison({
-            id: '#test-triple'
-        });
-    </script>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class=" carousel results-carousel">
+        <div class="item item-cake">
+          <video poster="" id="cake" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/man.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-caps">
+          <video poster="" id="caps" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/seesaw.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-cisco">
+          <video poster="" id="cisco" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/women.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-cups">
+          <video poster="" id="cups" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/street.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coral">
+          <video poster="" id="coral" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/skatting.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-cupcake">
+          <video poster="" id="cupcake" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/third.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-tools">
+          <video poster="" id="tools" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/card.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-ball">
+          <video poster="" id="ball" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/kitchen.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-basket">
+          <video poster="" id="basket" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/poster.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-stair">
+          <video poster="" id="stair" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shark.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/walk.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-heron">
+          <video poster="" id="heron" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/windmill.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-parterre">
+          <video poster="" id="parterre" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toycar.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+	<div class="container is-max-desktop">
+	  <!-- Concurrent Work. -->
+	  <div class="columns is-centered has-text-centered">
+		<div class="column is-full-width">
+		  <h2 class="title is-3">MSCD-GS: Motion-Separated Cooperative Deblurring via Gaussian Splitting</h2>
+		  <div class="content has-text-justified">
+			<img src="./static/images/teaser.png">
+			<p align="justify">Motivation. Although the deblurring model NAFNet still exhibits suboptimal performance in deblurring motion-blurred images, it demonstrates significantly stronger deblurring capabilities when combined with the 4D reconstruction method SoM. We propose a novel 4D Gaussian deblurring method, which can render sharper images.</p>
+			<img src="./static/images/pipeline.png">
+			<p align="justify">The pipeline of our MSCD-GS. We construct an initial Gaussian model using blurred images as input. During optimization, static and dynamic Gaussians are separated using Gaussian motion distance and dynamic masks generated by BootsTAPIR. Subsequently, we model static and dynamic Gaussian motion separately and design two motion-aware MLPs to predict their changes over exposure time, thereby generating multiple virtual sharp images. We also utilize the results from the deblurring network to constrain these virtual images. Furthermore, these virtual clear images are synthesized into a virtual blurred image to align with the input real image.</p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</section>
+  
+<section class="section">
+  <div class="container ">
+    <div class=" has-text-centered">
+    <h2 class="title is-3">Visual Comparisons</h2>
+    <div class="content has-text-justified">
+      <p>
+
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+      <div class="content">
+        <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div id="example1" class="bal-container-small">
+
+          <div class="bal-after">
+            <img src="./static/images/comparsion/cake.png">
+            <div class="bal-afterPosition afterLabel" style="z-index:1;">
+            Ours
+            </div>
+          </div>
+
+          <div class="bal-before" style="width:50%;">
+            <div class="bal-before-inset" style="width: 539px;">
+            <img src="./static/images/comparsion/gs_cake.png">
+            <div class="bal-beforePosition beforeLabel">
+              3D-GS
+            </div>
+            </div>
+          </div>
+
+          <div class="bal-handle bal-handle-left" style="left:50%;">
+            <span class=" handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+          </div>
+
+          <div class="bal-handle bal-handle-right" style="left:50%;">
+            <span class=" handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+          </div>
+
+          </div>
+
+          <div id="example2" class="bal-container-small">
+
+          <div class="bal-after">
+            <img src="./static/images/comparsion/cisco.png">
+            <div class="bal-afterPosition afterLabel">
+            Ours
+            </div>
+          </div>
+
+          <div class="bal-before" style="width: 50%;">
+            <div class="bal-before-inset" style="width: 539px;">
+            <img src="./static/images/comparsion/gs_cisco.png">
+            <div class="bal-beforePosition beforeLabel">
+              3D-GS
+            </div>
+            </div>
+          </div>
+
+          <div class="bal-handle bal-handle-left" style="left:50%;">
+            <span class=" handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+          </div>
+
+          <div class="bal-handle bal-handle-right" style="left:50%;">
+            <span class=" handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+          </div>
+
+          </div>
+        </div>
+        </div>
+
+
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+      <div class="columns is-centered">
+        <div class="column content">
+
+        <div id="example4" class="bal-container-small">
+          <div class="bal-after">
+          <img src="./static/images/comparsion/caps.png">
+          <div class="bal-afterPosition afterLabel" style="z-index:1;">
+            Ours
+          </div>
+          </div>
+
+          <div class="bal-before" style="width:50%;">
+          <div class="bal-before-inset" style="width: 539px;">
+            <img src="./static/images/comparsion/gs_caps.png">
+            <div class="bal-beforePosition beforeLabel">
+            3D-GS
+            </div>
+          </div>
+          </div>
+
+          <div class="bal-handle bal-handle-left" style="left:50%;">
+          <span class=" handle-left-arrow"></span>
+          <span class="handle-right-arrow"></span>
+          </div>
+
+          <div class="bal-handle bal-handle-right" style="left:50%;">
+          <span class=" handle-left-arrow"></span>
+          <span class="handle-right-arrow"></span>
+          </div>
+
+        </div>
+
+        <div id="example5" class="bal-container-small">
+          <div class="bal-after">
+          <img src="./static/images/comparsion/tools.png">
+          <div class="bal-afterPosition afterLabel" style="z-index:1;">
+            Ours
+          </div>
+          </div>
+
+          <div class="bal-before" style="width:50%;">
+          <div class="bal-before-inset" style="width: 628px;">
+            <img src="./static/images/comparsion/gs_tools.png">
+            <div class="bal-beforePosition beforeLabel">
+            3D-GS
+            </div>
+          </div>
+          </div>
+
+          <div class="bal-handle bal-handle-left" style="left:50%;">
+          <span class=" handle-left-arrow"></span>
+          <span class="handle-right-arrow"></span>
+          </div>
+
+          <div class="bal-handle bal-handle-right" style="left:50%;">
+          <span class=" handle-left-arrow"></span>
+          <span class="handle-right-arrow"></span>
+          </div>
+
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+  <script>
+    new DualSlider({
+      id: '#example1'
+    });
+    new DualSlider({
+      id: '#example2'
+    });
+    new DualSlider({
+      id: '#example4'
+    });
+    new DualSlider({
+      id: '#example5'
+    });
+
+  </script>
+  
+
+
 </body>
+
 </html>
