@@ -188,36 +188,36 @@
           </div>
 
         <!-- 新增的三对比滑块 -->
-        <div id="triple-example1" class="triple-container-small">
-            <div class="triple-left">
-              <img src="./static/images/comparsion/gs_cake.png">
-              <div class="triple-leftPosition leftLabel">
-                3D-GS
+        <div id="triple-example1" style="position: relative; width: 100%; height: 400px; border: 2px solid red; margin: 20px 0;">
+            <h3 style="text-align: center; color: red;">Triple Comparison Component (Test)</h3>
+
+            <div style="position: absolute; top: 30px; left: 0; width: 33.33%; height: calc(100% - 30px); background: #f0f0f0;">
+              <img src="./static/images/card_bardgs.png" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px; border-radius: 3px;">
+                BarDGS
               </div>
             </div>
 
-            <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-              <img src="./static/images/comparsion/cake.png">
-              <div class="triple-middlePosition middleLabel">
-                Baseline
+            <div style="position: absolute; top: 30px; left: 33.33%; width: 33.33%; height: calc(100% - 30px); background: #e0e0e0;">
+              <img src="./static/images/card_gt.png" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px; border-radius: 3px;">
+                Ground Truth
               </div>
             </div>
 
-            <div class="triple-right">
-              <img src="./static/images/comparsion/cake.png">
-              <div class="triple-rightPosition rightLabel" style="z-index:1;">
+            <div style="position: absolute; top: 30px; left: 66.66%; width: 33.34%; height: calc(100% - 30px); background: #d0d0d0;">
+              <img src="./static/images/card_ours.png" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px; border-radius: 3px;">
                 Ours
               </div>
             </div>
 
-            <div class="triple-handle-left" style="left: 33.33%;">
-              <span class="handle-left-arrow"></span>
-              <span class="handle-right-arrow"></span>
+            <div id="handle-left" style="position: absolute; top: 30px; left: 33.33%; width: 40px; height: calc(100% - 30px); background: rgba(255,255,255,0.5); border: 2px solid white; cursor: grab; transform: translateX(-50%);">
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold;">◀ ▶</div>
             </div>
 
-            <div class="triple-handle-right" style="left: 66.66%;">
-              <span class="handle-left-arrow"></span>
-              <span class="handle-right-arrow"></span>
+            <div id="handle-right" style="position: absolute; top: 30px; left: 66.66%; width: 40px; height: calc(100% - 30px); background: rgba(255,255,255,0.5); border: 2px solid white; cursor: grab; transform: translateX(-50%);">
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold;">◀ ▶</div>
             </div>
           </div>
 
@@ -388,7 +388,7 @@
         <div id="triple-example5" class="triple-container-small">
           <div class="triple-left">
             <div class="triple-left-inset">
-              <img src=".static/images/card_bardgs.png">
+              <img src="./static/images/comparsion/gs_tools.png">
               <div class="triple-leftPosition leftLabel">
                 3D-GS
               </div>
@@ -397,7 +397,7 @@
 
           <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
             <div class="triple-middle-inset">
-              <img src=".static/images/card_ours.png">
+              <img src="./static/images/comparsion/tools.png">
               <div class="triple-middlePosition middleLabel">
                 Baseline
               </div>
@@ -405,7 +405,7 @@
           </div>
 
           <div class="triple-right">
-            <img src=".static/images/card_gt.png">
+            <img src="./static/images/comparsion/tools.png">
             <div class="triple-rightPosition rightLabel" style="z-index:1;">
               Ours
             </div>
@@ -446,8 +446,56 @@
 
     // 初始化一个三对比滑块进行测试
     console.log('Initializing triple comparison...');
-    new TripleComparison({
-      id: '#triple-example1'
+
+    // 简单的三对比拖动功能
+    const tripleContainer = document.getElementById('triple-example1');
+    const leftHandle = document.getElementById('handle-left');
+    const rightHandle = document.getElementById('handle-right');
+    const leftSection = tripleContainer.children[1]; // 第一个图像区域
+    const middleSection = tripleContainer.children[2]; // 第二个图像区域
+    const rightSection = tripleContainer.children[3]; // 第三个图像区域
+
+    let activeHandle = null;
+
+    function updateLayout(leftPos, rightPos) {
+        leftSection.style.width = leftPos + '%';
+        middleSection.style.left = leftPos + '%';
+        middleSection.style.width = (rightPos - leftPos) + '%';
+        rightSection.style.left = rightPos + '%';
+        leftHandle.style.left = leftPos + '%';
+        rightHandle.style.left = rightPos + '%';
+    }
+
+    [leftHandle, rightHandle].forEach(handle => {
+        handle.addEventListener('mousedown', (e) => {
+            activeHandle = handle;
+            handle.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!activeHandle) return;
+
+        const rect = tripleContainer.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+
+        if (activeHandle === leftHandle) {
+            const rightPos = parseFloat(rightHandle.style.left) || 66.66;
+            const newLeftPos = Math.max(5, Math.min(x, rightPos - 10));
+            updateLayout(newLeftPos, rightPos);
+        } else if (activeHandle === rightHandle) {
+            const leftPos = parseFloat(leftHandle.style.left) || 33.33;
+            const newRightPos = Math.max(leftPos + 10, Math.min(x, 95));
+            updateLayout(leftPos, newRightPos);
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (activeHandle) {
+            activeHandle.style.cursor = 'grab';
+        }
+        activeHandle = null;
     });
 
   </script>
