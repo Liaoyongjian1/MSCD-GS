@@ -439,11 +439,11 @@
 
         const left = beforeAfterContainer.querySelector('.triple-left');
         const leftText = beforeAfterContainer.querySelector('.triple-leftPosition');
+        const middle = beforeAfterContainer.querySelector('.triple-middle');
         const middleText = beforeAfterContainer.querySelector('.triple-middlePosition');
         const rightText = beforeAfterContainer.querySelector('.triple-rightPosition');
         const leftHandle = beforeAfterContainer.querySelector('.triple-handle-left');
         const rightHandle = beforeAfterContainer.querySelector('.triple-handle-right');
-        const middle = beforeAfterContainer.querySelector('.triple-middle');
 
         console.log('All elements found:', {
           left: !!left,
@@ -454,17 +454,13 @@
 
         var widthChange = 0;
 
-        const leftInset = beforeAfterContainer.querySelector('.triple-left-inset');
-        if (leftInset) {
-          leftInset.setAttribute("style", "width: " + beforeAfterContainer.offsetWidth + "px;")
-        }
-
+        // 设置初始状态
         if (left) left.setAttribute('style', "width: 33.33%;");
         if (middle) middle.setAttribute('style', "left: 33.33%; width: 33.33%;");
         if (leftHandle) leftHandle.setAttribute('style', "left: 33.33%;");
         if (rightHandle) rightHandle.setAttribute('style', "left: 66.66%;");
 
-        //mouse move event listener
+        //mouse move event listener - 类似原始BeforeAfter的实现
         beforeAfterContainer.addEventListener('mousemove', (e) => {
           let containerWidth = beforeAfterContainer.offsetWidth;
           widthChange = e.offsetX;
@@ -473,25 +469,61 @@
           const leftHandlePos = parseFloat(leftHandle.style.left) || 33.33;
           const rightHandlePos = parseFloat(rightHandle.style.left) || 66.66;
 
+          // 判断鼠标更接近哪个滑块
           if (Math.abs(widthChange - leftHandlePos * containerWidth / 100) <
               Math.abs(widthChange - rightHandlePos * containerWidth / 100)) {
             // 操作左滑块
             if (e.offsetX > 10 && e.offsetX < beforeAfterContainer.offsetWidth - 10) {
-              newWidth = Math.min(newWidth, rightHandlePos - 10);
+              newWidth = Math.min(Math.max(5, newWidth), rightHandlePos - 10);
               left.setAttribute('style', "width:" + newWidth + "%;");
               middle.setAttribute('style', "left:" + newWidth + "%; width:" + (rightHandlePos - newWidth) + "%;");
               leftHandle.setAttribute('style', "left:" + newWidth + "%;");
-              leftText.setAttribute('style', "z-index:" + "1;");
+              if (leftText) leftText.setAttribute('style', "z-index: 1;");
             }
           } else {
             // 操作右滑块
             if (e.offsetX > 10 && e.offsetX < beforeAfterContainer.offsetWidth - 10) {
-              newWidth = Math.max(newWidth, leftHandlePos + 10);
+              newWidth = Math.max(Math.min(95, newWidth), leftHandlePos + 10);
               middle.setAttribute('style', "left:" + leftHandlePos + "%; width:" + (newWidth - leftHandlePos) + "%;");
               rightHandle.setAttribute('style', "left:" + newWidth + "%;");
-              rightText.setAttribute('style', "z-index:" + "1;");
+              if (rightText) rightText.setAttribute('style', "z-index: 1;");
             }
           }
+        });
+
+        // touch screen event listener
+        beforeAfterContainer.addEventListener("touchstart", (e) => {
+          beforeAfterContainer.addEventListener("touchmove", (e2) => {
+            let containerWidth = beforeAfterContainer.offsetWidth;
+            let currentPoint = e2.changedTouches[0].clientX;
+            let startOfDiv = beforeAfterContainer.offsetLeft;
+            let modifiedCurrentPoint = currentPoint - startOfDiv;
+
+            const leftHandlePos = parseFloat(leftHandle.style.left) || 33.33;
+            const rightHandlePos = parseFloat(rightHandle.style.left) || 66.66;
+
+            if (Math.abs(modifiedCurrentPoint - leftHandlePos * containerWidth / 100) <
+                Math.abs(modifiedCurrentPoint - rightHandlePos * containerWidth / 100)) {
+              // 操作左滑块
+              if (modifiedCurrentPoint > 10 && modifiedCurrentPoint < containerWidth - 10) {
+                let newWidth = modifiedCurrentPoint * 100 / containerWidth;
+                newWidth = Math.min(Math.max(5, newWidth), rightHandlePos - 10);
+
+                left.setAttribute('style', "width:" + newWidth + "%;");
+                middle.setAttribute('style', "left:" + newWidth + "%; width:" + (rightHandlePos - newWidth) + "%;");
+                leftHandle.setAttribute('style', "left:" + newWidth + "%;");
+              }
+            } else {
+              // 操作右滑块
+              if (modifiedCurrentPoint > 10 && modifiedCurrentPoint < containerWidth - 10) {
+                let newWidth = modifiedCurrentPoint * 100 / containerWidth;
+                newWidth = Math.max(Math.min(95, newWidth), leftHandlePos + 10);
+
+                middle.setAttribute('style', "left:" + leftHandlePos + "%; width:" + (newWidth - leftHandlePos) + "%;");
+                rightHandle.setAttribute('style', "left:" + newWidth + "%;");
+              }
+            }
+          });
         });
       }
     }
