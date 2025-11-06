@@ -190,20 +190,16 @@
         <!-- 新增的三对比滑块 -->
         <div id="triple-example1" class="triple-container-small">
             <div class="triple-left">
-              <div class="triple-left-inset">
-                <img src="./static/images/comparsion/gs_cake.png">
-                <div class="triple-leftPosition leftLabel">
-                  3D-GS
-                </div>
+              <img src="./static/images/comparsion/gs_cake.png">
+              <div class="triple-leftPosition leftLabel">
+                3D-GS
               </div>
             </div>
 
             <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-              <div class="triple-middle-inset">
-                <img src="./static/images/comparsion/cake.png">
-                <div class="triple-middlePosition middleLabel">
-                  Baseline
-                </div>
+              <img src="./static/images/comparsion/cake.png">
+              <div class="triple-middlePosition middleLabel">
+                Baseline
               </div>
             </div>
 
@@ -434,32 +430,24 @@
 </section>
 
   <script>
-    // // 初始化原有的双对比滑块
-    // new BeforeAfter({
-    //   id: '#example1'
-    // });
-    // new BeforeAfter({
-    //   id: '#example2'
-    // });
-    // new BeforeAfter({
-    //   id: '#example4'
-    // });
-    // new BeforeAfter({
-    //   id: '#example5'
-    // });
+    // 初始化原有的双对比滑块
+    new BeforeAfter({
+      id: '#example1'
+    });
+    new BeforeAfter({
+      id: '#example2'
+    });
+    new BeforeAfter({
+      id: '#example4'
+    });
+    new BeforeAfter({
+      id: '#example5'
+    });
 
-    // 初始化新增的三对比滑块
+    // 初始化一个三对比滑块进行测试
+    console.log('Initializing triple comparison...');
     new TripleComparison({
       id: '#triple-example1'
-    });
-    new TripleComparison({
-      id: '#triple-example2'
-    });
-    new TripleComparison({
-      id: '#triple-example4'
-    });
-    new TripleComparison({
-      id: '#triple-example5'
     });
 
   </script>
