@@ -197,7 +197,7 @@
             </div>
 
             <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-              <img src="./static/images/card_ours.png">
+              <img src="./static/images/card_our.png">
               <div class="triple-middlePosition middleLabel">
                 Ours
               </div>
@@ -221,55 +221,26 @@
             </div>
           </div>
 
-          <div id="example2" class="bal-container-small">
-
-          <div class="bal-after">
-            <img src="./static/images/comparsion/cisco.png">
-            <div class="bal-afterPosition afterLabel">
-            Ours
-            </div>
-          </div>
-
-          <div class="bal-before" style="width: 50%;">
-            <div class="bal-before-inset" style="width: 539px;">
-            <img src="./static/images/comparsion/gs_cisco.png">
-            <div class="bal-beforePosition beforeLabel">
-              3D-GS
-            </div>
-            </div>
-          </div>
-
-          <div class="bal-handle" style="left: 50%;">
-            <span class=" handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          </div>
-
-        <!-- 新增的三对比滑块 -->
+          <!-- 新增的第二个三对比滑块 -->
         <div id="triple-example2" class="triple-container-small">
             <div class="triple-left">
-              <div class="triple-left-inset">
-                <img src="./static/images/comparsion/gs_cisco.png">
-                <div class="triple-leftPosition leftLabel">
-                  3D-GS
-                </div>
+              <img src="./static/images/card_bardgs.png">
+              <div class="triple-leftPosition leftLabel">
+                BarDGS
               </div>
             </div>
 
             <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-              <div class="triple-middle-inset">
-                <img src="./static/images/comparsion/cisco.png">
-                <div class="triple-middlePosition middleLabel">
-                  Baseline
-                </div>
+              <img src="./static/images/card_our.png">
+              <div class="triple-middlePosition middleLabel">
+                Ours
               </div>
             </div>
 
             <div class="triple-right">
-              <img src="./static/images/comparsion/cisco.png">
+              <img src="./static/images/card_gt.png">
               <div class="triple-rightPosition rightLabel">
-                Ours
+                GT
               </div>
             </div>
 
@@ -444,9 +415,12 @@
       id: '#example5'
     });
 
-    // 初始化一个三对比滑块
+    // 初始化两个三对比滑块
     new TripleComparison({
       id: '#triple-example1'
+    });
+    new TripleComparison({
+      id: '#triple-example2'
     });
 
   </script>
