@@ -188,73 +188,41 @@
           </div>
         -->
 
-        <!-- 新增的三对比滑块 -->
-        <div id="triple-example1" class="triple-container-small">
-            <div class="triple-left">
-              <img src="./static/images/card_bardgs.png">
-              <div class="triple-leftPosition leftLabel">
-                BarDGS
-              </div>
-            </div>
-
-            <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
+        <!-- 简单的三对比滑块 -->
+        <div id="triple-example1" class="bal-container-small" style="height: 300px;">
+            <div class="bal-after" style="left: 33.33%; width: 33.33%;">
               <img src="./static/images/card_our.png">
-              <div class="triple-middlePosition middleLabel">
-                Ours
-              </div>
+              <div class="bal-afterPosition afterLabel">Ours</div>
             </div>
 
-            <div class="triple-right">
-              <img src="./static/images/card_gt.png">
-              <div class="triple-rightPosition rightLabel" style="z-index:1;">
-                GT
-              </div>
-            </div>
-
-            <div class="triple-handle-left" style="left: 33.33%;">
-              <span class="handle-left-arrow"></span>
-              <span class="handle-right-arrow"></span>
-            </div>
-
-            <div class="triple-handle-right" style="left: 66.66%;">
-              <span class="handle-left-arrow"></span>
-              <span class="handle-right-arrow"></span>
-            </div>
-          </div>
-
-          <!-- 新增的第二个三对比滑块 -->
-        <div id="triple-example2" class="triple-container-small">
-            <div class="triple-left">
+            <div class="bal-before" style="width: 33.33%;">
               <img src="./static/images/card_bardgs.png">
-              <div class="triple-leftPosition leftLabel">
-                BarDGS
-              </div>
+              <div class="bal-beforePosition beforeLabel">BarDGS</div>
             </div>
 
-            <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-              <img src="./static/images/card_our.png">
-              <div class="triple-middlePosition middleLabel">
-                Ours
-              </div>
+            <div class="bal-handle" style="left: 33.33%;">
+              <span class="handle-left-arrow"></span>
+              <span class="handle-right-arrow"></span>
             </div>
+        </div>
 
-            <div class="triple-right">
+          <!-- 第二个简单滑块 -->
+        <div id="triple-example2" class="bal-container-small" style="height: 300px;">
+            <div class="bal-after" style="left: 33.33%; width: 33.33%;">
               <img src="./static/images/card_gt.png">
-              <div class="triple-rightPosition rightLabel">
-                GT
-              </div>
+              <div class="bal-afterPosition afterLabel">GT</div>
             </div>
 
-            <div class="triple-handle-left" style="left: 33.33%;">
+            <div class="bal-before" style="width: 33.33%;">
+              <img src="./static/images/card_our.png">
+              <div class="bal-beforePosition beforeLabel">Ours</div>
+            </div>
+
+            <div class="bal-handle" style="left: 33.33%;">
               <span class="handle-left-arrow"></span>
               <span class="handle-right-arrow"></span>
             </div>
-
-            <div class="triple-handle-right" style="left: 66.66%;">
-              <span class="handle-left-arrow"></span>
-              <span class="handle-right-arrow"></span>
-            </div>
-          </div>
+        </div>
         </div>
         </div>
       </div>
@@ -420,11 +388,11 @@
     });
     */
 
-    // 只初始化两个三对比滑块
-    new TripleComparison({
+    // 使用现有的BeforeAfter类
+    new BeforeAfter({
       id: '#triple-example1'
     });
-    new TripleComparison({
+    new BeforeAfter({
       id: '#triple-example2'
     });
 
