@@ -1,556 +1,63 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <title>MSCD-GS: Motion-Separated Cooperative Deblurring Dynamic Reconstruction via Gaussian Splitting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-  <script src="./static/js/script.js"></script>
-
-</head>
-
-<body>
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">MSCD-GS: Motion-Separated Cooperative Deblurring Dynamic Reconstruction via Gaussian Splitting</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class=" carousel results-carousel">
-        <div class="item item-cake">
-          <video poster="" id="cake" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/man.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-caps">
-          <video poster="" id="caps" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/seesaw.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-cisco">
-          <video poster="" id="cisco" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/women.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-cups">
-          <video poster="" id="cups" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/street.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coral">
-          <video poster="" id="coral" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/skatting.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-cupcake">
-          <video poster="" id="cupcake" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/third.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-tools">
-          <video poster="" id="tools" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/card.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-ball">
-          <video poster="" id="ball" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/kitchen.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-basket">
-          <video poster="" id="basket" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/poster.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-stair">
-          <video poster="" id="stair" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shark.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/walk.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-heron">
-          <video poster="" id="heron" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/windmill.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-parterre">
-          <video poster="" id="parterre" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toycar.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-	<div class="container is-max-desktop">
-	  <!-- Concurrent Work. -->
-	  <div class="columns is-centered has-text-centered">
-		<div class="column is-full-width">
-		  <h2 class="title is-3">MSCD-GS: Motion-Separated Cooperative Deblurring via Gaussian Splitting</h2>
-		  <div class="content has-text-justified">
-			<img src="./static/images/teaser.png">
-			<p align="justify">Motivation. Although the deblurring model NAFNet still exhibits suboptimal performance in deblurring motion-blurred images, it demonstrates significantly stronger deblurring capabilities when combined with the 4D reconstruction method SoM. We propose a novel 4D Gaussian deblurring method, which can render sharper images.</p>
-			<img src="./static/images/pipeline.png">
-			<p align="justify">The pipeline of our MSCD-GS. We construct an initial Gaussian model using blurred images as input. During optimization, static and dynamic Gaussians are separated using Gaussian motion distance and dynamic masks generated by BootsTAPIR. Subsequently, we model static and dynamic Gaussian motion separately and design two motion-aware MLPs to predict their changes over exposure time, thereby generating multiple virtual sharp images. We also utilize the results from the deblurring network to constrain these virtual images. Furthermore, these virtual clear images are synthesized into a virtual blurred image to align with the input real image.</p>
-		  </div>
-		</div>
-	  </div>
-	</div>
-</section>
-  
-<section class="section">
-  <div class="container ">
-    <div class=" has-text-centered">
-    <h2 class="title is-3">Visual Comparisons</h2>
-    <div class="content has-text-justified">
-      <p>
-
-      </p>
-    </div>
-    <div class="columns is-centered">
-      <!-- Visual Effects. -->
-      <div class="column">
-      <div class="content">
-        <div class="columns is-centered">
-        <div class="column is-full-width">
-          <!-- 原有的双对比滑块 - 已注释
-        <div id="example1" class="bal-container-small">
-
-          <div class="bal-after">
-            <img src="./static/images/comparsion/cake.png">
-            <div class="bal-afterPosition afterLabel" style="z-index:1;">
-            Ours
-            </div>
-          </div>
-
-          <div class="bal-before" style="width:96.4968152866242%;">
-            <div class="bal-before-inset" style="width: 539px;">
-            <img src="./static/images/comparsion/gs_cake.png">
-            <div class="bal-beforePosition beforeLabel">
-              3D-GS
-            </div>
-            </div>
-          </div>
-
-          <div class="bal-handle" style="left:96.4968152866242%;">
-            <span class=" handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          </div>
-        -->
-
-        <!-- 第一个双滑块三对比 -->
-        <div id="triple-example1" class="triple-container-small">
-          <div class="triple-left">
-            <div class="triple-left-inset">
-              <img src="./static/images/card_bardgs.png">
-              <div class="triple-leftPosition leftLabel">
-                BarDGS
-              </div>
-            </div>
-          </div>
-
-          <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-            <div class="triple-middle-inset">
-              <img src="./static/images/card_our.png">
-              <div class="triple-middlePosition middleLabel">
-                Ours
-              </div>
-            </div>
-          </div>
-
-          <div class="triple-right">
-            <img src="./static/images/card_gt.png">
-            <div class="triple-rightPosition rightLabel" style="z-index:1;">
-              GT
-            </div>
-          </div>
-
-          <div class="triple-handle-left" style="left: 33.33%;">
-            <span class="handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="triple-handle-right" style="left: 66.66%;">
-            <span class="handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-        </div>
-
-        <!-- 第二个双滑块三对比 -->
-        <div id="triple-example2" class="triple-container-small">
-          <div class="triple-left">
-            <div class="triple-left-inset">
-              <img src="./static/images/card_bardgs.png">
-              <div class="triple-leftPosition leftLabel">
-                BarDGS
-              </div>
-            </div>
-          </div>
-
-          <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-            <div class="triple-middle-inset">
-              <img src="./static/images/card_our.png">
-              <div class="triple-middlePosition middleLabel">
-                Ours
-              </div>
-            </div>
-          </div>
-
-          <div class="triple-right">
-            <img src="./static/images/card_gt.png">
-            <div class="triple-rightPosition rightLabel" style="z-index:1;">
-              GT
-            </div>
-          </div>
-
-          <div class="triple-handle-left" style="left: 33.33%;">
-            <span class="handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="triple-handle-right" style="left: 66.66%;">
-            <span class="handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-        </div>
-      </div>
-      </div>
-
-
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-      <div class="columns is-centered">
-        <div class="column content">
-
-        <!-- 原有的双对比滑块 - 已注释 -->
-        <!-- <div id="example4" class="bal-container-small">
-          <div class="bal-after">
-          <img src="./static/images/comparsion/caps.png">
-          <div class="bal-afterPosition afterLabel" style="z-index:1;">
-            Ours
-          </div>
-          </div>
-
-          <div class="bal-before" style="width:62.10191082802548%;">
-          <div class="bal-before-inset" style="width: 539px;">
-            <img src="./static/images/comparsion/gs_caps.png">
-            <div class="bal-beforePosition beforeLabel">
-            3D-GS
-            </div>
-          </div>
-          </div>
-
-          <div class="bal-handle" style="left:62.10191082802548%;">
-          <span class=" handle-left-arrow"></span>
-          <span class="handle-right-arrow"></span>
-          </div>
-
-        </div>
-        -->
-
-        <!-- 新增的三对比滑块 -->
-        <div id="triple-example4" class="triple-container-small">
-          <div class="triple-left">
-            <div class="triple-left-inset">
-              <img src="./static/images/comparsion/gs_caps.png">
-              <div class="triple-leftPosition leftLabel">
-                3D-GS
-              </div>
-            </div>
-          </div>
-
-          <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-            <div class="triple-middle-inset">
-              <img src="./static/images/comparsion/caps.png">
-              <div class="triple-middlePosition middleLabel">
-                Baseline
-              </div>
-            </div>
-          </div>
-
-          <div class="triple-right">
-            <img src="./static/images/comparsion/caps.png">
-            <div class="triple-rightPosition rightLabel" style="z-index:1;">
-              Ours
-            </div>
-          </div>
-
-          <div class="triple-handle-left" style="left: 33.33%;">
-            <span class="handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="triple-handle-right" style="left: 66.66%;">
-            <span class="handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-        </div>
-
-        <!-- 原有的双对比滑块 - 已注释 -->
-        <!-- <div id="example5" class="bal-container-small">
-          <div class="bal-after">
-          <img src="./static/images/comparsion/tools.png">
-          <div class="bal-afterPosition afterLabel" style="z-index:1;">
-            Ours
-          </div>
-          </div>
-
-          <div class="bal-before" style="width:56.77179962894249%;">
-          <div class="bal-before-inset" style="width: 628px;">
-            <img src="./static/images/comparsion/gs_tools.png">
-            <div class="bal-beforePosition beforeLabel">
-            3D-GS
-            </div>
-          </div>
-          </div>
-
-          <div class="bal-handle" style="left:56.77179962894249%;">
-          <span class=" handle-left-arrow"></span>
-          <span class="handle-right-arrow"></span>
-          </div>
-
-        </div>
-        -->
-
-        <!-- 新增的三对比滑块 -->
-        <div id="triple-example5" class="triple-container-small">
-          <div class="triple-left">
-            <div class="triple-left-inset">
-              <img src="./static/images/comparsion/gs_tools.png">
-              <div class="triple-leftPosition leftLabel">
-                3D-GS
-              </div>
-            </div>
-          </div>
-
-          <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
-            <div class="triple-middle-inset">
-              <img src="./static/images/comparsion/tools.png">
-              <div class="triple-middlePosition middleLabel">
-                Baseline
-              </div>
-            </div>
-          </div>
-
-          <div class="triple-right">
-            <img src="./static/images/comparsion/tools.png">
-            <div class="triple-rightPosition rightLabel" style="z-index:1;">
-              Ours
-            </div>
-          </div>
-
-          <div class="triple-handle-left" style="left: 33.33%;">
-            <span class="handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="triple-handle-right" style="left: 66.66%;">
-            <span class="handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-        </div>
-        </div>
-      </div>
-      </div>
-    </div>
-    </div>
-  </div>
-</section>
-
-  <script>
-    // 原有的双对比滑块已注释
-    /*
-    new BeforeAfter({
-      id: '#example1'
-    });
-    new BeforeAfter({
-      id: '#example2'
-    });
-    new BeforeAfter({
-      id: '#example4'
-    });
-    new BeforeAfter({
-      id: '#example5'
-    });
-    */
-
-    // 直接在HTML中定义TripleComparison类，避免加载问题
-    class TripleComparison {
-      constructor(entryObject) {
-        console.log('TripleComparison initializing for:', entryObject.id);
-
-        const beforeAfterContainer = document.querySelector(entryObject.id);
-        if (!beforeAfterContainer) {
-          console.error('Container not found:', entryObject.id);
-          return;
+    <meta charset="utf-8">
+    <title>Triple Comparison Test</title>
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="./static/js/script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
+        .test-container {
+            width: 800px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Triple Comparison Test</h1>
 
-        const left = beforeAfterContainer.querySelector('.triple-left');
-        const leftText = beforeAfterContainer.querySelector('.triple-leftPosition');
-        const middle = beforeAfterContainer.querySelector('.triple-middle');
-        const middleText = beforeAfterContainer.querySelector('.triple-middlePosition');
-        const rightText = beforeAfterContainer.querySelector('.triple-rightPosition');
-        const leftHandle = beforeAfterContainer.querySelector('.triple-handle-left');
-        const rightHandle = beforeAfterContainer.querySelector('.triple-handle-right');
+        <div id="test-triple" class="triple-container-small">
+            <div class="triple-left">
+                <img src="./static/images/comparsion/gs_cake.png">
+                <div class="triple-leftPosition leftLabel">
+                    3D-GS
+                </div>
+            </div>
 
-        var widthChange = 0;
+            <div class="triple-middle" style="left: 33.33%; width: 33.33%;">
+                <img src="./static/images/comparsion/cake.png">
+                <div class="triple-middlePosition middleLabel">
+                    Baseline
+                </div>
+            </div>
 
-        // 设置初始状态
-        left.setAttribute('style', "width: 33.33%;");
-        middle.setAttribute('style', "left: 33.33%; width: 33.33%;");
-        leftHandle.setAttribute('style', "left: 33.33%;");
-        rightHandle.setAttribute('style', "left: 66.66%;");
+            <div class="triple-right">
+                <img src="./static/images/comparsion/cake.png">
+                <div class="triple-rightPosition rightLabel" style="z-index:1;">
+                    Ours
+                </div>
+            </div>
 
-        //mouse move event listener - 完全按照原始BeforeAfter的逻辑
-        beforeAfterContainer.addEventListener('mousemove', (e) => {
-          let containerWidth = beforeAfterContainer.offsetWidth;
-          widthChange = e.offsetX;
-          let newWidth = widthChange * 100 / containerWidth;
+            <div class="triple-handle-left" style="left: 33.33%;">
+                <span class="handle-left-arrow"></span>
+                <span class="handle-right-arrow"></span>
+            </div>
 
-          const leftHandlePos = parseFloat(leftHandle.style.left) || 33.33;
-          const rightHandlePos = parseFloat(rightHandle.style.left) || 66.66;
+            <div class="triple-handle-right" style="left: 66.66%;">
+                <span class="handle-left-arrow"></span>
+                <span class="handle-right-arrow"></span>
+            </div>
+        </div>
+    </div>
 
-          // 判断鼠标更接近哪个滑块
-          if (Math.abs(widthChange - leftHandlePos * containerWidth / 100) <
-              Math.abs(widthChange - rightHandlePos * containerWidth / 100)) {
-            // 操作左滑块
-            if (e.offsetX > 10 && e.offsetX < beforeAfterContainer.offsetWidth - 10) {
-              newWidth = Math.min(Math.max(5, newWidth), rightHandlePos - 10);
-              left.setAttribute('style', "width:" + newWidth + "%;");
-              middle.setAttribute('style', "left:" + newWidth + "%; width:" + (rightHandlePos - newWidth) + "%;");
-              leftHandle.setAttribute('style', "left:" + newWidth + "%;");
-              if (leftText) leftText.setAttribute('style', "z-index: 1;");
-            }
-          } else {
-            // 操作右滑块
-            if (e.offsetX > 10 && e.offsetX < beforeAfterContainer.offsetWidth - 10) {
-              newWidth = Math.max(Math.min(95, newWidth), leftHandlePos + 10);
-              middle.setAttribute('style', "left:" + leftHandlePos + "%; width:" + (newWidth - leftHandlePos) + "%;");
-              rightHandle.setAttribute('style', "left:" + newWidth + "%;");
-              if (rightText) rightText.setAttribute('style', "z-index: 1;");
-            }
-          }
-        });
-
-        //touch screen event listener - 完全按照原始BeforeAfter的逻辑
-        beforeAfterContainer.addEventListener("touchstart", (e) => {
-          beforeAfterContainer.addEventListener("touchmove", (e2) => {
-            let containerWidth = beforeAfterContainer.offsetWidth;
-            let currentPoint = e2.changedTouches[0].clientX;
-            let startOfDiv = beforeAfterContainer.offsetLeft;
-            let modifiedCurrentPoint = currentPoint - startOfDiv;
-
-            const leftHandlePos = parseFloat(leftHandle.style.left) || 33.33;
-            const rightHandlePos = parseFloat(rightHandle.style.left) || 66.66;
-
-            if (Math.abs(modifiedCurrentPoint - leftHandlePos * containerWidth / 100) <
-                Math.abs(modifiedCurrentPoint - rightHandlePos * containerWidth / 100)) {
-              // 操作左滑块
-              if (modifiedCurrentPoint > 10 && modifiedCurrentPoint < containerWidth - 10) {
-                let newWidth = modifiedCurrentPoint * 100 / containerWidth;
-                newWidth = Math.min(Math.max(5, newWidth), rightHandlePos - 10);
-
-                left.setAttribute('style', "width:" + newWidth + "%;");
-                middle.setAttribute('style', "left:" + newWidth + "%; width:" + (rightHandlePos - newWidth) + "%;");
-                leftHandle.setAttribute('style', "left:" + newWidth + "%;");
-              }
-            } else {
-              // 操作右滑块
-              if (modifiedCurrentPoint > 10 && modifiedCurrentPoint < containerWidth - 10) {
-                let newWidth = modifiedCurrentPoint * 100 / containerWidth;
-                newWidth = Math.max(Math.min(95, newWidth), leftHandlePos + 10);
-
-                middle.setAttribute('style', "left:" + leftHandlePos + "%; width:" + (newWidth - leftHandlePos) + "%;");
-                rightHandle.setAttribute('style', "left:" + newWidth + "%;");
-              }
-            }
-          });
-        });
-      }
-    }
-
-    // 使用新的TripleComparison类
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM Content Loaded - Initializing TripleComparison components...');
-
-      // 确保容器存在
-      const container1 = document.getElementById('triple-example1');
-      const container2 = document.getElementById('triple-example2');
-      console.log('Containers found:', !!container1, !!container2);
-
-      if (container1) {
-        console.log('Creating first TripleComparison...');
+    <script>
         new TripleComparison({
-          id: '#triple-example1'
+            id: '#test-triple'
         });
-      }
-
-      if (container2) {
-        console.log('Creating second TripleComparison...');
-        new TripleComparison({
-          id: '#triple-example2'
-        });
-      }
-
-      console.log('TripleComparison components initialized.');
-    });
-
-  </script>
-  
-
-
+    </script>
 </body>
-
 </html>
