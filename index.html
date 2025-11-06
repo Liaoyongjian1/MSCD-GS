@@ -445,22 +445,15 @@
         const leftHandle = beforeAfterContainer.querySelector('.triple-handle-left');
         const rightHandle = beforeAfterContainer.querySelector('.triple-handle-right');
 
-        console.log('All elements found:', {
-          left: !!left,
-          middle: !!middle,
-          leftHandle: !!leftHandle,
-          rightHandle: !!rightHandle
-        });
-
         var widthChange = 0;
 
         // 设置初始状态
-        if (left) left.setAttribute('style', "width: 33.33%;");
-        if (middle) middle.setAttribute('style', "left: 33.33%; width: 33.33%;");
-        if (leftHandle) leftHandle.setAttribute('style', "left: 33.33%;");
-        if (rightHandle) rightHandle.setAttribute('style', "left: 66.66%;");
+        left.setAttribute('style', "width: 33.33%;");
+        middle.setAttribute('style', "left: 33.33%; width: 33.33%;");
+        leftHandle.setAttribute('style', "left: 33.33%;");
+        rightHandle.setAttribute('style', "left: 66.66%;");
 
-        //mouse move event listener - 类似原始BeforeAfter的实现
+        //mouse move event listener - 完全按照原始BeforeAfter的逻辑
         beforeAfterContainer.addEventListener('mousemove', (e) => {
           let containerWidth = beforeAfterContainer.offsetWidth;
           widthChange = e.offsetX;
@@ -491,7 +484,7 @@
           }
         });
 
-        // touch screen event listener
+        //touch screen event listener - 完全按照原始BeforeAfter的逻辑
         beforeAfterContainer.addEventListener("touchstart", (e) => {
           beforeAfterContainer.addEventListener("touchmove", (e2) => {
             let containerWidth = beforeAfterContainer.offsetWidth;
