@@ -263,8 +263,6 @@
             <span class="handle-right-arrow"></span>
           </div>
         </div>
-        </div>
-        </div>
       </div>
       </div>
 
@@ -429,11 +427,27 @@
     */
 
     // 使用新的TripleComparison类
-    new TripleComparison({
-      id: '#triple-example1'
-    });
-    new TripleComparison({
-      id: '#triple-example2'
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM Content Loaded - Initializing TripleComparison components...');
+
+      // 确保容器存在
+      const container1 = document.getElementById('triple-example1');
+      const container2 = document.getElementById('triple-example2');
+      console.log('Containers found:', !!container1, !!container2);
+
+      if (container1) {
+        new TripleComparison({
+          id: '#triple-example1'
+        });
+      }
+
+      if (container2) {
+        new TripleComparison({
+          id: '#triple-example2'
+        });
+      }
+
+      console.log('TripleComparison components initialized.');
     });
 
   </script>
