@@ -542,13 +542,12 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  margin-left: -20px;
-  margin-top: -20px;
+  margin-left: -20.5px;
+  margin-top: -20.5px;
   border: 2px solid #fff;
   border-radius: 1000px;
   z-index: 25;
-  pointer-events: auto;
-  cursor: grab;
+  pointer-events: none;
   box-shadow: 0 0 10px rgb(12, 12, 12);
 }
 
@@ -588,6 +587,7 @@ body {
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
 }
 
 .handle-center .handle-left-arrow,
@@ -598,6 +598,7 @@ body {
   height: 0;
   border: 4px inset transparent;
   position: absolute;
+  pointer-events: none;
 }
 
 .handle-center .handle-left-arrow {
