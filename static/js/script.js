@@ -168,20 +168,14 @@ class TripleComparison {
         this.xPosition = Math.max(0, Math.min(100, (x / this.container.offsetWidth) * 100));
         this.yPosition = Math.max(0, Math.min(100, (y / this.container.offsetHeight) * 100));
 
-        this.updateLayout();
-    }
+        // 立即更新滑块位置，确保滑块跟随鼠标
+        this.handle.style.left = this.xPosition + '%';
+        this.handle.style.top = this.yPosition + '%';
 
-    updateLayout() {
-        const xPercent = this.xPosition;
-        const yPercent = this.yPosition;
-        const xPixels = this.container.offsetWidth * xPercent / 100;
-        const yPixels = this.container.offsetHeight * yPercent / 100;
+        // 更新滑块条的位置
+        const xPixels = this.container.offsetWidth * this.xPosition / 100;
+        const yPixels = this.container.offsetHeight * this.yPosition / 100;
 
-        // 更新滑块位置 - 使用百分比，调整为中心点
-        this.handle.style.left = xPercent + '%';
-        this.handle.style.top = yPercent + '%';
-
-        // 更新滑块的水平和垂直条位置
         const horizontalBar = this.handle.querySelector('.handle-horizontal-bar');
         const verticalBar = this.handle.querySelector('.handle-vertical-bar');
 
@@ -192,63 +186,52 @@ class TripleComparison {
             verticalBar.style.left = xPixels + 'px';
         }
 
-        // 根据滑块位置决定图像显示逻辑
-        // 中心区域：丄形状分割三个图像
-        if (xPercent >= 25 && xPercent <= 75 && yPercent >= 25 && yPercent <= 75) {
-            // 左上区域：BarDGS
-            this.bardgsLayer.style.clip = 'rect(0, ' + xPixels + 'px, ' + yPixels + 'px, 0)';
-            this.bardgsLayer.style.display = 'block';
+        this.updateLayout();
+    }
 
-            // 右上区域：Ours
-            this.oursLayer.style.clip = 'rect(0, ' + this.container.offsetWidth + 'px, ' + yPixels + 'px, ' + xPixels + 'px)';
-            this.oursLayer.style.display = 'block';
+    updateLayout() {
+        const xPercent = this.xPosition;
+        const yPercent = this.yPosition;
+        const xPixels = this.container.offsetWidth * xPercent / 100;
+        const yPixels = this.container.offsetHeight * yPercent / 100;
 
-            // 下方区域：GT
-            this.gtLayer.style.clip = 'rect(' + yPixels + 'px, ' + this.container.offsetWidth + 'px, ' + this.container.offsetHeight + 'px, 0)';
-            this.gtLayer.style.display = 'block';
+        // 根据鼠标位置决定图像显示逻辑
+        // 计算距离各个角落的距离
+        const distToUpperLeft = Math.sqrt(xPercent * xPercent + yPercent * yPercent);
+        const distToLowerLeft = Math.sqrt(xPercent * xPercent + (100 - yPercent) * (100 - yPercent));
+        const distToLowerRight = Math.sqrt((100 - xPercent) * (100 - xPercent) + (100 - yPercent) * (100 - yPercent));
 
-            // 显示滑块条
-            if (horizontalBar) horizontalBar.style.display = 'block';
-            if (verticalBar) verticalBar.style.display = 'block';
-        }
-        // 左上角：显示BarDGS
-        else if (xPercent < 50 && yPercent < 50) {
-            this.bardgsLayer.style.clip = 'auto';
-            this.bardgsLayer.style.display = 'block';
-            this.gtLayer.style.display = 'none';
-            this.oursLayer.style.display = 'none';
+        // 找出最近的角落
+        const minDist = Math.min(distToUpperLeft, distToLowerLeft, distToLowerRight);
 
-            // 隐藏滑块条
-            if (horizontalBar) horizontalBar.style.display = 'none';
-            if (verticalBar) verticalBar.style.display = 'none';
-        }
-        // 右上角：显示Ours
-        else if (xPercent >= 50 && yPercent < 50) {
-            this.oursLayer.style.clip = 'auto';
-            this.oursLayer.style.display = 'block';
-            this.gtLayer.style.display = 'none';
-            this.bardgsLayer.style.display = 'none';
+        // 隐藏所有图层
+        this.gtLayer.style.display = 'none';
+        this.oursLayer.style.display = 'none';
+        this.bardgsLayer.style.display = 'none';
 
-            // 隐藏滑块条
-            if (horizontalBar) horizontalBar.style.display = 'none';
-            if (verticalBar) verticalBar.style.display = 'none';
-        }
-        // 下方区域：显示GT
-        else if (yPercent >= 50) {
+        // 显示滑块条
+        const horizontalBar = this.handle.querySelector('.handle-horizontal-bar');
+        const verticalBar = this.handle.querySelector('.handle-vertical-bar');
+
+        if (horizontalBar) horizontalBar.style.display = 'block';
+        if (verticalBar) verticalBar.style.display = 'block';
+
+        // 根据鼠标位置显示对应的图像
+        if (minDist === distToUpperLeft) {
+            // 鼠标靠近左上角：显示GT
             this.gtLayer.style.clip = 'auto';
             this.gtLayer.style.display = 'block';
-            this.oursLayer.style.display = 'none';
-            this.bardgsLayer.style.display = 'none';
-
-            // 隐藏滑块条
-            if (horizontalBar) horizontalBar.style.display = 'none';
-            if (verticalBar) verticalBar.style.display = 'none';
-        }
-        // 边界过渡区域：动态混合
-        else {
-            // 保持当前状态，不做额外处理
-            if (horizontalBar) horizontalBar.style.display = 'none';
-            if (verticalBar) verticalBar.style.display = 'none';
+            this.gtLayer.style.zIndex = '15';
+        } else if (minDist === distToLowerLeft) {
+            // 鼠标靠近左下角：显示Ours
+            this.oursLayer.style.clip = 'auto';
+            this.oursLayer.style.display = 'block';
+            this.oursLayer.style.zIndex = '15';
+        } else if (minDist === distToLowerRight) {
+            // 鼠标靠近右下角：显示BarDGS
+            this.bardgsLayer.style.clip = 'auto';
+            this.bardgsLayer.style.display = 'block';
+            this.bardgsLayer.style.zIndex = '15';
         }
 
         // 更新滑块标签显示
@@ -260,25 +243,27 @@ class TripleComparison {
         const oursLabel = this.oursLayer.querySelector('.bal-oursPosition');
         const bardgsLabel = this.bardgsLayer.querySelector('.bal-bardgsPosition');
 
-        // 根据滑块位置决定哪些标签可见
+        // 隐藏所有标签
         if (gtLabel) gtLabel.style.display = 'none';
         if (oursLabel) oursLabel.style.display = 'none';
         if (bardgsLabel) bardgsLabel.style.display = 'none';
 
-        if (xPercent >= 25 && xPercent <= 75 && yPercent >= 25 && yPercent <= 75) {
-            // 中心区域显示所有标签
-            if (gtLabel) gtLabel.style.display = 'block';
-            if (oursLabel) oursLabel.style.display = 'block';
-            if (bardgsLabel) bardgsLabel.style.display = 'block';
-        } else if (xPercent < 50 && yPercent < 50) {
-            // 左上角显示BarDGS标签
-            if (bardgsLabel) bardgsLabel.style.display = 'block';
-        } else if (xPercent >= 50 && yPercent < 50) {
-            // 右上角显示Ours标签
-            if (oursLabel) oursLabel.style.display = 'block';
-        } else if (yPercent >= 50) {
-            // 下方区域显示GT标签
-            if (gtLabel) gtLabel.style.display = 'block';
+        // 根据鼠标位置显示对应的标签
+        const distToUpperLeft = Math.sqrt(xPercent * xPercent + yPercent * yPercent);
+        const distToLowerLeft = Math.sqrt(xPercent * xPercent + (100 - yPercent) * (100 - yPercent));
+        const distToLowerRight = Math.sqrt((100 - xPercent) * (100 - xPercent) + (100 - yPercent) * (100 - yPercent));
+
+        const minDist = Math.min(distToUpperLeft, distToLowerLeft, distToLowerRight);
+
+        if (minDist === distToUpperLeft && gtLabel) {
+            // 鼠标靠近左上角：显示GT标签
+            gtLabel.style.display = 'block';
+        } else if (minDist === distToLowerLeft && oursLabel) {
+            // 鼠标靠近左下角：显示Ours标签
+            oursLabel.style.display = 'block';
+        } else if (minDist === distToLowerRight && bardgsLabel) {
+            // 鼠标靠近右下角：显示BarDGS标签
+            bardgsLabel.style.display = 'block';
         }
     }
 }
