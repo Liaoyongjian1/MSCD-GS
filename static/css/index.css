@@ -210,7 +210,8 @@ body {
 }
 
 .bal-after img,
-.bal-before img {
+.bal-before img,
+.bal-right img {
   object-fit: cover;
   position: absolute;
   width: 100%;
@@ -341,4 +342,135 @@ body {
 .img_tag {
   font-size: 22px;
   margin-bottom: 12px;
+}
+
+/* Triple Comparison (单滑块控制三区域) 样式 */
+.bal-right {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  z-index: 14;
+  overflow: hidden;
+}
+
+.bal-right-inset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.bal-rightPosition {
+  background: #121212;
+  color: #fff;
+  right: 0;
+  pointer-events: none;
+  border-radius: 0.2rem;
+  padding: 2px 10px;
+}
+
+.rightLabel {
+  position: absolute;
+  bottom: 0;
+  margin: 1rem;
+  font-size: 1em;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+/* "丄" shaped handle 样式 */
+.bal-handle-shape {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  z-index: 25;
+  pointer-events: auto;
+  cursor: move;
+}
+
+.handle-horizontal-bar {
+  position: absolute;
+  top: 50%;
+  left: -9999px;
+  right: -9999px;
+  height: 2px;
+  background: #fff;
+  margin-top: -1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.handle-vertical-bar {
+  position: absolute;
+  left: 50%;
+  top: -9999px;
+  bottom: -9999px;
+  width: 2px;
+  background: #fff;
+  margin-left: -1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.handle-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  margin-left: -15px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.handle-center .handle-left-arrow,
+.handle-center .handle-right-arrow,
+.handle-center .handle-top-arrow,
+.handle-center .handle-bottom-arrow {
+  width: 0;
+  height: 0;
+  border: 4px inset transparent;
+  position: absolute;
+}
+
+.handle-center .handle-left-arrow {
+  border-right: 4px solid #fff;
+  left: 50%;
+  top: 50%;
+  margin-left: -12px;
+  margin-top: -4px;
+}
+
+.handle-center .handle-right-arrow {
+  border-left: 4px solid #fff;
+  right: 50%;
+  top: 50%;
+  margin-right: -12px;
+  margin-top: -4px;
+}
+
+.handle-center .handle-top-arrow {
+  border-bottom: 4px solid #fff;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -4px;
+}
+
+.handle-center .handle-bottom-arrow {
+  border-top: 4px solid #fff;
+  bottom: 50%;
+  left: 50%;
+  margin-bottom: -12px;
+  margin-left: -4px;
 }
