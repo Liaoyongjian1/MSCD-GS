@@ -166,20 +166,9 @@ class TripleComparison {
         const xPixels = this.container.offsetWidth * xPercent / 100;
         const yPixels = this.container.offsetHeight * yPercent / 100;
 
-        // 更新滑块位置 - 使用像素值精确控制
-        this.handle.style.left = xPixels + 'px';
-        this.handle.style.top = yPixels + 'px';
-
-        // 更新滑块的水平和垂直条位置
-        const horizontalBar = this.handle.querySelector('.handle-horizontal-bar');
-        const verticalBar = this.handle.querySelector('.handle-vertical-bar');
-
-        if (horizontalBar) {
-            horizontalBar.style.top = yPixels + 'px';
-        }
-        if (verticalBar) {
-            verticalBar.style.left = xPixels + 'px';
-        }
+        // 更新滑块位置 - 使用百分比
+        this.handle.style.left = xPercent + '%';
+        this.handle.style.top = yPercent + '%';
 
         // 根据滑块位置决定图像显示逻辑
         // 中心区域：丄形状分割三个图像
