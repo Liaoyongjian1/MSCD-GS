@@ -195,14 +195,25 @@ class TripleComparison {
         const xPixels = this.container.offsetWidth * xPercent / 100;
         const yPixels = this.container.offsetHeight * yPercent / 100;
 
-        // 根据鼠标位置决定图像显示逻辑
-        // 计算距离各个角落的距离
-        const distToUpperLeft = Math.sqrt(xPercent * xPercent + yPercent * yPercent);
-        const distToLowerLeft = Math.sqrt(xPercent * xPercent + (100 - yPercent) * (100 - yPercent));
-        const distToLowerRight = Math.sqrt((100 - xPercent) * (100 - xPercent) + (100 - yPercent) * (100 - yPercent));
+        // 根据鼠标位置决定图像显示逻辑 - 将图像分为三个区域
+        // 左上区域：显示GT (0-33%)
+        // 左下区域：显示Ours (33-66%)
+        // 右下区域：显示BarDGS (66-100%)
 
-        // 找出最近的角落
-        const minDist = Math.min(distToUpperLeft, distToLowerLeft, distToLowerRight);
+        let showGT = false;
+        let showOurs = false;
+        let showBarDGS = false;
+
+        if (yPercent < 33) {
+            // 上部区域：显示GT
+            showGT = true;
+        } else if (yPercent < 66) {
+            // 中部区域：显示Ours
+            showOurs = true;
+        } else {
+            // 下部区域：显示BarDGS
+            showBarDGS = true;
+        }
 
         // 隐藏所有图层
         this.gtLayer.style.display = 'none';
@@ -217,21 +228,24 @@ class TripleComparison {
         if (verticalBar) verticalBar.style.display = 'block';
 
         // 根据鼠标位置显示对应的图像
-        if (minDist === distToUpperLeft) {
-            // 鼠标靠近左上角：显示GT
-            this.gtLayer.style.clip = 'auto';
+        if (showGT) {
+            // 显示GT
             this.gtLayer.style.display = 'block';
             this.gtLayer.style.zIndex = '15';
-        } else if (minDist === distToLowerLeft) {
-            // 鼠标靠近左下角：显示Ours
-            this.oursLayer.style.clip = 'auto';
+            // 使用clip-path创建L形显示区域
+            this.gtLayer.style.clipPath = `polygon(0 0, ${xPercent}% 0, ${xPercent}% 33%, 0 33%)`;
+        } else if (showOurs) {
+            // 显示Ours
             this.oursLayer.style.display = 'block';
             this.oursLayer.style.zIndex = '15';
-        } else if (minDist === distToLowerRight) {
-            // 鼠标靠近右下角：显示BarDGS
-            this.bardgsLayer.style.clip = 'auto';
+            // 使用clip-path创建L形显示区域
+            this.oursLayer.style.clipPath = `polygon(0 33%, ${xPercent}% 33%, ${xPercent}% 66%, 0 66%)`;
+        } else if (showBarDGS) {
+            // 显示BarDGS
             this.bardgsLayer.style.display = 'block';
             this.bardgsLayer.style.zIndex = '15';
+            // 使用clip-path创建L形显示区域
+            this.bardgsLayer.style.clipPath = `polygon(0 66%, ${xPercent}% 66%, ${xPercent}% 100%, 0 100%)`;
         }
 
         // 更新滑块标签显示
@@ -249,20 +263,14 @@ class TripleComparison {
         if (bardgsLabel) bardgsLabel.style.display = 'none';
 
         // 根据鼠标位置显示对应的标签
-        const distToUpperLeft = Math.sqrt(xPercent * xPercent + yPercent * yPercent);
-        const distToLowerLeft = Math.sqrt(xPercent * xPercent + (100 - yPercent) * (100 - yPercent));
-        const distToLowerRight = Math.sqrt((100 - xPercent) * (100 - xPercent) + (100 - yPercent) * (100 - yPercent));
-
-        const minDist = Math.min(distToUpperLeft, distToLowerLeft, distToLowerRight);
-
-        if (minDist === distToUpperLeft && gtLabel) {
-            // 鼠标靠近左上角：显示GT标签
+        if (yPercent < 33 && gtLabel) {
+            // 上部区域：显示GT标签
             gtLabel.style.display = 'block';
-        } else if (minDist === distToLowerLeft && oursLabel) {
-            // 鼠标靠近左下角：显示Ours标签
+        } else if (yPercent < 66 && oursLabel) {
+            // 中部区域：显示Ours标签
             oursLabel.style.display = 'block';
-        } else if (minDist === distToLowerRight && bardgsLabel) {
-            // 鼠标靠近右下角：显示BarDGS标签
+        } else if (bardgsLabel) {
+            // 下部区域：显示BarDGS标签
             bardgsLabel.style.display = 'block';
         }
     }
