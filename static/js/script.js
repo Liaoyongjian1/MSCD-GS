@@ -52,12 +52,20 @@ class BeforeAfter {
     }
 }
 
-// 简化的L形状滑块实现
+// 基于temp.css的L形状滑块实现
 class LShapeSlider {
     constructor(containerId) {
         this.container = document.querySelector(containerId);
         this.handle = this.container.querySelector('#l-slider-handle');
         this.images = this.container.querySelectorAll('img');
+        this.horizontalLine = this.container.querySelector('.l-slider-horizontal-line');
+        this.verticalLine = this.container.querySelector('.l-slider-vertical-line');
+        this.labels = {
+            gt: this.container.querySelector('.l-slider-label-gt'),
+            ours: this.container.querySelector('.l-slider-label-ours'),
+            bardgs: this.container.querySelector('.l-slider-label-bardgs')
+        };
+
         this.xPosition = 50;
         this.yPosition = 50;
 
@@ -66,17 +74,26 @@ class LShapeSlider {
             return;
         }
 
+        console.log('LShapeSlider initialized');
         this.init();
     }
 
     init() {
-        // 隐藏除第一张外的所有图片
-        for (let i = 1; i < this.images.length; i++) {
-            this.images[i].style.display = 'none';
-        }
+        // 设置容器高度
+        this.container.style.height = '400px';
 
+        // 确保所有图片都能正确显示
+        this.images.forEach((img, index) => {
+            img.style.zIndex = 20 - index;
+        });
+
+        // 添加事件监听器
         this.addEventListeners();
-        this.updateLayout();
+
+        // 初始化布局
+        setTimeout(() => {
+            this.updateLayout();
+        }, 100);
     }
 
     addEventListeners() {
@@ -93,7 +110,33 @@ class LShapeSlider {
             this.updateLayout();
         });
 
+        // 鼠标离开时隐藏滑块
+        this.container.addEventListener('mouseleave', () => {
+            this.handle.style.opacity = '0';
+            this.horizontalLine.style.opacity = '0';
+            this.verticalLine.style.opacity = '0';
+        });
+
+        // 鼠标进入时显示滑块
+        this.container.addEventListener('mouseenter', () => {
+            this.handle.style.opacity = '1';
+            this.horizontalLine.style.opacity = '1';
+            this.verticalLine.style.opacity = '1';
+        });
+
         // 触摸事件
+        this.container.addEventListener('touchstart', (e) => {
+            const rect = this.container.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            const y = e.touches[0].clientY - rect.top;
+
+            this.xPosition = Math.max(0, Math.min(100, (x / this.container.offsetWidth) * 100));
+            this.yPosition = Math.max(0, Math.min(100, (y / this.container.offsetHeight) * 100));
+
+            this.updateHandle();
+            this.updateLayout();
+        });
+
         this.container.addEventListener('touchmove', (e) => {
             e.preventDefault();
             const rect = this.container.getBoundingClientRect();
@@ -106,6 +149,11 @@ class LShapeSlider {
             this.updateHandle();
             this.updateLayout();
         });
+
+        // 窗口大小调整
+        window.addEventListener('resize', () => {
+            this.updateLayout();
+        });
     }
 
     updateHandle() {
@@ -113,45 +161,105 @@ class LShapeSlider {
         this.handle.style.left = this.xPosition + '%';
         this.handle.style.top = this.yPosition + '%';
 
-        // 更新滑块条的位置
+        // 更新分割线位置
         const xPixels = (this.xPosition / 100) * this.container.offsetWidth;
         const yPixels = (this.yPosition / 100) * this.container.offsetHeight;
 
-        const horizontalBar = this.handle.querySelector('div[style*="left: -9999px"]');
-        const verticalBar = this.handle.querySelector('div[style*="top: -9999px"]');
+        // 水平分割线位置
+        if (yPixels < this.container.offsetHeight / 2) {
+            // 上半部分：水平分割线在滑块下方
+            this.horizontalLine.style.top = yPixels + 'px';
+            this.horizontalLine.style.height = '1px';
+        } else {
+            // 下半部分：水平分割线在滑块上方
+            this.horizontalLine.style.bottom = (this.container.offsetHeight - yPixels) + 'px';
+            this.horizontalLine.style.height = '1px';
+        }
 
-        if (horizontalBar) {
-            horizontalBar.style.top = yPixels + 'px';
-        }
-        if (verticalBar) {
-            verticalBar.style.left = xPixels + 'px';
-        }
+        // 垂直分割线位置
+        this.verticalLine.style.left = xPixels + 'px';
     }
 
     updateLayout() {
         const xPercent = this.xPosition;
         const yPercent = this.yPosition;
 
-        // 显示所有图片
-        this.images.forEach(img => img.style.display = 'block');
+        // 重置所有图片显示
+        this.images.forEach(img => {
+            img.style.display = 'block';
+            img.style.clipPath = 'none';
+        });
 
-        // 根据位置创建L形显示区域
+        // 更新标签显示
+        this.updateLabels();
+
+        // 创建L形显示区域
         if (yPercent < 50) {
-            // 上半部分：GT在左上，BarDGS在右侧
+            // 上半部分：GT在左上，BarDGS在右侧，Ours隐藏
             this.images[0].style.clipPath = `polygon(0 0, ${xPercent}% 0, ${xPercent}% 100%, 0 100%)`;
             this.images[1].style.display = 'none'; // Ours隐藏
             this.images[2].style.clipPath = `polygon(${xPercent}% 0, 100% 0, 100% 100%, ${xPercent}% 100%)`;
+
+            // 更新分割线显示
+            this.horizontalLine.style.top = yPercent + '%';
+            this.horizontalLine.style.height = '1px';
         } else {
-            // 下半部分：Ours在左下，BarDGS在右侧
+            // 下半部分：Ours在左下，BarDGS在右侧，GT隐藏
             this.images[0].style.display = 'none'; // GT隐藏
             this.images[1].style.clipPath = `polygon(0 0, ${xPercent}% 0, ${xPercent}% 100%, 0 100%)`;
             this.images[2].style.clipPath = `polygon(${xPercent}% 0, 100% 0, 100% 100%, ${xPercent}% 100%)`;
+
+            // 更新分割线显示
+            this.horizontalLine.style.top = yPercent + '%';
+            this.horizontalLine.style.height = '1px';
         }
 
-        // 设置z-index
-        this.images[0].style.zIndex = '1';
-        this.images[1].style.zIndex = '2';
-        this.images[2].style.zIndex = '3';
+        // 设置z-index确保正确的层级
+        this.images[0].style.zIndex = '10';
+        this.images[1].style.zIndex = '11';
+        this.images[2].style.zIndex = '12';
+    }
+
+    updateLabels() {
+        const gtLabel = this.labels.gt;
+        const oursLabel = this.labels.ours;
+        const bardgsLabel = this.labels.bardgs;
+
+        // 隐藏所有标签
+        [gtLabel, oursLabel, bardgsLabel].forEach(label => {
+            if (label) label.style.opacity = '0';
+        });
+
+        // 根据区域显示对应的标签
+        if (this.yPosition < 50) {
+            // 上半部分：显示GT标签
+            if (gtLabel) {
+                gtLabel.style.opacity = '1';
+                gtLabel.style.bottom = '10px';
+                gtLabel.style.left = '10px';
+            }
+
+            // BarDGS标签始终显示
+            if (bardgsLabel) {
+                bardgsLabel.style.opacity = '1';
+                bardgsLabel.style.top = '10px';
+                bardgsLabel.style.right = '10px';
+            }
+        } else {
+            // 下半部分：显示Ours标签
+            if (oursLabel) {
+                oursLabel.style.opacity = '1';
+                oursLabel.style.bottom = '10px';
+                oursLabel.style.left = '10px';
+            }
+
+            // BarDGS标签始终显示
+            if (bardgsLabel) {
+                bardgsLabel.style.opacity = '1';
+                bardgsLabel.style.top = '10px';
+                bardgsLabel.style.right = '10px';
+            }
+        }
     }
 }
 
