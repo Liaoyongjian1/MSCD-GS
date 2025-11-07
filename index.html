@@ -163,44 +163,47 @@
         <div class="column is-full-width">
           <div id="example1" class="bal-container-small">
 
-          <!-- Bottom layer: GT -->
-          <div class="bal-bottom">
+          <!-- Layer 1: GT (background) -->
+          <div class="bal-after">
             <img src="./static/images/card_gt.png">
             <div class="bal-afterPosition afterLabel" style="z-index:1;">
               GT
             </div>
           </div>
 
-          <!-- Top right layer: Ours -->
-          <div class="bal-top-right" style="width:50%; left:50%;">
-            <div class="bal-top-right-inset" style="width: 539px;">
+          <!-- Layer 2: Ours (shown in right-bottom quadrant) -->
+          <div class="bal-right" style="width:50%; left:50%;">
+            <div class="bal-right-inset" style="width: 539px;">
               <img src="./static/images/card_our.png">
-              <div class="bal-top-rightPosition topRightLabel">
+              <div class="bal-rightPosition rightLabel">
                 Ours
               </div>
             </div>
           </div>
 
-          <!-- Top left layer: BarDGS -->
-          <div class="bal-top-left" style="width:50%; left:0%;">
-            <div class="bal-top-left-inset" style="width: 539px;">
+          <!-- Layer 3: BarDGS (shown in left-top quadrant) -->
+          <div class="bal-before" style="width:50%; left:0%;">
+            <div class="bal-before-inset" style="width: 539px;">
               <img src="./static/images/card_bardgs.png">
-              <div class="bal-top-leftPosition topLeftLabel">
+              <div class="bal-beforePosition beforeLabel">
                 BarDGS
               </div>
             </div>
           </div>
 
-          <!-- Horizontal slider (top/bottom) -->
-          <div class="bal-handle-horizontal" style="top:50%;">
-            <span class="handle-top-arrow"></span>
-            <span class="handle-bottom-arrow"></span>
-          </div>
-
-          <!-- Vertical slider (left/right for top section) -->
-          <div class="bal-handle-vertical" style="top:25%; left:50%;">
-            <span class="handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
+          <!-- "丄" shaped handle - controls all three areas -->
+          <div class="bal-handle-shape" style="left:50%; top:50%;">
+            <!-- Horizontal line -->
+            <div class="handle-horizontal-bar"></div>
+            <!-- Vertical line -->
+            <div class="handle-vertical-bar"></div>
+            <!-- Center circle -->
+            <div class="handle-center">
+              <span class="handle-left-arrow"></span>
+              <span class="handle-right-arrow"></span>
+              <span class="handle-top-arrow"></span>
+              <span class="handle-bottom-arrow"></span>
+            </div>
           </div>
 
           </div>
