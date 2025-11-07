@@ -148,90 +148,85 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
-    <div class="has-text-centered">
-      <h2 class="title is-3">Visual Comparisons</h2>
-      <div class="content has-text-justified">
-        <p>We compare our method with BarDGS on multiple scenes, including seesaw, card, man, women, etc. Our method produces sharper and more detailed results.</p>
-      </div>
+  <div class="container is-max-desktop">
+    <div class="has-text-centered">
+      <h2 class="title is-3">Visual Comparisons</h2>
+      <div class="content has-text-justified">
+        <p>We compare our method with BarDGS on multiple scenes, including seesaw, card, man, women, etc. Our method produces sharper and more detailed results.</p>
+      </div>
 
-      <!-- 三图片对比滑块 -->
-      <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
-        <img src="./static/images/card_bardgs.png" alt="BarDGS">
+            <div style="max-width: 800px; margin: 0 auto 20px auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
+        <img src="./static/images/card_bardgs.png" alt="BarDGS">
 		<img src="./static/images/card_our.png" alt="Ours">
 		<img src="./static/images/card_gt.png" alt="GT">
-        
-      </div>
+      </div>
 
-	  <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example2">
-        <img src="./static/images/kitchen_bardgs.png" alt="BarDGS">
+	    <div style="max-width: 800px; margin: 0 auto 20px auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example2">
+        <img src="./static/images/kitchen_bardgs.png" alt="BarDGS">
 		<img src="./static/images/kitchen_our.png" alt="Ours">
 		<img src="./static/images/kitchen_gt.png" alt="GT">
-        
-      </div>
+      </div>
 
-	  <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example3">
-        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
+	    <div style="max-width: 800px; margin: 0 auto 20px auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example3">
+        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
 		<img src="./static/images/seesaw_our.png" alt="Ours">
 		<img src="./static/images/seesaw_gt.png" alt="GT">
-        
-      </div>
+      </div>
 
-	  <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example4">
-        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
+	    <div style="max-width: 800px; margin: 0 auto 20px auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example4">
+        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
 		<img src="./static/images/seesaw_our.png" alt="Ours">
 		<img src="./static/images/seesaw_gt.png" alt="GT">
-        
-      </div>
-
-            
-
-      
-      <!-- 可继续添加更多场景 -->
-    </div>
-  </div>
+      </div>
+      
+          </div>
+  </div>
 </section>
 
-  <script>
-    // 确保DOM完全加载后再初始化组件
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded, initializing twentytwenty...');
+<script>
+    // 确保DOM完全加载后再初始化组件
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded, initializing twentytwenty...');
 
-      // 检查jQuery和twentytwenty是否可用
-      console.log('jQuery:', typeof $);
-      console.log('twentytwenty plugin:', typeof $.fn.twentytwenty);
+      // 检查jQuery和twentytwenty是否可用
+      console.log('jQuery:', typeof $);
+      console.log('twentytwenty plugin:', typeof $.fn.twentytwenty);
 
-      // 按照temp.js的模式初始化三图片对比滑块
-      if (typeof $.fn.twentytwenty === 'function') {
-        console.log('Initializing twentytwenty on #example1');
-        $("#example1").twentytwenty({
-          default_offset_pct_x: 0.5,
-          default_offset_pct_y: 0.5
-        });
-		// 【新添加的代码】初始化 example2 滑块
-        console.log('Initializing twentytwenty on #example2');
-        $("#example3").twentytwenty({
+      // 按照temp.js的模式初始化三图片对比滑块
+      if (typeof $.fn.twentytwenty === 'function') {
+        console.log('Initializing twentytwenty on #example1');
+        $("#example1").twentytwenty({
           default_offset_pct_x: 0.5,
           default_offset_pct_y: 0.5
         });
-		// 【新添加的代码】初始化 example3 滑块
+		
+        // 【已修正】初始化 example2 滑块
+        console.log('Initializing twentytwenty on #example2');
+        $("#example2").twentytwenty({  // <--- 已修正
+          default_offset_pct_x: 0.5,
+          default_offset_pct_y: 0.5
+        });
+
+		// 【已修正】初始化 example3 滑块
         console.log('Initializing twentytwenty on #example3');
         $("#example3").twentytwenty({
           default_offset_pct_x: 0.5,
           default_offset_pct_y: 0.5
         });
-		// 【新添加的代码】初始化 example4 滑块
+
+		// 【已修正】初始化 example4 滑块
         console.log('Initializing twentytwenty on #example4');
-        $("#example3").twentytwenty({
+        $("#example4").twentytwenty({  // <--- 已修正
           default_offset_pct_x: 0.5,
           default_offset_pct_y: 0.5
         });
-      } else {
-        console.error('twentytwenty plugin not found!');
-      }
 
-    });
-  </script>
+      } else {
+        console.error('twentytwenty plugin not found!');
+      }
+
+    });
+  </script>
 
 
 </body>
