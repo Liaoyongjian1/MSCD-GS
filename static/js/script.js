@@ -70,6 +70,13 @@ class TripleComparison {
         // 丄形状滑块
         this.handle = this.container.querySelector('.bal-handle-shape');
 
+        console.log("找到的元素:", {
+            gt: !!this.gtLayer,
+            ours: !!this.oursLayer,
+            bardgs: !!this.bardgsLayer,
+            handle: !!this.handle
+        });
+
         if (!this.gtLayer || !this.oursLayer || !this.bardgsLayer || !this.handle) {
             console.error('Required elements not found in:', entryObject.id);
             return;
@@ -116,6 +123,7 @@ class TripleComparison {
         // 鼠标移动事件（自动拖动）
         this.container.addEventListener('mousemove', (e) => {
             if (this.isHovering) {
+                console.log("鼠标移动，更新滑块位置");
                 this.updateSlider(e);
             }
         });
