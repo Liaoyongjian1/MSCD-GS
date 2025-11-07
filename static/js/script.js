@@ -52,6 +52,109 @@ class BeforeAfter {
     }
 }
 
+// 简化的L形状滑块实现
+class LShapeSlider {
+    constructor(containerId) {
+        this.container = document.querySelector(containerId);
+        this.handle = this.container.querySelector('#l-slider-handle');
+        this.images = this.container.querySelectorAll('img');
+        this.xPosition = 50;
+        this.yPosition = 50;
+
+        if (!this.container || !this.handle || this.images.length < 3) {
+            console.error('Required elements not found');
+            return;
+        }
+
+        this.init();
+    }
+
+    init() {
+        // 隐藏除第一张外的所有图片
+        for (let i = 1; i < this.images.length; i++) {
+            this.images[i].style.display = 'none';
+        }
+
+        this.addEventListeners();
+        this.updateLayout();
+    }
+
+    addEventListeners() {
+        // 鼠标移动事件
+        this.container.addEventListener('mousemove', (e) => {
+            const rect = this.container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            this.xPosition = Math.max(0, Math.min(100, (x / this.container.offsetWidth) * 100));
+            this.yPosition = Math.max(0, Math.min(100, (y / this.container.offsetHeight) * 100));
+
+            this.updateHandle();
+            this.updateLayout();
+        });
+
+        // 触摸事件
+        this.container.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const rect = this.container.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            const y = e.touches[0].clientY - rect.top;
+
+            this.xPosition = Math.max(0, Math.min(100, (x / this.container.offsetWidth) * 100));
+            this.yPosition = Math.max(0, Math.min(100, (y / this.container.offsetHeight) * 100));
+
+            this.updateHandle();
+            this.updateLayout();
+        });
+    }
+
+    updateHandle() {
+        // 更新滑块位置
+        this.handle.style.left = this.xPosition + '%';
+        this.handle.style.top = this.yPosition + '%';
+
+        // 更新滑块条的位置
+        const xPixels = (this.xPosition / 100) * this.container.offsetWidth;
+        const yPixels = (this.yPosition / 100) * this.container.offsetHeight;
+
+        const horizontalBar = this.handle.querySelector('div[style*="left: -9999px"]');
+        const verticalBar = this.handle.querySelector('div[style*="top: -9999px"]');
+
+        if (horizontalBar) {
+            horizontalBar.style.top = yPixels + 'px';
+        }
+        if (verticalBar) {
+            verticalBar.style.left = xPixels + 'px';
+        }
+    }
+
+    updateLayout() {
+        const xPercent = this.xPosition;
+        const yPercent = this.yPosition;
+
+        // 显示所有图片
+        this.images.forEach(img => img.style.display = 'block');
+
+        // 根据位置创建L形显示区域
+        if (yPercent < 50) {
+            // 上半部分：GT在左上，BarDGS在右侧
+            this.images[0].style.clipPath = `polygon(0 0, ${xPercent}% 0, ${xPercent}% 100%, 0 100%)`;
+            this.images[1].style.display = 'none'; // Ours隐藏
+            this.images[2].style.clipPath = `polygon(${xPercent}% 0, 100% 0, 100% 100%, ${xPercent}% 100%)`;
+        } else {
+            // 下半部分：Ours在左下，BarDGS在右侧
+            this.images[0].style.display = 'none'; // GT隐藏
+            this.images[1].style.clipPath = `polygon(0 0, ${xPercent}% 0, ${xPercent}% 100%, 0 100%)`;
+            this.images[2].style.clipPath = `polygon(${xPercent}% 0, 100% 0, 100% 100%, ${xPercent}% 100%)`;
+        }
+
+        // 设置z-index
+        this.images[0].style.zIndex = '1';
+        this.images[1].style.zIndex = '2';
+        this.images[2].style.zIndex = '3';
+    }
+}
+
 class TripleComparison {
     constructor(entryObject) {
         console.log("初始化TripleComparison (丄形状单滑块):", entryObject.id);
@@ -237,16 +340,16 @@ class TripleComparison {
 
         // 隐藏所有标签
         if (gtLabel) gtLabel.style.display = 'none';
-        if (oursLabel) oursLabel.style.display = 'none';
+        if (oursLabel) onesLabel.style.display = 'none';
         if (bardgsLabel) bardgsLabel.style.display = 'none';
 
         // 根据区域显示对应的标签
         if (this.yPosition < 50 && gtLabel) {
             // GT区域
             gtLabel.style.display = 'block';
-        } else if (this.yPosition >= 50 && oursLabel) {
+        } else if (this.yPosition >= 50 && onesLabel) {
             // Ours区域
-            oursLabel.style.display = 'block';
+            onesLabel.style.display = 'block';
         }
 
         // BarDGS标签始终显示
@@ -255,17 +358,3 @@ class TripleComparison {
         }
     }
 }
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // 初始化 L 形状三向滑块
-  try {
-    new TripleComparison({
-      id: '#example1'
-    });
-    console.log('TripleComparison initialized successfully');
-  } catch (error) {
-    console.error('Failed to initialize TripleComparison:', error);
-  }
-});
-</script>
