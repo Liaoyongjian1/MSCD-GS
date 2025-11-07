@@ -674,6 +674,7 @@ body {
     user-select: none;
     margin: 5px auto;
     display: block;
+    min-height: 400px;
 }
 
 .twentytwenty-container img {
@@ -691,11 +692,28 @@ body {
     box-sizing: content-box;
 }
 
-.twentytwenty-compare-3 .twentytwenty-frame-1,
+.twentytwenty-frame-1,
+.twentytwenty-frame-2,
+.twentytwenty-frame-3,
+.twentytwenty-frame-4 {
+    position: absolute;
+    display: block;
+    z-index: 30;
+}
+
+.twentytwenty-compare-3 .twentytwenty-frame-1 {
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    top: 0;
+    left: 0;
+    cursor: move;
+}
+
 .twentytwenty-compare-3 .twentytwenty-frame-2 {
     border-left: 1px solid white;
     border-bottom: 1px solid white;
     top: 0;
+    right: 0;
     cursor: move;
 }
 
@@ -716,11 +734,11 @@ body {
 }
 
 .twentytwenty-2 {
-    z-index: 10;
+    z-index: 19;
 }
 
 .twentytwenty-3 {
-    z-index: 9;
+    z-index: 18;
 }
 
 .twentytwenty-handle {
