@@ -148,71 +148,51 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="has-text-centered">
-      <h2 class="title is-3">Visual Comparisons</h2>
-      <div class="content has-text-justified">
-        <p>We compare our method with BarDGS on multiple scenes, including seesaw, card, man, women, etc. Our method produces sharper and more detailed results.</p>
-      </div>
-      
-      <!-- 场景 1: Seesaw -->
-      <div class="scene-comparison mb-6">
-        <h3 class="subtitle is-4 has-text-centered mb-4">Scene 1: Seesaw</h3>
-        <div class="comparison-grid">
-          <div class="image-item">
-            <img src="./static/images/seesaw_gt.png" alt="Ground Truth">
-            <div class="label">GT</div>
-          </div>
-          <div class="image-item">
-            <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
-            <div class="label">BarDGS</div>
-          </div>
-          <div class="image-item">
-            <img src="./static/images/seesaw_our.png" alt="Ours">
-            <div class="label">Ours</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 场景 2: Card -->
-      <div class="scene-comparison mb-6">
-        <h3 class="subtitle is-4 has-text-centered mb-4">Scene 2: Card</h3>
-        <div class="comparison-grid">
-          <div class="image-item">
-            <img src="./static/images/card_gt.png" alt="Ground Truth">
-            <div class="label">GT</div>
-          </div>
-          <div class="image-item">
-            <img src="./static/images/card_bardgs.png" alt="BarDGS">
-            <div class="label">BarDGS</div>
-          </div>
-          <div class="image-item">
-            <img src="./static/images/card_our.png" alt="Ours">
-            <div class="label">Ours</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 场景 3: Man -->
-      <div class="scene-comparison mb-6">
-        <h3 class="subtitle is-4 has-text-centered mb-4">Scene 3: Man</h3>
-        <div class="comparison-grid">
-          <div class="image-item">
-            <img src="./static/images/man_gt.png" alt="Ground Truth">
-            <div class="label">GT</div>
-          </div>
-          <div class="image-item">
-            <img src="./static/images/man_bardgs.png" alt="BarDGS">
-            <div class="label">BarDGS</div>
-          </div>
-          <div class="image-item">
-            <img src="./static/images/man_our.png" alt="Ours">
-            <div class="label">Ours</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 可继续添加更多场景 -->
-    </div>
+	<div class="has-text-centered">
+	  <h2 class="title is-3">Visual Comparisons</h2>
+	  <div class="content has-text-justified">
+		<p>We compare our method with BarDGS on multiple scenes, including seesaw, card, man, women, etc. Our method produces sharper and more detailed results.</p>
+	  </div>
+	  <!-- L 形状三向滑块 -->
+	  <div class="mb-6">
+		<h3 class="subtitle is-4 has-text-centered mb-4">Scene 1: Seesaw</h3>
+		<div id="example1" class="bal-container-small">
+		  <!-- GT (背景层) -->
+		  <div class="bal-gt">
+			<div class="bal-gt-inset">
+			  <img src="./static/images/seesaw_gt.png">
+			  <div class="bal-gtPosition gt-label">GT</div>
+			</div>
+		  </div>
+		  <!-- 对比方法A (中间层) -->
+		  <div class="bal-ours">
+			<div class="bal-ours-inset">
+			  <img src="./static/images/seesaw_bardgs.png">
+			  <div class="bal-oursPosition ours-label">BarDGS</div>
+			</div>
+		  </div>
+		  <!-- 您的方法 (顶层) -->
+		  <div class="bal-bardgs">
+			<div class="bal-bardgs-inset">
+			  <img src="./static/images/seesaw_our.png">
+			  <div class="bal-bardgsPosition bardgs-label">Ours</div>
+			</div>
+		  </div>
+		  <!-- 丄形状滑块 -->
+		  <div class="bal-handle-shape">
+			<div class="handle-horizontal-bar"></div>
+			<div class="handle-vertical-bar"></div>
+			<div class="handle-center">
+			  <span class="handle-left-arrow"></span>
+			  <span class="handle-right-arrow"></span>
+			  <span class="handle-top-arrow"></span>
+			  <span class="handle-bottom-arrow"></span>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <!-- 更多滑块可以在这里添加 -->
+	</div>
   </div>
 </section>
 
