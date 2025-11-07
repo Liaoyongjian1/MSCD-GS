@@ -169,84 +169,51 @@
 
   
       <!-- 场景 1: Seesaw -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
-        <img src="./static/images/seesaw_gt.png" alt="GT">
-        <img src="./static/images/seesaw_our.png" alt="Ours">
-        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
+      <div style="max-width: 800px; margin: 0 auto 3rem auto;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
+        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS" class="twentytwenty-1">
+        <img src="./static/images/seesaw_gt.png" alt="GT" class="twentytwenty-2">
+        <img src="./static/images/seesaw_our.png" alt="Ours" class="twentytwenty-3">
       </div>
 
       <!-- 场景 2: Card -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example2">
-        <img src="./static/images/card_gt.png" alt="GT">
-        <img src="./static/images/card_our.png" alt="Ours">
-        <img src="./static/images/card_bardgs.png" alt="BarDGS">
+      <div style="max-width: 800px; margin: 0 auto 3rem auto;" class="twentytwenty-container twentytwenty-compare-3" id="example2">
+        <img src="./static/images/card_bardgs.png" alt="BarDGS" class="twentytwenty-1">
+        <img src="./static/images/card_gt.png" alt="GT" class="twentytwenty-2">
+        <img src="./static/images/card_our.png" alt="Ours" class="twentytwenty-3">
       </div>
 
       <!-- 场景 3: Man -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example3">
-        <img src="./static/images/man_gt.png" alt="GT">
-        <img src="./static/images/man_our.png" alt="Ours">
-        <img src="./static/images/man_bardgs.png" alt="BarDGS">
+      <div style="max-width: 800px; margin: 0 auto 3rem auto;" class="twentytwenty-container twentytwenty-compare-3" id="example3">
+        <img src="./static/images/man_bardgs.png" alt="BarDGS" class="twentytwenty-1">
+        <img src="./static/images/man_gt.png" alt="GT" class="twentytwenty-2">
+        <img src="./static/images/man_our.png" alt="Ours" class="twentytwenty-3">
       </div>
 
       <!-- 场景 4: Women -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example4">
-        <img src="./static/images/women_gt.png" alt="GT">
-        <img src="./static/images/women_our.png" alt="Ours">
-        <img src="./static/images/women_bardgs.png" alt="BarDGS">
+      <div style="max-width: 800px; margin: 0 auto 3rem auto;" class="twentytwenty-container twentytwenty-compare-3" id="example4">
+        <img src="./static/images/women_bardgs.png" alt="BarDGS" class="twentytwenty-1">
+        <img src="./static/images/women_gt.png" alt="GT" class="twentytwenty-2">
+        <img src="./static/images/women_our.png" alt="Ours" class="twentytwenty-3">
       </div>
 
       <!-- 场景 5: Street -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example5">
-        <img src="./static/images/street_gt.png" alt="GT">
-        <img src="./static/images/street_our.png" alt="Ours">
-        <img src="./static/images/street_bardgs.png" alt="BarDGS">
+      <div style="max-width: 800px; margin: 0 auto 3rem auto;" class="twentytwenty-container twentytwenty-compare-3" id="example5">
+        <img src="./static/images/street_bardgs.png" alt="BarDGS" class="twentytwenty-1">
+        <img src="./static/images/street_gt.png" alt="GT" class="twentytwenty-2">
+        <img src="./static/images/street_our.png" alt="Ours" class="twentytwenty-3">
       </div>
     </div>
   </div>
 </section>
 
   <script>
-    // 确保DOM完全加载后再初始化组件
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded, initializing twentytwenty...');
-
-      // 检查jQuery和twentytwenty是否可用
-      console.log('jQuery:', typeof $);
-      console.log('twentytwenty plugin:', typeof $.fn.twentytwenty);
-
-      // 按照temp.js的模式初始化所有三图片对比滑块
-      if (typeof $.fn.twentytwenty === 'function') {
-        // 初始化所有场景的滑块
-        $("#example1").twentytwenty({
-          default_offset_pct_x: 0.5,
-          default_offset_pct_y: 0.5
-        });
-
-        $("#example2").twentytwenty({
-          default_offset_pct_x: 0.5,
-          default_offset_pct_y: 0.5
-        });
-
-        $("#example3").twentytwenty({
-          default_offset_pct_x: 0.5,
-          default_offset_pct_y: 0.5
-        });
-
-        $("#example4").twentytwenty({
-          default_offset_pct_x: 0.5,
-          default_offset_pct_y: 0.5
-        });
-
-        $("#example5").twentytwenty({
-          default_offset_pct_x: 0.5,
-          default_offset_pct_y: 0.5
-        });
-
-        console.log('All twentytwenty sliders initialized!');
-      } else {
-        console.error('twentytwenty plugin not found!');
-      }
+    // 初始化所有滑块
+    $(document).ready(function() {
+      $("#example1").twentytwenty();
+      $("#example2").twentytwenty();
+      $("#example3").twentytwenty();
+      $("#example4").twentytwenty();
+      $("#example5").twentytwenty();
     });
   </script>
 
