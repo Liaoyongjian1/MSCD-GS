@@ -155,98 +155,106 @@
         <p>We compare our method with BarDGS on multiple scenes, including seesaw, card, man, women, etc. Our method produces sharper and more detailed results.</p>
       </div>
 
-    
+      <!-- 三图片对比滑块 -->
+      <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
+        <img src="./static/images/seesaw_gt.png" alt="GT">
+        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
+        <img src="./static/images/seesaw_our.png" alt="Ours">
+      </div>
+
+            
       <!-- 场景 1: Seesaw -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
-        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS" class="twentytwenty-1">
-        <img src="./static/images/seesaw_gt.png" alt="GT" class="twentytwenty-2">
-        <img src="./static/images/seesaw_our.png" alt="Ours" class="twentytwenty-3">
-
-        <div class="twentytwenty-overlay">
-          <div class="twentytwenty-label-1">BarDGS</div>
-          <div class="twentytwenty-label-2">GT</div>
-          <div class="twentytwenty-label-3">Ours</div>
-          <div class="twentytwenty-frame-1"></div>
-          <div class="twentytwenty-frame-2"></div>
-          <div class="twentytwenty-frame-3"></div>
+      <div class="scene-comparison mb-6">
+        <h3 class="subtitle is-4 has-text-centered mb-4">Scene 1: Seesaw</h3>
+        <div class="comparison-grid">
+          <div class="image-item">
+            <img src="./static/images/seesaw_gt.png" alt="Ground Truth">
+            <div class="label">GT</div>
+          </div>
+          <div class="image-item">
+            <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
+            <div class="label">BarDGS</div>
+          </div>
+          <div class="image-item">
+            <img src="./static/images/seesaw_our.png" alt="Ours">
+            <div class="label">Ours</div>
+          </div>
         </div>
       </div>
-
+      
       <!-- 场景 2: Card -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example2">
-        <img src="./static/images/card_bardgs.png" alt="BarDGS" class="twentytwenty-1">
-        <img src="./static/images/card_gt.png" alt="GT" class="twentytwenty-2">
-        <img src="./static/images/card_our.png" alt="Ours" class="twentytwenty-3">
-
-        <div class="twentytwenty-overlay">
-          <div class="twentytwenty-label-1">BarDGS</div>
-          <div class="twentytwenty-label-2">GT</div>
-          <div class="twentytwenty-label-3">Ours</div>
-          <div class="twentytwenty-frame-1"></div>
-          <div class="twentytwenty-frame-2"></div>
-          <div class="twentytwenty-frame-3"></div>
+      <div class="scene-comparison mb-6">
+        <h3 class="subtitle is-4 has-text-centered mb-4">Scene 2: Card</h3>
+        <div class="comparison-grid">
+          <div class="image-item">
+            <img src="./static/images/card_gt.png" alt="Ground Truth">
+            <div class="label">GT</div>
+          </div>
+          <div class="image-item">
+            <img src="./static/images/card_bardgs.png" alt="BarDGS">
+            <div class="label">BarDGS</div>
+          </div>
+          <div class="image-item">
+            <img src="./static/images/card_our.png" alt="Ours">
+            <div class="label">Ours</div>
+          </div>
         </div>
       </div>
-
+      
       <!-- 场景 3: Man -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example3">
-        <img src="./static/images/man_bardgs.png" alt="BarDGS" class="twentytwenty-1">
-        <img src="./static/images/man_gt.png" alt="GT" class="twentytwenty-2">
-        <img src="./static/images/man_our.png" alt="Ours" class="twentytwenty-3">
-
-        <div class="twentytwenty-overlay">
-          <div class="twentytwenty-label-1">BarDGS</div>
-          <div class="twentytwenty-label-2">GT</div>
-          <div class="twentytwenty-label-3">Ours</div>
-          <div class="twentytwenty-frame-1"></div>
-          <div class="twentytwenty-frame-2"></div>
-          <div class="twentytwenty-frame-3"></div>
+      <div class="scene-comparison mb-6">
+        <h3 class="subtitle is-4 has-text-centered mb-4">Scene 3: Man</h3>
+        <div class="comparison-grid">
+          <div class="image-item">
+            <img src="./static/images/man_gt.png" alt="Ground Truth">
+            <div class="label">GT</div>
+          </div>
+          <div class="image-item">
+            <img src="./static/images/man_bardgs.png" alt="BarDGS">
+            <div class="label">BarDGS</div>
+          </div>
+          <div class="image-item">
+            <img src="./static/images/man_our.png" alt="Ours">
+            <div class="label">Ours</div>
+          </div>
         </div>
       </div>
-
-      <!-- 场景 4: Women -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example4">
-        <img src="./static/images/women_bardgs.png" alt="BarDGS" class="twentytwenty-1">
-        <img src="./static/images/women_gt.png" alt="GT" class="twentytwenty-2">
-        <img src="./static/images/women_our.png" alt="Ours" class="twentytwenty-3">
-
-        <div class="twentytwenty-overlay">
-          <div class="twentytwenty-label-1">BarDGS</div>
-          <div class="twentytwenty-label-2">GT</div>
-          <div class="twentytwenty-label-3">Ours</div>
-          <div class="twentytwenty-frame-1"></div>
-          <div class="twentytwenty-frame-2"></div>
-          <div class="twentytwenty-frame-3"></div>
-        </div>
-      </div>
-
-      <!-- 场景 5: Street -->
-      <div style="max-width: 800px; margin: 0 auto 3rem auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example5">
-        <img src="./static/images/street_bardgs.png" alt="BarDGS" class="twentytwenty-1">
-        <img src="./static/images/street_gt.png" alt="GT" class="twentytwenty-2">
-        <img src="./static/images/street_our.png" alt="Ours" class="twentytwenty-3">
-
-        <div class="twentytwenty-overlay">
-          <div class="twentytwenty-label-1">BarDGS</div>
-          <div class="twentytwenty-label-2">GT</div>
-          <div class="twentytwenty-label-3">Ours</div>
-          <div class="twentytwenty-frame-1"></div>
-          <div class="twentytwenty-frame-2"></div>
-          <div class="twentytwenty-frame-3"></div>
-        </div>
-      </div>
+      
+      <!-- 可继续添加更多场景 -->
     </div>
   </div>
 </section>
 
   <script>
-    // 初始化所有滑块
-    $(document).ready(function() {
-      $("#example1").twentytwenty();
-      $("#example2").twentytwenty();
-      $("#example3").twentytwenty();
-      $("#example4").twentytwenty();
-      $("#example5").twentytwenty();
+    // 确保DOM完全加载后再初始化组件
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded, initializing twentytwenty...');
+
+      // 检查jQuery和twentytwenty是否可用
+      console.log('jQuery:', typeof $);
+      console.log('twentytwenty plugin:', typeof $.fn.twentytwenty);
+
+      // 按照temp.js的模式初始化三图片对比滑块
+      if (typeof $.fn.twentytwenty === 'function') {
+        console.log('Initializing twentytwenty on #example1');
+        $("#example1").twentytwenty({
+          default_offset_pct_x: 0.5,
+          default_offset_pct_y: 0.5
+        });
+      } else {
+        console.error('twentytwenty plugin not found!');
+      }
+
+      // 初始化其他双图片对比滑块
+      new BeforeAfter({
+        id: '#example2'
+      });
+      new BeforeAfter({
+        id: '#example4'
+      });
+      new BeforeAfter({
+        id: '#example5'
+      });
     });
   </script>
 
