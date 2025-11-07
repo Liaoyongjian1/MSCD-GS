@@ -662,179 +662,122 @@ body {
 	  border-radius: 4px;
 	}
 
-	/* L形状滑块样式 - 基于temp.css */
-	#l-slider-container {
-		-webkit-box-sizing: content-box;
-		-moz-box-sizing: content-box;
-		box-sizing: content-box;
-		overflow: hidden;
-		position: relative;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		user-select: none;
-		margin: 5px auto;
-		display: block;
-		border: 1px solid #ddd;
-		border-radius: 8px;
-		background: #f9f9f9;
-	}
+	/* TwentyTwenty Container 样式 - 来自temp.css */
+.twentytwenty-container {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    overflow: hidden;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    margin: 5px auto;
+    display: block;
+}
 
-	#l-slider-container img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		margin: 0;
-		display: block;
-		max-width: 100%;
-		height: auto;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
+.twentytwenty-container img {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 
-	#l-slider-handle {
-		height: 40px;
-		width: 40px;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		margin-left: -20px;
-		margin-top: -20px;
-		background: rgba(0, 0, 0, 0.8);
-		-webkit-border-radius: 1000px;
-		-moz-border-radius: 1000px;
-		border-radius: 50%;
-		z-index: 40;
-		cursor: move;
-		-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-		-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	}
+.twentytwenty-container * {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
 
-	/* 滑块箭头样式 */
-	.l-slider-arrow {
-		width: 0;
-		height: 0;
-		border: 4px inset transparent;
-		position: absolute;
-	}
+.twentytwenty-compare-3 .twentytwenty-frame-1,
+.twentytwenty-compare-3 .twentytwenty-frame-2 {
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    top: 0;
+    cursor: move;
+}
 
-	.l-slider-arrow-left,
-	.l-slider-arrow-right {
-		top: 50%;
-		margin-top: -4px;
-	}
+.twentytwenty-compare-3 .twentytwenty-frame-3 {
+    border-top: 1px solid white;
+    bottom: 0;
+    cursor: move;
+}
 
-	.l-slider-arrow-up,
-	.l-slider-arrow-down {
-		left: 50%;
-		margin-left: -4px;
-	}
+.twentytwenty-overlay {
+    position: relative;
+    z-index: 25;
+    overflow: hidden;
+}
 
-	.l-slider-arrow-left {
-		border-right: 4px solid white;
-		left: 6px;
-	}
+.twentytwenty-1 {
+    z-index: 20;
+}
 
-	.l-slider-arrow-right {
-		border-left: 4px solid white;
-		right: 6px;
-	}
+.twentytwenty-2 {
+    z-index: 10;
+}
 
-	.l-slider-arrow-up {
-		border-bottom: 4px solid white;
-		top: 6px;
-	}
+.twentytwenty-3 {
+    z-index: 9;
+}
 
-	.l-slider-arrow-down {
-		border-top: 4px solid white;
-		bottom: 6px;
-	}
+.twentytwenty-handle {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -22px;
+    margin-top: -22px;
+    background: black;
+    -webkit-border-radius: 1000px;
+    -moz-border-radius: 1000px;
+    border-radius: 1000px;
+    z-index: 40;
+    cursor: move;
+}
 
-	/* 滑块分割线样式 */
-	.l-slider-horizontal-line,
-	.l-slider-vertical-line {
-		position: absolute;
-		background: white;
-		-webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-		-moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-		box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-		z-index: 35;
-	}
+/* TwentyTwenty Labels 样式 - 来自temp.css */
+.twentytwenty-label-1,
+.twentytwenty-label-2,
+.twentytwenty-label-3 {
+    position: absolute;
+    text-shadow: 0 0 1ex black, 0 0 1ex black;
+    color: white;
+    padding: 1ex;
+    overflow: hidden;
+    text-align: center;
+}
 
-	.l-slider-horizontal-line {
-		height: 2px;
-		left: 0;
-		right: 0;
-	}
+.twentytwenty-compare-3 .twentytwenty-label-3 {
+    width: 100%;
+}
 
-	.l-slider-vertical-line {
-		width: 2px;
-		top: 0;
-		bottom: 0;
-	}
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .twentytwenty-container {
+        height: 300px;
+    }
 
-	/* 图片标签样式 */
-	.l-slider-label {
-		position: absolute;
-		text-shadow: 0 0 1ex black, 0 0 1ex black;
-		color: white;
-		padding: 0.5ex 1ex;
-		font-size: 12px;
-		font-weight: bold;
-		z-index: 30;
-		pointer-events: none;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		user-select: none;
-	}
+    .twentytwenty-handle {
+        height: 30px;
+        width: 30px;
+        margin-left: -15px;
+        margin-top: -15px;
+    }
+}
 
-	.l-slider-label-gt {
-		bottom: 10px;
-		left: 10px;
-		background: rgba(0, 123, 255, 0.8);
-	}
+@media (max-width: 480px) {
+    .twentytwenty-container {
+        height: 250px;
+    }
 
-	.l-slider-label-ours {
-		bottom: 10px;
-		left: 10px;
-		background: rgba(40, 167, 69, 0.8);
-	}
-
-	.l-slider-label-bardgs {
-		top: 10px;
-		right: 10px;
-		background: rgba(220, 53, 69, 0.8);
-	}
-
-	/* 响应式设计 */
-	@media (max-width: 768px) {
-		#l-slider-container {
-			height: 300px;
-		}
-
-		#l-slider-handle {
-			height: 30px;
-			width: 30px;
-			margin-left: -15px;
-			margin-top: -15px;
-		}
-
-		.l-slider-label {
-			font-size: 10px;
-			padding: 0.3ex 0.6ex;
-		}
-	}
-
-	@media (max-width: 480px) {
-		#l-slider-container {
-			height: 250px;
-		}
-
-		#l-slider-handle {
-			height: 25px;
-			width: 25px;
-			margin-left: -12px;
-			margin-top: -12px;
-		}
-	}
+    .twentytwenty-handle {
+        height: 25px;
+        width: 25px;
+        margin-left: -12px;
+        margin-top: -12px;
+    }
+}
