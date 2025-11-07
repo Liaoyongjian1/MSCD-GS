@@ -9,9 +9,9 @@ class BeforeAfter {
         var widthChange = 0;
 
         beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + beforeAfterContainer.offsetWidth + "px;")
-        window.onresize = function () {
+        window.addEventListener('resize', function () {
             beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + beforeAfterContainer.offsetWidth + "px;")
-        }
+        });
         before.setAttribute('style', "width: 50%;");
         handle.setAttribute('style', "left: 50%;");
 
@@ -62,22 +62,25 @@ class TripleComparison {
             return;
         }
 
-        this.before = this.container.querySelector('.bal-before');  // BarDGS (左侧区域)
-        this.middle = this.container.querySelector('.bal-middle');  // Ours (右侧区域)
-        this.after = this.container.querySelector('.bal-after');    // GT (背景)
-        this.handleHorizontal = this.container.querySelector('.bal-handle-horizontal');
-        this.handleVertical = this.container.querySelector('.bal-handle-vertical');
+        // 三个图像层
+        this.leftSection = this.container.querySelector('.bal-left');    // BarDGS (左侧)
+        this.middleSection = this.container.querySelector('.bal-middle');  // Ours (中间)
+        this.rightSection = this.container.querySelector('.bal-right');   // GT (右侧)
 
-        if (!this.before || !this.middle || !this.after || !this.handleHorizontal || !this.handleVertical) {
+        // 两个滑块
+        this.leftHandle = this.container.querySelector('.bal-handle-left');   // 左侧滑块
+        this.rightHandle = this.container.querySelector('.bal-handle-right'); // 右侧滑块
+
+        if (!this.leftSection || !this.middleSection || !this.rightSection || !this.leftHandle || !this.rightHandle) {
             console.error('Required elements not found in:', entryObject.id);
             return;
         }
 
-        // 双滑块位置状态
-        this.horizontalPosition = 50; // 水平滑块位置 (左右分割)
-        this.verticalPosition = 50;   // 垂直滑块位置 (上下分割)
-        this.activeSlider = null;     // 当前活动的滑块
-        this.isHovering = false;      // 是否正在悬停
+        // 两个滑块位置状态 (将屏幕分为三份)
+        this.leftPosition = 33.33;  // 左滑块位置
+        this.rightPosition = 66.67; // 右滑块位置
+        this.activeSlider = null;   // 当前活动的滑块
+        this.isHovering = false;    // 是否正在悬停
 
         this.init();
         this.addEventListeners();
@@ -85,13 +88,18 @@ class TripleComparison {
 
     init() {
         // 设置初始inset宽度
-        const beforeInset = this.container.querySelector('.bal-before-inset');
+        const leftInset = this.container.querySelector('.bal-left-inset');
         const middleInset = this.container.querySelector('.bal-middle-inset');
-        if (beforeInset) {
-            beforeInset.style.width = this.container.offsetWidth + 'px';
+        const rightInset = this.container.querySelector('.bal-right-inset');
+
+        if (leftInset) {
+            leftInset.style.width = this.container.offsetWidth + 'px';
         }
         if (middleInset) {
             middleInset.style.width = this.container.offsetWidth + 'px';
+        }
+        if (rightInset) {
+            rightInset.style.width = this.container.offsetWidth + 'px';
         }
 
         this.updateLayout();
@@ -136,13 +144,18 @@ class TripleComparison {
 
         // 窗口大小调整
         window.addEventListener('resize', () => {
-            const beforeInset = this.container.querySelector('.bal-before-inset');
+            const leftInset = this.container.querySelector('.bal-left-inset');
             const middleInset = this.container.querySelector('.bal-middle-inset');
-            if (beforeInset) {
-                beforeInset.style.width = this.container.offsetWidth + 'px';
+            const rightInset = this.container.querySelector('.bal-right-inset');
+
+            if (leftInset) {
+                leftInset.style.width = this.container.offsetWidth + 'px';
             }
             if (middleInset) {
                 middleInset.style.width = this.container.offsetWidth + 'px';
+            }
+            if (rightInset) {
+                rightInset.style.width = this.container.offsetWidth + 'px';
             }
         });
     }
@@ -150,24 +163,22 @@ class TripleComparison {
     detectAndMoveSlider(e) {
         const rect = this.container.getBoundingClientRect();
         const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+
+        // 计算当前滑块位置
+        const leftHandlePos = (this.leftPosition / 100) * this.container.offsetWidth;
+        const rightHandlePos = (this.rightPosition / 100) * this.container.offsetWidth;
+
+        // 计算鼠标与滑块的绝对距离
+        const leftDistance = Math.abs(x - leftHandlePos);
+        const rightDistance = Math.abs(x - rightHandlePos);
 
         // 自动判断应该移动哪个滑块
-        const currentHorizontalPos = (this.horizontalPosition / 100) * this.container.offsetWidth;
-        const currentVerticalPos = (this.verticalPosition / 100) * this.container.offsetHeight;
-
-        // 根据鼠标位置与当前滑块位置的接近程度来判断
-        const horizontalDistance = Math.abs(x - currentHorizontalPos);
-        const verticalDistance = Math.abs(y - currentVerticalPos);
-
-        if (horizontalDistance < verticalDistance) {
-            // 更接近水平滑块，移动水平滑块
-            this.activeSlider = 'horizontal';
-            this.horizontalPosition = Math.max(10, Math.min(90, (x / this.container.offsetWidth) * 100));
+        if (leftDistance < rightDistance) {
+            this.activeSlider = 'left';
+            this.leftPosition = Math.max(5, Math.min(this.rightPosition - 5, (x / this.container.offsetWidth) * 100));
         } else {
-            // 更接近垂直滑块，移动垂直滑块
-            this.activeSlider = 'vertical';
-            this.verticalPosition = Math.max(10, Math.min(90, (y / this.container.offsetHeight) * 100));
+            this.activeSlider = 'right';
+            this.rightPosition = Math.max(this.leftPosition + 5, Math.min(95, (x / this.container.offsetWidth) * 100));
         }
 
         this.updateLayout();
@@ -176,17 +187,16 @@ class TripleComparison {
     detectSlider(e) {
         const rect = this.container.getBoundingClientRect();
         const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
 
-        const horizontalHandlePos = (this.horizontalPosition / 100) * this.container.offsetWidth;
-        const verticalHandlePos = (this.verticalPosition / 100) * this.container.offsetHeight;
+        const leftHandlePos = (this.leftPosition / 100) * this.container.offsetWidth;
+        const rightHandlePos = (this.rightPosition / 100) * this.container.offsetWidth;
 
         // 检查是否点击滑块附近（30px范围内）
-        if (Math.abs(x - horizontalHandlePos) < 30) {
-            return 'horizontal';
+        if (Math.abs(x - leftHandlePos) < 30) {
+            return 'left';
         }
-        if (Math.abs(y - verticalHandlePos) < 30) {
-            return 'vertical';
+        if (Math.abs(x - rightHandlePos) < 30) {
+            return 'right';
         }
 
         return null;
@@ -195,37 +205,29 @@ class TripleComparison {
     updateSlider(e) {
         const rect = this.container.getBoundingClientRect();
         const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
 
-        if (this.activeSlider === 'horizontal') {
-            this.horizontalPosition = Math.max(10, Math.min(90, (x / this.container.offsetWidth) * 100));
-        } else if (this.activeSlider === 'vertical') {
-            this.verticalPosition = Math.max(10, Math.min(90, (y / this.container.offsetHeight) * 100));
+        if (this.activeSlider === 'left') {
+            this.leftPosition = Math.max(5, Math.min(this.rightPosition - 5, (x / this.container.offsetWidth) * 100));
+        } else if (this.activeSlider === 'right') {
+            this.rightPosition = Math.max(this.leftPosition + 5, Math.min(95, (x / this.container.offsetWidth) * 100));
         }
 
         this.updateLayout();
     }
 
     updateLayout() {
-        const hPos = this.horizontalPosition;
-        const vPos = this.verticalPosition;
+        // 更新三个区域布局
+        this.leftSection.style.left = '0%';
+        this.leftSection.style.width = this.leftPosition + '%';
 
-        // 更新BarDGS区域 (左侧)
-        this.before.style.left = '0%';
-        this.before.style.top = '0%';
-        this.before.style.width = hPos + '%';
-        this.before.style.height = vPos + '%';
+        this.middleSection.style.left = this.leftPosition + '%';
+        this.middleSection.style.width = (this.rightPosition - this.leftPosition) + '%';
 
-        // 更新Ours区域 (右侧)
-        this.middle.style.left = hPos + '%';
-        this.middle.style.top = '0%';
-        this.middle.style.width = (100 - hPos) + '%';
-        this.middle.style.height = vPos + '%';
+        this.rightSection.style.left = this.rightPosition + '%';
+        this.rightSection.style.width = (100 - this.rightPosition) + '%';
 
         // 更新滑块位置
-        this.handleHorizontal.style.left = hPos + '%';
-        this.handleHorizontal.style.top = vPos + '%';
-        this.handleVertical.style.left = hPos + '%';
-        this.handleVertical.style.top = vPos + '%';
+        this.leftHandle.style.left = this.leftPosition + '%';
+        this.rightHandle.style.left = this.rightPosition + '%';
     }
 }
