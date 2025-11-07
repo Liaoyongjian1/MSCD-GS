@@ -161,75 +161,84 @@
       <div class="content">
         <div class="columns is-centered">
         <div class="column is-full-width">
-          <div id="example1" class="bal-container-small">
 
-          <!-- Layer 1: GT (background layer) -->
-          <div class="bal-gt">
-            <div class="bal-gt-inset">
-              <img src="./static/images/seesaw_gt.png">
-              <div class="bal-gtPosition gt-label">
-                GT
+          <!-- 第一个L形状滑块 - 一行一个图像框 -->
+          <div class="bal-container-small" style="margin-bottom: 3rem;">
+            <h3 style="text-align: center; margin-bottom: 1rem;">L形状滑块比较</h3>
+            <div id="example1">
+
+            <!-- Layer 1: GT (background layer) -->
+            <div class="bal-gt">
+              <div class="bal-gt-inset">
+                <img src="./static/images/seesaw_gt.png">
+                <div class="bal-gtPosition gt-label">
+                  GT
+                </div>
               </div>
+            </div>
+
+            <!-- Layer 2: Ours (middle layer) -->
+            <div class="bal-ours" style="display: none;">
+              <div class="bal-ours-inset">
+                <img src="./static/images/seesaw_our.png">
+                <div class="bal-oursPosition ours-label">
+                  Ours
+                </div>
+              </div>
+            </div>
+
+            <!-- Layer 3: BarDGS (top layer) -->
+            <div class="bal-bardgs" style="display: none;">
+              <div class="bal-bardgs-inset">
+                <img src="./static/images/seesaw_bardgs.png">
+                <div class="bal-bardgsPosition bardgs-label">
+                  BarDGS
+                </div>
+              </div>
+            </div>
+
+            <!-- 丄形状滑块 -->
+            <div class="bal-handle-shape">
+              <div class="handle-horizontal-bar"></div>
+              <div class="handle-vertical-bar"></div>
+              <div class="handle-center">
+                <span class="handle-left-arrow"></span>
+                <span class="handle-right-arrow"></span>
+                <span class="handle-top-arrow"></span>
+                <span class="handle-bottom-arrow"></span>
+              </div>
+            </div>
+
             </div>
           </div>
 
-          <!-- Layer 2: Ours (middle layer) -->
-          <div class="bal-ours" style="display: none;">
-            <div class="bal-ours-inset">
-              <img src="./static/images/seesaw_our.png">
-              <div class="bal-oursPosition ours-label">
+          <!-- 第二个滑块 - 经典左右对比 -->
+          <div class="bal-container-small" style="margin-bottom: 3rem;">
+            <h3 style="text-align: center; margin-bottom: 1rem;">左右对比滑块</h3>
+            <div id="example2">
+
+            <div class="bal-after">
+              <img src="./static/images/card_gt.png">
+              <div class="bal-afterPosition afterLabel">
+              GT
+              </div>
+            </div>
+
+            <div class="bal-before" style="width: 50%;">
+              <div class="bal-before-inset" style="width: 539px;">
+              <img src="./static/images/card_our.png">
+              <div class="bal-beforePosition beforeLabel">
                 Ours
               </div>
-            </div>
-          </div>
-
-          <!-- Layer 3: BarDGS (top layer) -->
-          <div class="bal-bardgs" style="display: none;">
-            <div class="bal-bardgs-inset">
-              <img src="./static/images/seesaw_bardgs.png">
-              <div class="bal-bardgsPosition bardgs-label">
-                BarDGS
               </div>
             </div>
-          </div>
 
-          <!-- 丄形状滑块 -->
-          <div class="bal-handle-shape">
-            <div class="handle-horizontal-bar"></div>
-            <div class="handle-vertical-bar"></div>
-            <div class="handle-center">
-              <span class="handle-left-arrow"></span>
+            <div class="bal-handle" style="left: 50%;">
+              <span class=" handle-left-arrow"></span>
               <span class="handle-right-arrow"></span>
-              <span class="handle-top-arrow"></span>
-              <span class="handle-bottom-arrow"></span>
             </div>
-          </div>
 
-          </div>
-
-          <div id="example2" class="bal-container-small">
-
-          <div class="bal-after">
-            <img src="./static/images/card_gt.png">
-            <div class="bal-afterPosition afterLabel">
-            GT
             </div>
-          </div>
-
-          <div class="bal-before" style="width: 50%;">
-            <div class="bal-before-inset" style="width: 539px;">
-            <img src="./static/images/card_our.png">
-            <div class="bal-beforePosition beforeLabel">
-              Ours
-            </div>
-            </div>
-          </div>
-
-          <div class="bal-handle" style="left: 50%;">
-            <span class=" handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
           </div>
         </div>
         </div>
@@ -244,52 +253,58 @@
       <div class="columns is-centered">
         <div class="column content">
 
-        <div id="example4" class="bal-container-small">
-          <div class="bal-after">
-          <img src="./static/images/card_gt.png">
-          <div class="bal-afterPosition afterLabel" style="z-index:1;">
-            GT
-          </div>
-          </div>
+        <!-- 第三个滑块 - BarDGS对比 -->
+        <div class="bal-container-small" style="margin-bottom: 3rem;">
+          <h3 style="text-align: center; margin-bottom: 1rem;">BarDGS对比滑块</h3>
+          <div id="example4">
+            <div class="bal-after">
+            <img src="./static/images/card_gt.png">
+            <div class="bal-afterPosition afterLabel" style="z-index:1;">
+              GT
+            </div>
+            </div>
 
-          <div class="bal-before" style="width:62.10191082802548%;">
-          <div class="bal-before-inset" style="width: 539px;">
-            <img src="./static/images/card_bardgs.png">
-            <div class="bal-beforePosition beforeLabel">
-            BarDGS
-          </div>
-          </div>
-          </div>
+            <div class="bal-before" style="width:62.10191082802548%;">
+            <div class="bal-before-inset" style="width: 539px;">
+              <img src="./static/images/card_bardgs.png">
+              <div class="bal-beforePosition beforeLabel">
+              BarDGS
+            </div>
+            </div>
+            </div>
 
-          <div class="bal-handle" style="left:62.10191082802548%;">
-          <span class=" handle-left-arrow"></span>
-          <span class="handle-right-arrow"></span>
-          </div>
-
-        </div>
-
-        <div id="example5" class="bal-container-small">
-          <div class="bal-after">
-          <img src="./static/images/card_gt.png">
-          <div class="bal-afterPosition afterLabel" style="z-index:1;">
-            GT
-          </div>
-          </div>
-
-          <div class="bal-before" style="width:56.77179962894249%;">
-          <div class="bal-before-inset" style="width: 628px;">
-            <img src="./static/images/card_our.png">
-            <div class="bal-beforePosition beforeLabel">
-              Ours
+            <div class="bal-handle" style="left:62.10191082802548%;">
+            <span class=" handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
             </div>
           </div>
-          </div>
+        </div>
 
-          <div class="bal-handle" style="left:56.77179962894249%;">
-          <span class=" handle-left-arrow"></span>
-          <span class="handle-right-arrow"></span>
-          </div>
+        <!-- 第四个滑块 - Ours对比 -->
+        <div class="bal-container-small" style="margin-bottom: 3rem;">
+          <h3 style="text-align: center; margin-bottom: 1rem;">Ours对比滑块</h3>
+          <div id="example5">
+            <div class="bal-after">
+            <img src="./static/images/card_gt.png">
+            <div class="bal-afterPosition afterLabel" style="z-index:1;">
+              GT
+            </div>
+            </div>
 
+            <div class="bal-before" style="width:56.77179962894249%;">
+            <div class="bal-before-inset" style="width: 628px;">
+              <img src="./static/images/card_our.png">
+              <div class="bal-beforePosition beforeLabel">
+                Ours
+              </div>
+            </div>
+            </div>
+
+            <div class="bal-handle" style="left:56.77179962894249%;">
+            <span class=" handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+            </div>
+          </div>
         </div>
         </div>
       </div>
