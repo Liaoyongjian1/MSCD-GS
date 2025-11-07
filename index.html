@@ -159,15 +159,33 @@
       <div style="margin: 3rem 0;">
         <h3 class="title is-4 has-text-centered mb-6">L-Shaped Slider Comparison</h3>
         <div style="max-width: 800px; margin: 0 auto;">
-          <div id="l-slider-container" style="position: relative; overflow: hidden; border: 1px solid #ddd; border-radius: 8px;">
-            <img src="./static/images/seesaw_gt.png" alt="GT" style="display: block;">
-            <img src="./static/images/seesaw_our.png" alt="Ours" style="display: block;">
-            <img src="./static/images/seesaw_bardgs.png" alt="BarDGS" style="display: block;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;">
-              <div id="l-slider-handle" style="position: absolute; width: 40px; height: 40px; background: rgba(255,255,255,0.8); border: 2px solid #333; border-radius: 50%; cursor: move; left: 50%; top: 50%; transform: translate(-50%, -50%);">
-                <div style="position: absolute; top: 50%; left: -9999px; right: -9999px; height: 2px; background: #fff;"></div>
-                <div style="position: absolute; left: 50%; top: -9999px; bottom: -9999px; width: 2px; background: #fff;"></div>
-              </div>
+          <div id="l-slider-container" class="twentytwenty-container">
+            <!-- GT图像 -->
+            <img src="./static/images/seesaw_gt.png" alt="GT" class="twentytwenty-1">
+            <!-- Ours图像 -->
+            <img src="./static/images/seesaw_our.png" alt="Ours" class="twentytwenty-2">
+            <!-- BarDGS图像 -->
+            <img src="./static/images/seesaw_bardgs.png" alt="BarDGS" class="twentytwenty-3">
+
+            <!-- 滑块手柄 -->
+            <div id="l-slider-handle" class="twentytwenty-handle">
+              <!-- 箭头 -->
+              <span class="l-slider-arrow l-slider-arrow-left"></span>
+              <span class="l-slider-arrow l-slider-arrow-right"></span>
+              <span class="l-slider-arrow l-slider-arrow-up"></span>
+              <span class="l-slider-arrow l-slider-arrow-down"></span>
+            </div>
+
+            <!-- 分割线容器 -->
+            <div class="twentytwenty-overlay">
+              <!-- 水平分割线 -->
+              <div class="l-slider-horizontal-line"></div>
+              <!-- 垂直分割线 -->
+              <div class="l-slider-vertical-line"></div>
+              <!-- 标签 -->
+              <div class="l-slider-label l-slider-label-gt">GT</div>
+              <div class="l-slider-label l-slider-label-ours">Ours</div>
+              <div class="l-slider-label l-slider-label-bardgs">BarDGS</div>
             </div>
           </div>
         </div>
