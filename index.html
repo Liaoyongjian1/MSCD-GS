@@ -1,628 +1,323 @@
-body {
-  font-family: 'Noto Sans', sans-serif;
-}
-
-
-.footer .icon-link {
-    font-size: 25px;
-    color: #000;
-}
-
-.link-block a {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.dnerf {
-  font-variant: small-caps;
-}
-
-
-.teaser .hero-body {
-  padding-top: 0;
-  padding-bottom: 3rem;
-}
-
-.teaser {
-  font-family: 'Google Sans', sans-serif;
-}
-
-
-.publication-title {
-}
-
-.publication-banner {
-  max-height: parent;
-
-}
-
-
-
-.publication-banner video {
-  position: relative;
-  left: auto;
-  top: auto;
-  transform: none;
-  object-fit: fit;
-}
-
-.publication-header .hero-body {
-}
-
-.publication-title {
-    font-family: 'Google Sans', sans-serif;
-}
-
-.publication-authors {
-    font-family: 'Google Sans', sans-serif;
-}
-
-.publication-venue {
-    color: #555;
-    width: fit-content;
-    font-weight: bold;
-}
-
-.publication-awards {
-    color: #ff3860;
-    width: fit-content;
-    font-weight: bolder;
-}
-
-.publication-authors {
-}
-
-.publication-authors a {
-   color: hsl(204, 86%, 53%) !important;
-}
-
-.publication-authors a:hover {
-    text-decoration: underline;
-}
-
-.author-block {
-  display: inline-block;
-}
-
-.publication-banner img {
-}
-
-.publication-authors {
-  /*color: #4286f4;*/
-}
-
-.publication-video {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
-
-    overflow: hidden;
-    border-radius: 10px !important;
-}
-
-.publication-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.publication-body img {
-}
-
-.results-carousel {
-  overflow: hidden;
-
-}
-
-.results-carousel .item {
-  margin: 5px;
-  overflow: hidden;
-  border: 1px solid #bbb;
-  border-radius: 10px;
-  padding: 0;
-  font-size: 0;
-}
-
-.results-carousel video {
-  margin: 0;
-}
-
-
-.interpolation-panel {
-  background: #f5f5f5;
-  border-radius: 10px;
-}
-
-.interpolation-panel .interpolation-image {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.interpolation-video-column {
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-#interpolation-image-wrapper {
-  width: 100%;
-}
-#interpolation-image-wrapper img {
-  border-radius: 5px;
-}
-
-.bal-container-small {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  cursor: grab;
-  overflow: hidden;
-  border-radius: 10px;
-  margin: 5px;
-}
-
-.bal-container-big {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  cursor: grab;
-  overflow: hidden;
-}
-
-.bal-after {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.bal-before {
-  display: block;
-  position: absolute;
-  top: 0;
-  /* right: 0; */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 15;
-  overflow: hidden;
-}
-
-.bal-before-inset {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.bal-after img,
-.bal-before img,
-.bal-right img {
-  object-fit: cover;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-position: 50% 50%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-.bal-beforePosition {
-  background: #121212;
-  color: #fff;
-  left: 0;
-  pointer-events: none;
-  border-radius: 0.2rem;
-  padding: 2px 10px;
-}
-
-.bal-afterPosition {
-  background: #121212;
-  color: #fff;
-  right: 0;
-  pointer-events: none;
-  border-radius: 0.2rem;
-  padding: 2px 10px;
-}
-
-.beforeLabel {
-  position: absolute;
-  bottom: 0;
-  margin: 1rem;
-  font-size: 1em;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-.afterLabel {
-  position: absolute;
-  bottom: 0;
-  margin: 1rem;
-  font-size: 1em;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-.bal-handle {
-  height: 41px;
-  width: 41px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -20px;
-  margin-top: -21px;
-  border: 2px solid #fff;
-  border-radius: 1000px;
-  z-index: 20;
-  pointer-events: none;
-  box-shadow: 0 0 10px rgb(12, 12, 12);
-}
-
-.handle-left-arrow,
-.handle-right-arrow {
-  width: 0;
-  height: 0;
-  border: 6px inset transparent;
-  position: absolute;
-  top: 50%;
-  margin-top: -6px;
-}
-
-.handle-left-arrow {
-  border-right: 6px solid #fff;
-  left: 50%;
-  margin-left: -17px;
-}
-
-.handle-right-arrow {
-  border-left: 6px solid #fff;
-  right: 50%;
-  margin-right: -17px;
-}
-
-.bal-handle::before {
-  bottom: 50%;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgb(12, 12, 12);
-}
-
-.bal-handle::after {
-  top: 50%;
-  margin-top: 20.5px;
-  box-shadow: 0 0 5px rgb(12, 12, 12);
-}
-
-.bal-handle::before,
-.bal-handle::after {
-  content: " ";
-  display: block;
-  width: 2px;
-  background: #fff;
-  height: 9999px;
-  position: absolute;
-  left: 50%;
-  margin-left: -1.5px;
-}
-
-.section {
-  width: 100%;
-}
-
-
-/* .title.is-3{
-  color: #4f94d4;
-} */
-
-.img_tag {
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-
-/* Triple Comparison (单滑块控制三区域) 样式 */
-.bal-right {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 50%;
-  z-index: 14;
-  overflow: hidden;
-}
-
-.bal-right-inset {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.bal-rightPosition {
-  background: #121212;
-  color: #fff;
-  right: 0;
-  pointer-events: none;
-  border-radius: 0.2rem;
-  padding: 2px 10px;
-}
-
-.rightLabel {
-  position: absolute;
-  bottom: 0;
-  margin: 1rem;
-  font-size: 1em;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-/* "丄" shaped handle 样式 */
-.bal-handle-shape {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  margin-left: -20px;
-  margin-top: -20px;
-  z-index: 25;
-  pointer-events: auto;
-  cursor: move;
-}
-
-.handle-horizontal-bar {
-  position: absolute;
-  top: 50%;
-  left: -9999px;
-  right: -9999px;
-  height: 2px;
-  background: #fff;
-  margin-top: -1px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.handle-vertical-bar {
-  position: absolute;
-  left: 50%;
-  top: -9999px;
-  bottom: -9999px;
-  width: 2px;
-  background: #fff;
-  margin-left: -1px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.handle-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 30px;
-  margin-top: -15px;
-  margin-left: -15px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.handle-center .handle-left-arrow,
-.handle-center .handle-right-arrow,
-.handle-center .handle-top-arrow,
-.handle-center .handle-bottom-arrow {
-  width: 0;
-  height: 0;
-  border: 4px inset transparent;
-  position: absolute;
-}
-
-.handle-center .handle-left-arrow {
-  border-right: 4px solid #fff;
-  left: 50%;
-  top: 50%;
-  margin-left: -12px;
-  margin-top: -4px;
-}
-
-.handle-center .handle-right-arrow {
-  border-left: 4px solid #fff;
-  right: 50%;
-  top: 50%;
-  margin-right: -12px;
-  margin-top: -4px;
-}
-
-.handle-center .handle-top-arrow {
-  border-bottom: 4px solid #fff;
-  top: 50%;
-  left: 50%;
-  margin-top: -12px;
-  margin-left: -4px;
-}
-
-.handle-center .handle-bottom-arrow {
-  border-top: 4px solid #fff;
-  bottom: 50%;
-  left: 50%;
-  margin-bottom: -12px;
-  margin-left: -4px;
-}
-
-/* Triple Comparison Styles for 丄 Shaped Single Slider */
-.bal-gt,
-.bal-ours,
-.bal-bardgs {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.bal-gt {
-  z-index: 10;
-}
-
-.bal-ours {
-  z-index: 11;
-}
-
-.bal-bardgs {
-  z-index: 12;
-}
-
-.bal-gt-inset,
-.bal-ours-inset,
-.bal-bardgs-inset {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.bal-gtPosition,
-.bal-oursPosition,
-.bal-bardgsPosition {
-  background: #121212;
-  color: #fff;
-  pointer-events: none;
-  border-radius: 0.2rem;
-  padding: 2px 10px;
-  position: absolute;
-  bottom: 0;
-  margin: 1rem;
-  font-size: 1em;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-.gt-label,
-.ours-label,
-.bardgs-label {
-  display: none;
-}
-
-/* 丄形状滑块样式 */
-.bal-handle-shape {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  margin-left: -20px;
-  margin-top: -20px;
-  z-index: 25;
-  pointer-events: auto;
-  cursor: move;
-}
-
-.handle-horizontal-bar {
-  position: absolute;
-  top: 50%;
-  left: -9999px;
-  right: -9999px;
-  height: 2px;
-  background: #fff;
-  margin-top: -1px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  display: none;
-}
-
-.handle-vertical-bar {
-  position: absolute;
-  left: 50%;
-  top: -9999px;
-  bottom: -9999px;
-  width: 2px;
-  background: #fff;
-  margin-left: -1px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  display: none;
-}
-
-.handle-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 30px;
-  margin-top: -15px;
-  margin-left: -15px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.handle-center .handle-left-arrow,
-.handle-center .handle-right-arrow,
-.handle-center .handle-top-arrow,
-.handle-center .handle-bottom-arrow {
-  width: 0;
-  height: 0;
-  border: 4px inset transparent;
-  position: absolute;
-}
-
-.handle-center .handle-left-arrow {
-  border-right: 4px solid #fff;
-  left: 50%;
-  top: 50%;
-  margin-left: -12px;
-  margin-top: -4px;
-}
-
-.handle-center .handle-right-arrow {
-  border-left: 4px solid #fff;
-  right: 50%;
-  top: 50%;
-  margin-right: -12px;
-  margin-top: -4px;
-}
-
-.handle-center .handle-top-arrow {
-  border-bottom: 4px solid #fff;
-  top: 50%;
-  left: 50%;
-  margin-top: -12px;
-  margin-left: -4px;
-}
-
-.handle-center .handle-bottom-arrow {
-  border-top: 4px solid #fff;
-  bottom: 50%;
-  left: 50%;
-  margin-bottom: -12px;
-  margin-left: -4px;
-}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>MSCD-GS: Motion-Separated Cooperative Deblurring Dynamic Reconstruction via Gaussian Splitting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/script.js"></script>
+
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">MSCD-GS: Motion-Separated Cooperative Deblurring Dynamic Reconstruction via Gaussian Splitting</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class=" carousel results-carousel">
+        <div class="item item-cake">
+          <video poster="" id="cake" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/man.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-caps">
+          <video poster="" id="caps" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/seesaw.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-cisco">
+          <video poster="" id="cisco" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/women.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-cups">
+          <video poster="" id="cups" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/street.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coral">
+          <video poster="" id="coral" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/skatting.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-cupcake">
+          <video poster="" id="cupcake" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/third.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-tools">
+          <video poster="" id="tools" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/card.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-ball">
+          <video poster="" id="ball" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/kitchen.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-basket">
+          <video poster="" id="basket" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/poster.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-stair">
+          <video poster="" id="stair" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shark.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/walk.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-heron">
+          <video poster="" id="heron" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/windmill.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-parterre">
+          <video poster="" id="parterre" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toycar.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+	<div class="container is-max-desktop">
+	  <!-- Concurrent Work. -->
+	  <div class="columns is-centered has-text-centered">
+		<div class="column is-full-width">
+		  <h2 class="title is-3">MSCD-GS: Motion-Separated Cooperative Deblurring via Gaussian Splitting</h2>
+		  <div class="content has-text-justified">
+			<img src="./static/images/teaser.png">
+			<p align="justify">Motivation. Although the deblurring model NAFNet still exhibits suboptimal performance in deblurring motion-blurred images, it demonstrates significantly stronger deblurring capabilities when combined with the 4D reconstruction method SoM. We propose a novel 4D Gaussian deblurring method, which can render sharper images.</p>
+			<img src="./static/images/pipeline.png">
+			<p align="justify">The pipeline of our MSCD-GS. We construct an initial Gaussian model using blurred images as input. During optimization, static and dynamic Gaussians are separated using Gaussian motion distance and dynamic masks generated by BootsTAPIR. Subsequently, we model static and dynamic Gaussian motion separately and design two motion-aware MLPs to predict their changes over exposure time, thereby generating multiple virtual sharp images. We also utilize the results from the deblurring network to constrain these virtual images. Furthermore, these virtual clear images are synthesized into a virtual blurred image to align with the input real image.</p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</section>
+
+<section class="section">
+  <div class="container ">
+    <div class=" has-text-centered">
+    <h2 class="title is-3">Visual Comparisons</h2>
+    <div class="content has-text-justified">
+      <p>
+
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+      <div class="content">
+        <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div id="example1" class="bal-container-small">
+
+          <!-- Layer 1: GT (background layer) -->
+          <div class="bal-gt">
+            <div class="bal-gt-inset">
+              <img src="./static/images/comparsion/cake.png">
+              <div class="bal-gtPosition gt-label">
+                GT
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 2: Ours (middle layer) -->
+          <div class="bal-ours" style="display: none;">
+            <div class="bal-ours-inset">
+              <img src="./static/images/comparsion/gs_cake.png">
+              <div class="bal-oursPosition ours-label">
+                Ours
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 3: BarDGS (top layer) -->
+          <div class="bal-bardgs" style="display: none;">
+            <div class="bal-bardgs-inset">
+              <img src="./static/images/comparsion/caps.png">
+              <div class="bal-bardgsPosition bardgs-label">
+                BarDGS
+              </div>
+            </div>
+          </div>
+
+          <!-- 丄形状滑块 -->
+          <div class="bal-handle-shape">
+            <div class="handle-horizontal-bar"></div>
+            <div class="handle-vertical-bar"></div>
+            <div class="handle-center">
+              <span class="handle-left-arrow"></span>
+              <span class="handle-right-arrow"></span>
+              <span class="handle-top-arrow"></span>
+              <span class="handle-bottom-arrow"></span>
+            </div>
+          </div>
+
+          </div>
+
+          <div id="example2" class="bal-container-small">
+
+          <div class="bal-after">
+            <img src="./static/images/card_gt.png">
+            <div class="bal-afterPosition afterLabel">
+            GT
+            </div>
+          </div>
+
+          <div class="bal-before" style="width: 50%;">
+            <div class="bal-before-inset" style="width: 539px;">
+            <img src="./static/images/card_our.png">
+            <div class="bal-beforePosition beforeLabel">
+              Ours
+            </div>
+            </div>
+          </div>
+
+          <div class="bal-handle" style="left: 50%;">
+            <span class=" handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+          </div>
+
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+
+
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+      <div class="columns is-centered">
+        <div class="column content">
+
+        <div id="example4" class="bal-container-small">
+          <div class="bal-after">
+          <img src="./static/images/card_gt.png">
+          <div class="bal-afterPosition afterLabel" style="z-index:1;">
+            GT
+          </div>
+          </div>
+
+          <div class="bal-before" style="width:62.10191082802548%;">
+          <div class="bal-before-inset" style="width: 539px;">
+            <img src="./static/images/card_bardgs.png">
+            <div class="bal-beforePosition beforeLabel">
+            BarDGS
+          </div>
+          </div>
+          </div>
+
+          <div class="bal-handle" style="left:62.10191082802548%;">
+          <span class=" handle-left-arrow"></span>
+          <span class="handle-right-arrow"></span>
+          </div>
+
+        </div>
+
+        <div id="example5" class="bal-container-small">
+          <div class="bal-after">
+          <img src="./static/images/card_gt.png">
+          <div class="bal-afterPosition afterLabel" style="z-index:1;">
+            GT
+          </div>
+          </div>
+
+          <div class="bal-before" style="width:56.77179962894249%;">
+          <div class="bal-before-inset" style="width: 628px;">
+            <img src="./static/images/card_our.png">
+            <div class="bal-beforePosition beforeLabel">
+              Ours
+            </div>
+          </div>
+          </div>
+
+          <div class="bal-handle" style="left:56.77179962894249%;">
+          <span class=" handle-left-arrow"></span>
+          <span class="handle-right-arrow"></span>
+          </div>
+
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+  <script>
+    // 确保DOM完全加载后再初始化组件
+    document.addEventListener('DOMContentLoaded', function() {
+      new TripleComparison({
+        id: '#example1'
+      });
+      new BeforeAfter({
+        id: '#example2'
+      });
+      new BeforeAfter({
+        id: '#example4'
+      });
+      new BeforeAfter({
+        id: '#example5'
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>
