@@ -298,19 +298,21 @@
 </section>
 
   <script>
-    new TripleComparison({
-      id: '#example1'
+    // 确保DOM完全加载后再初始化组件
+    document.addEventListener('DOMContentLoaded', function() {
+      new TripleComparison({
+        id: '#example1'
+      });
+      new BeforeAfter({
+        id: '#example2'
+      });
+      new BeforeAfter({
+        id: '#example4'
+      });
+      new BeforeAfter({
+        id: '#example5'
+      });
     });
-    new BeforeAfter({
-      id: '#example2'
-    });
-    new BeforeAfter({
-      id: '#example4'
-    });
-    new BeforeAfter({
-      id: '#example5'
-    });
-
   </script>
 
 
