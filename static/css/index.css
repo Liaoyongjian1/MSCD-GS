@@ -675,6 +675,7 @@ body {
     margin: 5px auto;
     display: block;
     min-height: 400px;
+	border: 2px solid white;
 }
 
 .twentytwenty-container img {
