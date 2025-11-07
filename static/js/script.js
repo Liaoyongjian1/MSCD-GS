@@ -195,6 +195,17 @@ class TripleComparison {
         const xPixels = this.container.offsetWidth * xPercent / 100;
         const yPixels = this.container.offsetHeight * yPercent / 100;
 
+        // 更新滑块条的位置
+        const horizontalBar = this.handle.querySelector('.handle-horizontal-bar');
+        const verticalBar = this.handle.querySelector('.handle-vertical-bar');
+
+        if (horizontalBar) {
+            horizontalBar.style.top = yPixels + 'px';
+        }
+        if (verticalBar) {
+            verticalBar.style.left = xPixels + 'px';
+        }
+
         // 根据鼠标位置决定图像显示逻辑
         // 计算距离各个角落的距离
         const distToUpperLeft = Math.sqrt(xPercent * xPercent + yPercent * yPercent);
@@ -210,9 +221,6 @@ class TripleComparison {
         this.bardgsLayer.style.display = 'none';
 
         // 显示滑块条
-        const horizontalBar = this.handle.querySelector('.handle-horizontal-bar');
-        const verticalBar = this.handle.querySelector('.handle-vertical-bar');
-
         if (horizontalBar) horizontalBar.style.display = 'block';
         if (verticalBar) verticalBar.style.display = 'block';
 
