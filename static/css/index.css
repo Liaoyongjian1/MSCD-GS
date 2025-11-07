@@ -556,7 +556,6 @@ body {
   background: #fff;
   margin-top: -1px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  display: none;
 }
 
 .handle-vertical-bar {
@@ -568,7 +567,6 @@ body {
   background: #fff;
   margin-left: -1px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  display: none;
 }
 
 .handle-center {
