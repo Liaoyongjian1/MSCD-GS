@@ -156,20 +156,10 @@
       </div>
 
       <!-- 三图片对比滑块 -->
-      <div style="max-width: 800px; margin: 0 auto;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
-        <img src="./static/images/seesaw_gt.png" alt="GT" class="twentytwenty-1">
-        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS" class="twentytwenty-2">
-        <img src="./static/images/seesaw_our.png" alt="Ours" class="twentytwenty-3">
-
-        <div class="twentytwenty-overlay">
-          <div class="twentytwenty-label-1">GT</div>
-          <div class="twentytwenty-label-2">BarDGS</div>
-          <div class="twentytwenty-label-3">Ours</div>
-
-          <div class="twentytwenty-frame-1"></div>
-          <div class="twentytwenty-frame-2"></div>
-          <div class="twentytwenty-frame-3"></div>
-        </div>
+      <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
+        <img src="./static/images/seesaw_gt.png" alt="GT">
+        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
+        <img src="./static/images/seesaw_our.png" alt="Ours">
       </div>
 
             
@@ -238,11 +228,22 @@
   <script>
     // 确保DOM完全加载后再初始化组件
     document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded, initializing twentytwenty...');
+
+      // 检查jQuery和twentytwenty是否可用
+      console.log('jQuery:', typeof $);
+      console.log('twentytwenty plugin:', typeof $.fn.twentytwenty);
+
       // 按照temp.js的模式初始化三图片对比滑块
-      $("#example1").twentytwenty({
-        default_offset_pct_x: 0.5,
-        default_offset_pct_y: 0.5
-      });
+      if (typeof $.fn.twentytwenty === 'function') {
+        console.log('Initializing twentytwenty on #example1');
+        $("#example1").twentytwenty({
+          default_offset_pct_x: 0.5,
+          default_offset_pct_y: 0.5
+        });
+      } else {
+        console.error('twentytwenty plugin not found!');
+      }
 
       // 初始化其他双图片对比滑块
       new BeforeAfter({
