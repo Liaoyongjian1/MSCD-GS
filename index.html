@@ -157,6 +157,27 @@
 
       <!-- 三图片对比滑块 -->
       <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
+        <img src="./static/images/card_bardgs.png" alt="BarDGS">
+		<img src="./static/images/card_our.png" alt="Ours">
+		<img src="./static/images/card_gt.png" alt="GT">
+        
+      </div>
+
+	  <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example2">
+        <img src="./static/images/kitchen_bardgs.png" alt="BarDGS">
+		<img src="./static/images/kitchen_our.png" alt="Ours">
+		<img src="./static/images/kitchen_gt.png" alt="GT">
+        
+      </div>
+
+	  <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example3">
+        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
+		<img src="./static/images/seesaw_our.png" alt="Ours">
+		<img src="./static/images/seesaw_gt.png" alt="GT">
+        
+      </div>
+
+	  <div style="max-width: 800px; margin: 0 auto; height: 400px;" class="twentytwenty-container twentytwenty-compare-3" id="example4">
         <img src="./static/images/seesaw_bardgs.png" alt="BarDGS">
 		<img src="./static/images/seesaw_our.png" alt="Ours">
 		<img src="./static/images/seesaw_gt.png" alt="GT">
@@ -187,20 +208,28 @@
           default_offset_pct_x: 0.5,
           default_offset_pct_y: 0.5
         });
+		// 【新添加的代码】初始化 example2 滑块
+        console.log('Initializing twentytwenty on #example2');
+        $("#example3").twentytwenty({
+          default_offset_pct_x: 0.5,
+          default_offset_pct_y: 0.5
+        });
+		// 【新添加的代码】初始化 example3 滑块
+        console.log('Initializing twentytwenty on #example3');
+        $("#example3").twentytwenty({
+          default_offset_pct_x: 0.5,
+          default_offset_pct_y: 0.5
+        });
+		// 【新添加的代码】初始化 example4 滑块
+        console.log('Initializing twentytwenty on #example4');
+        $("#example3").twentytwenty({
+          default_offset_pct_x: 0.5,
+          default_offset_pct_y: 0.5
+        });
       } else {
         console.error('twentytwenty plugin not found!');
       }
 
-      // 初始化其他双图片对比滑块
-      new BeforeAfter({
-        id: '#example2'
-      });
-      new BeforeAfter({
-        id: '#example4'
-      });
-      new BeforeAfter({
-        id: '#example5'
-      });
     });
   </script>
 
