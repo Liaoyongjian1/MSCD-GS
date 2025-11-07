@@ -475,43 +475,34 @@ body {
   margin-left: -4px;
 }
 
-/* Triple Comparison Styles for Three Column Layout */
-.bal-left {
+/* Triple Comparison Styles for 丄 Shaped Single Slider */
+.bal-gt,
+.bal-ours,
+.bal-bardgs {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
-  width: 33.33%;
+  width: 100%;
   height: 100%;
-  z-index: 15;
   overflow: hidden;
 }
 
-.bal-middle {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 33.33%;
-  width: 33.33%;
-  height: 100%;
-  z-index: 14;
-  overflow: hidden;
+.bal-gt {
+  z-index: 10;
 }
 
-.bal-right {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 66.67%;
-  width: 33.33%;
-  height: 100%;
-  z-index: 13;
-  overflow: hidden;
+.bal-ours {
+  z-index: 11;
 }
 
-.bal-left-inset,
-.bal-middle-inset,
-.bal-right-inset {
+.bal-bardgs {
+  z-index: 12;
+}
+
+.bal-gt-inset,
+.bal-ours-inset,
+.bal-bardgs-inset {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -519,19 +510,14 @@ body {
   right: 0;
 }
 
-.bal-leftPosition,
-.bal-middlePosition,
-.bal-rightPosition {
+.bal-gtPosition,
+.bal-oursPosition,
+.bal-bardgsPosition {
   background: #121212;
   color: #fff;
   pointer-events: none;
   border-radius: 0.2rem;
   padding: 2px 10px;
-}
-
-.leftLabel,
-.middleLabel,
-.rightLabel {
   position: absolute;
   bottom: 0;
   margin: 1rem;
@@ -543,77 +529,99 @@ body {
   user-select: none;
 }
 
-.bal-handle-left,
-.bal-handle-right {
-  height: 41px;
-  width: 41px;
+.gt-label,
+.ours-label,
+.bardgs-label {
+  display: none;
+}
+
+/* 丄形状滑块样式 */
+.bal-handle-shape {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 25;
+  pointer-events: none;
+}
+
+.handle-horizontal-bar {
   position: absolute;
   top: 50%;
-  margin-top: -21px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  margin-top: -1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.handle-vertical-bar {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  margin-left: -1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.handle-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  margin-left: -15px;
   border: 2px solid #fff;
-  border-radius: 1000px;
-  z-index: 20;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   pointer-events: auto;
-  box-shadow: 0 0 10px rgb(12, 12, 12);
   cursor: move;
 }
 
-.bal-handle-left {
-  left: 33.33%;
-  margin-left: -20px;
-}
-
-.bal-handle-right {
-  left: 66.67%;
-  margin-left: -20px;
-}
-
-.bal-handle-left::before,
-.bal-handle-left::after,
-.bal-handle-right::before,
-.bal-handle-right::after {
-  content: " ";
-  display: block;
-  width: 2px;
-  background: #fff;
-  height: 9999px;
-  position: absolute;
-  left: 50%;
-  margin-left: -1.5px;
-}
-
-.bal-handle-left::before,
-.bal-handle-right::before {
-  bottom: 50%;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgb(12, 12, 12);
-}
-
-.bal-handle-left::after,
-.bal-handle-right::after {
-  top: 50%;
-  margin-top: 20.5px;
-  box-shadow: 0 0 5px rgb(12, 12, 12);
-}
-
-.handle-left-arrow,
-.handle-right-arrow {
+.handle-center .handle-left-arrow,
+.handle-center .handle-right-arrow,
+.handle-center .handle-top-arrow,
+.handle-center .handle-bottom-arrow {
   width: 0;
   height: 0;
-  border: 6px inset transparent;
+  border: 4px inset transparent;
   position: absolute;
-  top: 50%;
-  margin-top: -6px;
 }
 
-.handle-left-arrow {
-  border-right: 6px solid #fff;
+.handle-center .handle-left-arrow {
+  border-right: 4px solid #fff;
   left: 50%;
-  margin-left: -17px;
+  top: 50%;
+  margin-left: -12px;
+  margin-top: -4px;
 }
 
-.handle-right-arrow {
-  border-left: 6px solid #fff;
+.handle-center .handle-right-arrow {
+  border-left: 4px solid #fff;
   right: 50%;
-  margin-right: -17px;
+  top: 50%;
+  margin-right: -12px;
+  margin-top: -4px;
+}
+
+.handle-center .handle-top-arrow {
+  border-bottom: 4px solid #fff;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -4px;
+}
+
+.handle-center .handle-bottom-arrow {
+  border-top: 4px solid #fff;
+  bottom: 50%;
+  left: 50%;
+  margin-bottom: -12px;
+  margin-left: -4px;
 }
