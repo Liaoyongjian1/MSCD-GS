@@ -545,6 +545,7 @@ body {
   z-index: 25;
   pointer-events: auto;
   cursor: move;
+  transform: translate(-50%, -50%);
 }
 
 .handle-horizontal-bar {
