@@ -201,21 +201,16 @@
             </div>
           </div>
 
-          <div class="bal-before" style="width: 33.33%;">
+          <div class="bal-before" style="width: 50%;">
             <div class="bal-before-inset" style="width: 539px;">
-            <img src="./static/images/card_bardgs.png">
+            <img src="./static/images/card_our.png">
             <div class="bal-beforePosition beforeLabel">
-              BarDGS
+              Ours
             </div>
             </div>
           </div>
 
-          <div class="bal-handle bal-handle-left" style="left:33.33%;">
-            <span class=" handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="bal-handle bal-handle-right" style="left:66.66%;">
+          <div class="bal-handle" style="left: 50%;">
             <span class=" handle-left-arrow"></span>
             <span class="handle-right-arrow"></span>
           </div>
@@ -240,7 +235,7 @@
           </div>
           </div>
 
-          <div class="bal-before" style="width: 33.33%;">
+          <div class="bal-before" style="width: 50%;">
           <div class="bal-before-inset" style="width: 539px;">
             <img src="./static/images/card_bardgs.png">
             <div class="bal-beforePosition beforeLabel">
@@ -249,12 +244,7 @@
           </div>
           </div>
 
-          <div class="bal-handle bal-handle-left" style="left:33.33%;">
-            <span class=" handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="bal-handle bal-handle-right" style="left:66.66%;">
+          <div class="bal-handle" style="left: 50%;">
             <span class=" handle-left-arrow"></span>
             <span class="handle-right-arrow"></span>
           </div>
@@ -269,21 +259,16 @@
           </div>
           </div>
 
-          <div class="bal-before" style="width: 33.33%;">
+          <div class="bal-before" style="width: 50%;">
           <div class="bal-before-inset" style="width: 628px;">
-            <img src="./static/images/card_bardgs.png">
+            <img src="./static/images/card_our.png">
             <div class="bal-beforePosition beforeLabel">
-            BarDGS
+            Ours
             </div>
           </div>
           </div>
 
-          <div class="bal-handle bal-handle-left" style="left:33.33%;">
-            <span class=" handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="bal-handle bal-handle-right" style="left:66.66%;">
+          <div class="bal-handle" style="left: 50%;">
             <span class=" handle-left-arrow"></span>
             <span class="handle-right-arrow"></span>
           </div>
@@ -298,25 +283,22 @@
 </section>
 
   <script>
+    // 先测试一个双滑块
     new DualComparison({
       id: '#example1',
       middleImage: './static/images/card_our.png',
       middleLabel: 'Ours'
     });
-    new DualComparison({
-      id: '#example2',
-      middleImage: './static/images/card_our.png',
-      middleLabel: 'Ours'
+
+    // 其他的保持单滑块用于对比
+    new BeforeAfter({
+      id: '#example2'
     });
-    new DualComparison({
-      id: '#example4',
-      middleImage: './static/images/card_our.png',
-      middleLabel: 'Ours'
+    new BeforeAfter({
+      id: '#example4'
     });
-    new DualComparison({
-      id: '#example5',
-      middleImage: './static/images/card_our.png',
-      middleLabel: 'Ours'
+    new BeforeAfter({
+      id: '#example5'
     });
   </script>
   
