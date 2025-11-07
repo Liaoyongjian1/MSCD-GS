@@ -170,6 +170,17 @@ class TripleComparison {
         this.handle.style.left = xPercent + '%';
         this.handle.style.top = yPercent + '%';
 
+        // 更新滑块的水平和垂直条位置
+        const horizontalBar = this.handle.querySelector('.handle-horizontal-bar');
+        const verticalBar = this.handle.querySelector('.handle-vertical-bar');
+
+        if (horizontalBar) {
+            horizontalBar.style.top = yPixels + 'px';
+        }
+        if (verticalBar) {
+            verticalBar.style.left = xPixels + 'px';
+        }
+
         // 根据滑块位置决定图像显示逻辑
         // 中心区域：丄形状分割三个图像
         if (xPercent >= 25 && xPercent <= 75 && yPercent >= 25 && yPercent <= 75) {
