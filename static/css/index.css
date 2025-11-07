@@ -546,42 +546,39 @@ body {
 
 .handle-horizontal-bar {
   position: absolute;
-  top: 50%;
   left: 0;
   right: 0;
   height: 2px;
   background: rgba(255, 255, 255, 0.8);
-  margin-top: -1px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   pointer-events: none;
+  transform: translateY(-1px);
+  display: none;
 }
 
 .handle-vertical-bar {
   position: absolute;
-  left: 50%;
   top: 0;
   bottom: 0;
   width: 2px;
   background: rgba(255, 255, 255, 0.8);
-  margin-left: -1px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   pointer-events: none;
+  transform: translateX(-1px);
+  display: none;
 }
 
 .handle-center {
   position: absolute;
-  top: 50%;
-  left: 50%;
   width: 30px;
   height: 30px;
-  margin-top: -15px;
-  margin-left: -15px;
   border: 2px solid #fff;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   pointer-events: auto;
   cursor: move;
+  transform: translate(-50%, -50%);
 }
 
 .handle-center .handle-left-arrow,
