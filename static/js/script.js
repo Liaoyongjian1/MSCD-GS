@@ -70,13 +70,7 @@ class TripleComparison {
         // 丄形状滑块
         this.handle = this.container.querySelector('.bal-handle-shape');
 
-        console.log("找到的元素:", {
-            gt: !!this.gtLayer,
-            ours: !!this.oursLayer,
-            bardgs: !!this.bardgsLayer,
-            handle: !!this.handle
-        });
-
+        
         if (!this.gtLayer || !this.oursLayer || !this.bardgsLayer || !this.handle) {
             console.error('Required elements not found in:', entryObject.id);
             return;
@@ -107,6 +101,16 @@ class TripleComparison {
             bardgsInset.style.width = this.container.offsetWidth + 'px';
         }
 
+        // 初始时默认显示GT图像
+        this.gtLayer.style.clip = 'auto';
+        this.gtLayer.style.display = 'block';
+        this.oursLayer.style.display = 'none';
+        this.bardgsLayer.style.display = 'none';
+
+        // 设置滑块初始位置在中心
+        this.xPosition = 50;
+        this.yPosition = 50;
+
         this.updateLayout();
     }
 
@@ -114,16 +118,17 @@ class TripleComparison {
         // 鼠标进入/离开事件（用于自动拖动）
         this.container.addEventListener('mouseenter', () => {
             this.isHovering = true;
+            console.log("鼠标进入滑块区域");
         });
 
         this.container.addEventListener('mouseleave', () => {
             this.isHovering = false;
+            console.log("鼠标离开滑块区域");
         });
 
         // 鼠标移动事件（自动拖动）
         this.container.addEventListener('mousemove', (e) => {
             if (this.isHovering) {
-                console.log("鼠标移动，更新滑块位置");
                 this.updateSlider(e);
             }
         });
