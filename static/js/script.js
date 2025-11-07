@@ -255,3 +255,17 @@ class TripleComparison {
         }
     }
 }
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 初始化 L 形状三向滑块
+  try {
+    new TripleComparison({
+      id: '#example1'
+    });
+    console.log('TripleComparison initialized successfully');
+  } catch (error) {
+    console.error('Failed to initialize TripleComparison:', error);
+  }
+});
+</script>
