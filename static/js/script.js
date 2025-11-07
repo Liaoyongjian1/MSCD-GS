@@ -162,13 +162,13 @@ class TripleComparison {
 
     updateLayout() {
         const xPercent = this.xPosition;
-        const yPercent = this.yPosition;
+        const yPercent = this.yPercent;
         const xPixels = this.container.offsetWidth * xPercent / 100;
         const yPixels = this.container.offsetHeight * yPercent / 100;
 
-        // 更新滑块位置
-        this.handle.style.left = xPercent + '%';
-        this.handle.style.top = yPercent + '%';
+        // 更新滑块位置 - 使用像素值精确控制
+        this.handle.style.left = xPixels + 'px';
+        this.handle.style.top = yPixels + 'px';
 
         // 更新滑块的水平和垂直条位置
         const horizontalBar = this.handle.querySelector('.handle-horizontal-bar');
