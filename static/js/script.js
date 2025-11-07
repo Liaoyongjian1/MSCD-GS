@@ -163,25 +163,42 @@ class TripleComparison {
     updateLayout() {
         const xPercent = this.xPosition;
         const yPercent = this.yPosition;
+        const xPixels = this.container.offsetWidth * xPercent / 100;
+        const yPixels = this.container.offsetHeight * yPercent / 100;
 
         // 更新滑块位置
         this.handle.style.left = xPercent + '%';
         this.handle.style.top = yPercent + '%';
 
+        // 更新滑块的水平和垂直条位置
+        const horizontalBar = this.handle.querySelector('.handle-horizontal-bar');
+        const verticalBar = this.handle.querySelector('.handle-vertical-bar');
+
+        if (horizontalBar) {
+            horizontalBar.style.top = yPixels + 'px';
+        }
+        if (verticalBar) {
+            verticalBar.style.left = xPixels + 'px';
+        }
+
         // 根据滑块位置决定图像显示逻辑
         // 中心区域：丄形状分割三个图像
         if (xPercent >= 25 && xPercent <= 75 && yPercent >= 25 && yPercent <= 75) {
             // 左上区域：BarDGS
-            this.bardgsLayer.style.clip = 'rect(0, ' + (this.container.offsetWidth * xPercent / 100) + 'px, ' + (this.container.offsetHeight * yPercent / 100) + 'px, 0)';
+            this.bardgsLayer.style.clip = 'rect(0, ' + xPixels + 'px, ' + yPixels + 'px, 0)';
             this.bardgsLayer.style.display = 'block';
 
             // 右上区域：Ours
-            this.oursLayer.style.clip = 'rect(0, ' + this.container.offsetWidth + 'px, ' + (this.container.offsetHeight * yPercent / 100) + 'px, ' + (this.container.offsetWidth * xPercent / 100) + 'px)';
+            this.oursLayer.style.clip = 'rect(0, ' + this.container.offsetWidth + 'px, ' + yPixels + 'px, ' + xPixels + 'px)';
             this.oursLayer.style.display = 'block';
 
             // 下方区域：GT
-            this.gtLayer.style.clip = 'rect(' + (this.container.offsetHeight * yPercent / 100) + 'px, ' + this.container.offsetWidth + 'px, ' + this.container.offsetHeight + 'px, 0)';
+            this.gtLayer.style.clip = 'rect(' + yPixels + 'px, ' + this.container.offsetWidth + 'px, ' + this.container.offsetHeight + 'px, 0)';
             this.gtLayer.style.display = 'block';
+
+            // 显示滑块条
+            if (horizontalBar) horizontalBar.style.display = 'block';
+            if (verticalBar) verticalBar.style.display = 'block';
         }
         // 左上角：显示GT
         else if (xPercent < 33 && yPercent < 33) {
@@ -189,6 +206,10 @@ class TripleComparison {
             this.gtLayer.style.display = 'block';
             this.oursLayer.style.display = 'none';
             this.bardgsLayer.style.display = 'none';
+
+            // 隐藏滑块条
+            if (horizontalBar) horizontalBar.style.display = 'none';
+            if (verticalBar) verticalBar.style.display = 'none';
         }
         // 右上角：显示GT
         else if (xPercent > 67 && yPercent < 33) {
@@ -196,6 +217,10 @@ class TripleComparison {
             this.gtLayer.style.display = 'block';
             this.oursLayer.style.display = 'none';
             this.bardgsLayer.style.display = 'none';
+
+            // 隐藏滑块条
+            if (horizontalBar) horizontalBar.style.display = 'none';
+            if (verticalBar) verticalBar.style.display = 'none';
         }
         // 左下角：显示Ours
         else if (xPercent < 33 && yPercent > 67) {
@@ -203,6 +228,10 @@ class TripleComparison {
             this.oursLayer.style.display = 'block';
             this.gtLayer.style.display = 'none';
             this.bardgsLayer.style.display = 'none';
+
+            // 隐藏滑块条
+            if (horizontalBar) horizontalBar.style.display = 'none';
+            if (verticalBar) verticalBar.style.display = 'none';
         }
         // 右下角：显示BarDGS
         else if (xPercent > 67 && yPercent > 67) {
@@ -210,6 +239,10 @@ class TripleComparison {
             this.bardgsLayer.style.display = 'block';
             this.gtLayer.style.display = 'none';
             this.oursLayer.style.display = 'none';
+
+            // 隐藏滑块条
+            if (horizontalBar) horizontalBar.style.display = 'none';
+            if (verticalBar) verticalBar.style.display = 'none';
         }
         // 边界过渡区域：动态混合
         else {
@@ -217,6 +250,10 @@ class TripleComparison {
             this.gtLayer.style.display = 'block';
             this.oursLayer.style.display = 'none';
             this.bardgsLayer.style.display = 'none';
+
+            // 隐藏滑块条
+            if (horizontalBar) horizontalBar.style.display = 'none';
+            if (verticalBar) verticalBar.style.display = 'none';
         }
 
         // 更新滑块标签显示
