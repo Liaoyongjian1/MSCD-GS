@@ -54,7 +54,7 @@ class BeforeAfter {
 
 class TripleComparison {
     constructor(entryObject) {
-        console.log("初始化TripleComparison (双滑块三区域):", entryObject.id);
+        console.log("初始化TripleComparison (丄形状单滑块):", entryObject.id);
 
         this.container = document.querySelector(entryObject.id);
         if (!this.container) {
@@ -63,24 +63,22 @@ class TripleComparison {
         }
 
         // 三个图像层
-        this.leftSection = this.container.querySelector('.bal-left');    // BarDGS (左侧)
-        this.middleSection = this.container.querySelector('.bal-middle');  // Ours (中间)
-        this.rightSection = this.container.querySelector('.bal-right');   // GT (右侧)
+        this.gtLayer = this.container.querySelector('.bal-gt');         // GT (底层)
+        this.oursLayer = this.container.querySelector('.bal-ours');     // Ours (中间层)
+        this.bardgsLayer = this.container.querySelector('.bal-bardgs'); // BarDGS (顶层)
 
-        // 两个滑块
-        this.leftHandle = this.container.querySelector('.bal-handle-left');   // 左侧滑块
-        this.rightHandle = this.container.querySelector('.bal-handle-right'); // 右侧滑块
+        // 丄形状滑块
+        this.handle = this.container.querySelector('.bal-handle-shape');
 
-        if (!this.leftSection || !this.middleSection || !this.rightSection || !this.leftHandle || !this.rightHandle) {
+        if (!this.gtLayer || !this.oursLayer || !this.bardgsLayer || !this.handle) {
             console.error('Required elements not found in:', entryObject.id);
             return;
         }
 
-        // 两个滑块位置状态 (将屏幕分为三份)
-        this.leftPosition = 33.33;  // 左滑块位置
-        this.rightPosition = 66.67; // 右滑块位置
-        this.activeSlider = null;   // 当前活动的滑块
-        this.isHovering = false;    // 是否正在悬停
+        // 滑块位置状态
+        this.xPosition = 50; // 水平位置 (0-100)
+        this.yPosition = 50; // 垂直位置 (0-100)
+        this.isHovering = false;
 
         this.init();
         this.addEventListeners();
@@ -88,18 +86,18 @@ class TripleComparison {
 
     init() {
         // 设置初始inset宽度
-        const leftInset = this.container.querySelector('.bal-left-inset');
-        const middleInset = this.container.querySelector('.bal-middle-inset');
-        const rightInset = this.container.querySelector('.bal-right-inset');
+        const gtInset = this.container.querySelector('.bal-gt-inset');
+        const oursInset = this.container.querySelector('.bal-ours-inset');
+        const bardgsInset = this.container.querySelector('.bal-bardgs-inset');
 
-        if (leftInset) {
-            leftInset.style.width = this.container.offsetWidth + 'px';
+        if (gtInset) {
+            gtInset.style.width = this.container.offsetWidth + 'px';
         }
-        if (middleInset) {
-            middleInset.style.width = this.container.offsetWidth + 'px';
+        if (oursInset) {
+            oursInset.style.width = this.container.offsetWidth + 'px';
         }
-        if (rightInset) {
-            rightInset.style.width = this.container.offsetWidth + 'px';
+        if (bardgsInset) {
+            bardgsInset.style.width = this.container.offsetWidth + 'px';
         }
 
         this.updateLayout();
@@ -113,121 +111,145 @@ class TripleComparison {
 
         this.container.addEventListener('mouseleave', () => {
             this.isHovering = false;
-            this.activeSlider = null;
         });
 
         // 鼠标移动事件（自动拖动）
         this.container.addEventListener('mousemove', (e) => {
             if (this.isHovering) {
-                this.detectAndMoveSlider(e);
+                this.updateSlider(e);
             }
         });
 
         // 触摸事件
         this.container.addEventListener('touchstart', (e) => {
-            this.activeSlider = this.detectSlider(e.touches[0]);
-            if (this.activeSlider) {
-                this.updateSlider(e.touches[0]);
-            }
+            this.updateSlider(e.touches[0]);
         });
 
         this.container.addEventListener('touchmove', (e) => {
-            if (this.activeSlider) {
-                e.preventDefault();
-                this.updateSlider(e.touches[0]);
-            }
-        });
-
-        this.container.addEventListener('touchend', () => {
-            this.activeSlider = null;
+            e.preventDefault();
+            this.updateSlider(e.touches[0]);
         });
 
         // 窗口大小调整
         window.addEventListener('resize', () => {
-            const leftInset = this.container.querySelector('.bal-left-inset');
-            const middleInset = this.container.querySelector('.bal-middle-inset');
-            const rightInset = this.container.querySelector('.bal-right-inset');
+            const gtInset = this.container.querySelector('.bal-gt-inset');
+            const oursInset = this.container.querySelector('.bal-ours-inset');
+            const bardgsInset = this.container.querySelector('.bal-bardgs-inset');
 
-            if (leftInset) {
-                leftInset.style.width = this.container.offsetWidth + 'px';
+            if (gtInset) {
+                gtInset.style.width = this.container.offsetWidth + 'px';
             }
-            if (middleInset) {
-                middleInset.style.width = this.container.offsetWidth + 'px';
+            if (oursInset) {
+                oursInset.style.width = this.container.offsetWidth + 'px';
             }
-            if (rightInset) {
-                rightInset.style.width = this.container.offsetWidth + 'px';
+            if (bardgsInset) {
+                bardgsInset.style.width = this.container.offsetWidth + 'px';
             }
         });
-    }
-
-    detectAndMoveSlider(e) {
-        const rect = this.container.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-
-        // 计算当前滑块位置
-        const leftHandlePos = (this.leftPosition / 100) * this.container.offsetWidth;
-        const rightHandlePos = (this.rightPosition / 100) * this.container.offsetWidth;
-
-        // 计算鼠标与滑块的绝对距离
-        const leftDistance = Math.abs(x - leftHandlePos);
-        const rightDistance = Math.abs(x - rightHandlePos);
-
-        // 自动判断应该移动哪个滑块
-        if (leftDistance < rightDistance) {
-            this.activeSlider = 'left';
-            this.leftPosition = Math.max(5, Math.min(this.rightPosition - 5, (x / this.container.offsetWidth) * 100));
-        } else {
-            this.activeSlider = 'right';
-            this.rightPosition = Math.max(this.leftPosition + 5, Math.min(95, (x / this.container.offsetWidth) * 100));
-        }
-
-        this.updateLayout();
-    }
-
-    detectSlider(e) {
-        const rect = this.container.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-
-        const leftHandlePos = (this.leftPosition / 100) * this.container.offsetWidth;
-        const rightHandlePos = (this.rightPosition / 100) * this.container.offsetWidth;
-
-        // 检查是否点击滑块附近（30px范围内）
-        if (Math.abs(x - leftHandlePos) < 30) {
-            return 'left';
-        }
-        if (Math.abs(x - rightHandlePos) < 30) {
-            return 'right';
-        }
-
-        return null;
     }
 
     updateSlider(e) {
         const rect = this.container.getBoundingClientRect();
         const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-        if (this.activeSlider === 'left') {
-            this.leftPosition = Math.max(5, Math.min(this.rightPosition - 5, (x / this.container.offsetWidth) * 100));
-        } else if (this.activeSlider === 'right') {
-            this.rightPosition = Math.max(this.leftPosition + 5, Math.min(95, (x / this.container.offsetWidth) * 100));
-        }
+        // 更新滑块位置
+        this.xPosition = Math.max(0, Math.min(100, (x / this.container.offsetWidth) * 100));
+        this.yPosition = Math.max(0, Math.min(100, (y / this.container.offsetHeight) * 100));
 
         this.updateLayout();
     }
 
     updateLayout() {
-        // 更新三个区域布局
-        this.leftSection.style.left = '0%';
-        this.leftSection.style.width = this.leftPosition + '%';
-
-        this.middleSection.style.left = this.leftPosition + '%';
-        this.middleSection.style.width = (this.rightPosition - this.leftPosition) + '%';
-
-        this.rightSection.style.left = this.rightPosition + '%';
-        this.rightSection.style.width = (100 - this.rightPosition) + '%';
+        const xPercent = this.xPosition;
+        const yPercent = this.yPosition;
 
         // 更新滑块位置
-        this.leftHandle.style.left = this.leftPosition + '%';
-        this.rightHandle.style.left = this.rightPosition + '%';
+        this.handle.style.left = xPercent + '%';
+        this.handle.style.top = yPercent + '%';
+
+        // 根据滑块位置决定图像显示逻辑
+        // 中心区域：丄形状分割三个图像
+        if (xPercent >= 25 && xPercent <= 75 && yPercent >= 25 && yPercent <= 75) {
+            // 左上区域：BarDGS
+            this.bardgsLayer.style.clip = 'rect(0, ' + (this.container.offsetWidth * xPercent / 100) + 'px, ' + (this.container.offsetHeight * yPercent / 100) + 'px, 0)';
+            this.bardgsLayer.style.display = 'block';
+
+            // 右上区域：Ours
+            this.oursLayer.style.clip = 'rect(0, ' + this.container.offsetWidth + 'px, ' + (this.container.offsetHeight * yPercent / 100) + 'px, ' + (this.container.offsetWidth * xPercent / 100) + 'px)';
+            this.oursLayer.style.display = 'block';
+
+            // 下方区域：GT
+            this.gtLayer.style.clip = 'rect(' + (this.container.offsetHeight * yPercent / 100) + 'px, ' + this.container.offsetWidth + 'px, ' + this.container.offsetHeight + 'px, 0)';
+            this.gtLayer.style.display = 'block';
+        }
+        // 左上角：显示GT
+        else if (xPercent < 33 && yPercent < 33) {
+            this.gtLayer.style.clip = 'auto';
+            this.gtLayer.style.display = 'block';
+            this.oursLayer.style.display = 'none';
+            this.bardgsLayer.style.display = 'none';
+        }
+        // 右上角：显示GT
+        else if (xPercent > 67 && yPercent < 33) {
+            this.gtLayer.style.clip = 'auto';
+            this.gtLayer.style.display = 'block';
+            this.oursLayer.style.display = 'none';
+            this.bardgsLayer.style.display = 'none';
+        }
+        // 左下角：显示Ours
+        else if (xPercent < 33 && yPercent > 67) {
+            this.oursLayer.style.clip = 'auto';
+            this.oursLayer.style.display = 'block';
+            this.gtLayer.style.display = 'none';
+            this.bardgsLayer.style.display = 'none';
+        }
+        // 右下角：显示BarDGS
+        else if (xPercent > 67 && yPercent > 67) {
+            this.bardgsLayer.style.clip = 'auto';
+            this.bardgsLayer.style.display = 'block';
+            this.gtLayer.style.display = 'none';
+            this.oursLayer.style.display = 'none';
+        }
+        // 边界过渡区域：动态混合
+        else {
+            this.gtLayer.style.clip = 'auto';
+            this.gtLayer.style.display = 'block';
+            this.oursLayer.style.display = 'none';
+            this.bardgsLayer.style.display = 'none';
+        }
+
+        // 更新滑块标签显示
+        this.updateLabels(xPercent, yPercent);
+    }
+
+    updateLabels(xPercent, yPercent) {
+        const gtLabel = this.gtLayer.querySelector('.gt-label');
+        const oursLabel = this.oursLayer.querySelector('.ours-label');
+        const bardgsLabel = this.bardgsLayer.querySelector('.bardgs-label');
+
+        // 根据滑块位置决定哪些标签可见
+        if (gtLabel) gtLabel.style.display = 'none';
+        if (oursLabel) oursLabel.style.display = 'none';
+        if (bardgsLabel) bardgsLabel.style.display = 'none';
+
+        if (xPercent >= 25 && xPercent <= 75 && yPercent >= 25 && yPercent <= 75) {
+            // 中心区域显示所有标签
+            if (gtLabel) gtLabel.style.display = 'block';
+            if (oursLabel) oursLabel.style.display = 'block';
+            if (bardgsLabel) bardgsLabel.style.display = 'block';
+        } else if (xPercent < 33 && yPercent < 33) {
+            // 左上角显示GT标签
+            if (gtLabel) gtLabel.style.display = 'block';
+        } else if (xPercent > 67 && yPercent < 33) {
+            // 右上角显示GT标签
+            if (gtLabel) gtLabel.style.display = 'block';
+        } else if (xPercent < 33 && yPercent > 67) {
+            // 左下角显示Ours标签
+            if (oursLabel) oursLabel.style.display = 'block';
+        } else if (xPercent > 67 && yPercent > 67) {
+            // 右下角显示BarDGS标签
+            if (bardgsLabel) bardgsLabel.style.display = 'block';
+        }
     }
 }
