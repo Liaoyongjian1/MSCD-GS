@@ -535,17 +535,21 @@ body {
   display: none;
 }
 
-/* 丄形状滑块样式 */
+/* 丄形状滑块样式 - 参考其他滑块样式 */
 .bal-handle-shape {
+  height: 41px;
+  width: 41px;
   position: absolute;
-  width: 40px;
-  height: 40px;
+  left: 50%;
+  top: 50%;
   margin-left: -20px;
   margin-top: -20px;
+  border: 2px solid #fff;
+  border-radius: 1000px;
   z-index: 25;
   pointer-events: auto;
-  cursor: move;
-  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: 0 0 10px rgb(12, 12, 12);
 }
 
 .handle-horizontal-bar {
