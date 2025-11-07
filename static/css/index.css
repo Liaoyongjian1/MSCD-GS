@@ -572,13 +572,14 @@ body {
   position: absolute;
   width: 30px;
   height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
   border: 2px solid #fff;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   pointer-events: auto;
   cursor: move;
-  transform: translate(-50%, -50%);
 }
 
 .handle-center .handle-left-arrow,
