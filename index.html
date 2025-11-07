@@ -155,42 +155,24 @@
         <p>We compare our method with BarDGS on multiple scenes, including seesaw, card, man, women, etc. Our method produces sharper and more detailed results.</p>
       </div>
 
-      <!-- L形状滑块对比 -->
-      <div style="margin: 3rem 0;">
-        <h3 class="title is-4 has-text-centered mb-6">L-Shaped Slider Comparison</h3>
-        <div style="max-width: 800px; margin: 0 auto;">
-          <div id="l-slider-container" class="twentytwenty-container">
-            <!-- GT图像 -->
-            <img src="./static/images/seesaw_gt.png" alt="GT" class="twentytwenty-1">
-            <!-- Ours图像 -->
-            <img src="./static/images/seesaw_our.png" alt="Ours" class="twentytwenty-2">
-            <!-- BarDGS图像 -->
-            <img src="./static/images/seesaw_bardgs.png" alt="BarDGS" class="twentytwenty-3">
+      <!-- 三图片对比滑块 -->
+      <div style="max-width: 800px; margin: 0 auto;" class="twentytwenty-container twentytwenty-compare-3" id="example1">
+        <img src="./static/images/seesaw_gt.png" alt="GT" class="twentytwenty-1">
+        <img src="./static/images/seesaw_bardgs.png" alt="BarDGS" class="twentytwenty-2">
+        <img src="./static/images/seesaw_our.png" alt="Ours" class="twentytwenty-3">
 
-            <!-- 滑块手柄 -->
-            <div id="l-slider-handle" class="twentytwenty-handle">
-              <!-- 箭头 -->
-              <span class="l-slider-arrow l-slider-arrow-left"></span>
-              <span class="l-slider-arrow l-slider-arrow-right"></span>
-              <span class="l-slider-arrow l-slider-arrow-up"></span>
-              <span class="l-slider-arrow l-slider-arrow-down"></span>
-            </div>
+        <div class="twentytwenty-overlay">
+          <div class="twentytwenty-label-1">GT</div>
+          <div class="twentytwenty-label-2">BarDGS</div>
+          <div class="twentytwenty-label-3">Ours</div>
 
-            <!-- 分割线容器 -->
-            <div class="twentytwenty-overlay">
-              <!-- 水平分割线 -->
-              <div class="l-slider-horizontal-line"></div>
-              <!-- 垂直分割线 -->
-              <div class="l-slider-vertical-line"></div>
-              <!-- 标签 -->
-              <div class="l-slider-label l-slider-label-gt">GT</div>
-              <div class="l-slider-label l-slider-label-ours">Ours</div>
-              <div class="l-slider-label l-slider-label-bardgs">BarDGS</div>
-            </div>
-          </div>
+          <div class="twentytwenty-frame-1"></div>
+          <div class="twentytwenty-frame-2"></div>
+          <div class="twentytwenty-frame-3"></div>
         </div>
       </div>
-      
+
+            
       <!-- 场景 1: Seesaw -->
       <div class="scene-comparison mb-6">
         <h3 class="subtitle is-4 has-text-centered mb-4">Scene 1: Seesaw</h3>
@@ -256,13 +238,13 @@
   <script>
     // 确保DOM完全加载后再初始化组件
     document.addEventListener('DOMContentLoaded', function() {
-      // 新的L形状滑块
-      new LShapeSlider('#l-slider-container');
-
-      // 旧的TripleComparison（保留以防万一）
-      new TripleComparison({
-        id: '#example1'
+      // 按照temp.js的模式初始化三图片对比滑块
+      $("#example1").twentytwenty({
+        default_offset_pct_x: 0.5,
+        default_offset_pct_y: 0.5
       });
+
+      // 初始化其他双图片对比滑块
       new BeforeAfter({
         id: '#example2'
       });
