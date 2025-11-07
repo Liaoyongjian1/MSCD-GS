@@ -170,7 +170,7 @@
             </div>
           </div>
 
-          <div class="bal-before" style="width:33.33%;">
+          <div class="bal-before" style="width:50%;">
             <div class="bal-before-inset" style="width: 539px;">
             <img src="./static/images/card_bardgs.png">
             <div class="bal-beforePosition beforeLabel">
@@ -179,17 +179,13 @@
             </div>
           </div>
 
-          <div class="bal-handle bal-handle-left" style="left:33.33%;">
-            <span class=" handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="bal-handle bal-handle-right" style="left:66.66%;">
+          <div class="bal-handle" style="left:50%;">
             <span class=" handle-left-arrow"></span>
             <span class="handle-right-arrow"></span>
           </div>
 
           </div>
+
 
           <div id="example2" class="bal-container-small">
 
@@ -200,21 +196,16 @@
             </div>
           </div>
 
-          <div class="bal-before" style="width:33.33%;">
+          <div class="bal-before" style="width: 50%;">
             <div class="bal-before-inset" style="width: 539px;">
-            <img src="./static/images/card_bardgs.png">
+            <img src="./static/images/card_our.png">
             <div class="bal-beforePosition beforeLabel">
-              BarDGS
+              Ours
             </div>
             </div>
           </div>
 
-          <div class="bal-handle bal-handle-left" style="left:33.33%;">
-            <span class=" handle-left-arrow"></span>
-            <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="bal-handle bal-handle-right" style="left:66.66%;">
+          <div class="bal-handle" style="left: 50%;">
             <span class=" handle-left-arrow"></span>
             <span class="handle-right-arrow"></span>
           </div>
@@ -239,7 +230,7 @@
           </div>
           </div>
 
-          <div class="bal-before" style="width:33.33%;">
+          <div class="bal-before" style="width: 50%;">
           <div class="bal-before-inset" style="width: 539px;">
             <img src="./static/images/card_bardgs.png">
             <div class="bal-beforePosition beforeLabel">
@@ -248,14 +239,9 @@
           </div>
           </div>
 
-          <div class="bal-handle bal-handle-left" style="left:33.33%;">
-          <span class=" handle-left-arrow"></span>
-          <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="bal-handle bal-handle-right" style="left:66.66%;">
-          <span class=" handle-left-arrow"></span>
-          <span class="handle-right-arrow"></span>
+          <div class="bal-handle" style="left: 50%;">
+            <span class=" handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
           </div>
 
         </div>
@@ -268,23 +254,18 @@
           </div>
           </div>
 
-          <div class="bal-before" style="width:33.33%;">
+          <div class="bal-before" style="width: 50%;">
           <div class="bal-before-inset" style="width: 628px;">
-            <img src="./static/images/card_bardgs.png">
+            <img src="./static/images/card_our.png">
             <div class="bal-beforePosition beforeLabel">
-            BarDGS
+            Ours
             </div>
           </div>
           </div>
 
-          <div class="bal-handle bal-handle-left" style="left:33.33%;">
-          <span class=" handle-left-arrow"></span>
-          <span class="handle-right-arrow"></span>
-          </div>
-
-          <div class="bal-handle bal-handle-right" style="left:66.66%;">
-          <span class=" handle-left-arrow"></span>
-          <span class="handle-right-arrow"></span>
+          <div class="bal-handle" style="left: 50%;">
+            <span class=" handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
           </div>
 
         </div>
@@ -297,145 +278,18 @@
 </section>
 
   <script>
-    // 简单的双滑块实现
-    function initDualSlider(containerId) {
-        const container = document.querySelector(containerId);
-        if (!container) {
-            console.error('Container not found:', containerId);
-            return;
-        }
-
-        console.log('Initializing slider for:', containerId);
-
-        const leftPanel = container.querySelector('.bal-before');
-        const leftHandle = container.querySelector('.bal-handle-left');
-        const rightHandle = container.querySelector('.bal-handle-right');
-
-        if (!leftPanel || !leftHandle || !rightHandle) {
-            console.error('Required elements not found in:', containerId);
-            return;
-        }
-
-        let leftPos = 33.33;
-        let rightPos = 66.66;
-        let isDragging = false;
-        let dragTarget = null;
-
-        // 创建中间面板
-        const middlePanel = document.createElement('div');
-        middlePanel.style.cssText = `
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: ${leftPos}%;
-            width: ${rightPos - leftPos}%;
-            height: 100%;
-            z-index: 14;
-            overflow: hidden;
-            pointer-events: none;
-        `;
-
-        const middleImg = document.createElement('img');
-        middleImg.src = './static/images/card_our.png';
-        middleImg.style.cssText = `
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-        `;
-
-        const middleLabel = document.createElement('div');
-        middleLabel.textContent = 'Ours';
-        middleLabel.style.cssText = `
-            background: #121212;
-            color: #fff;
-            position: absolute;
-            bottom: 1rem;
-            left: 1rem;
-            padding: 2px 10px;
-            border-radius: 0.2rem;
-            font-size: 1em;
-        `;
-
-        middlePanel.appendChild(middleImg);
-        middlePanel.appendChild(middleLabel);
-        container.appendChild(middlePanel);
-
-        // 设置初始位置
-        leftPanel.style.width = leftPos + '%';
-        leftHandle.style.left = leftPos + '%';
-        rightHandle.style.left = rightPos + '%';
-
-        function updatePosition(clientX) {
-            const rect = container.getBoundingClientRect();
-            const x = clientX - rect.left;
-            const percent = (x / rect.width) * 100;
-
-            if (dragTarget === leftHandle) {
-                leftPos = Math.max(5, Math.min(percent, rightPos - 10));
-                leftPanel.style.width = leftPos + '%';
-                leftHandle.style.left = leftPos + '%';
-                middlePanel.style.left = leftPos + '%';
-                middlePanel.style.width = (rightPos - leftPos) + '%';
-            } else if (dragTarget === rightHandle) {
-                rightPos = Math.max(leftPos + 10, Math.min(percent, 95));
-                rightHandle.style.left = rightPos + '%';
-                middlePanel.style.width = (rightPos - leftPos) + '%';
-            }
-        }
-
-        // 左滑块事件
-        leftHandle.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            isDragging = true;
-            dragTarget = leftHandle;
-            console.log('Left handle grabbed');
-        });
-
-        // 右滑块事件
-        rightHandle.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            isDragging = true;
-            dragTarget = rightHandle;
-            console.log('Right handle grabbed');
-        });
-
-        // 全局鼠标移动事件
-        document.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                updatePosition(e.clientX);
-            }
-        });
-
-        // 全局鼠标释放事件
-        document.addEventListener('mouseup', () => {
-            if (isDragging) {
-                isDragging = false;
-                dragTarget = null;
-                console.log('Handle released');
-            }
-        });
-
-        console.log('Slider initialized successfully for:', containerId);
-    }
-
-    // 等待DOM加载完成后初始化
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM loaded, initializing sliders...');
-
-        setTimeout(() => {
-            initDualSlider('#example1');
-            initDualSlider('#example2');
-            initDualSlider('#example4');
-            initDualSlider('#example5');
-            console.log('All sliders initialized!');
-        }, 100);
+    new BeforeAfter({
+      id: '#example1'
     });
-
+    new BeforeAfter({
+      id: '#example2'
+    });
+    new BeforeAfter({
+      id: '#example4'
+    });
+    new BeforeAfter({
+      id: '#example5'
+    });
   </script>
   
 
