@@ -177,7 +177,7 @@ class TripleComparison {
         const xPixels = this.container.offsetWidth * xPercent / 100;
         const yPixels = this.container.offsetHeight * yPercent / 100;
 
-        // 更新滑块位置 - 使用百分比
+        // 更新滑块位置 - 使用百分比，调整为中心点
         this.handle.style.left = xPercent + '%';
         this.handle.style.top = yPercent + '%';
 
@@ -256,9 +256,9 @@ class TripleComparison {
     }
 
     updateLabels(xPercent, yPercent) {
-        const gtLabel = this.gtLayer.querySelector('.gt-label');
-        const oursLabel = this.oursLayer.querySelector('.ours-label');
-        const bardgsLabel = this.bardgsLayer.querySelector('.bardgs-label');
+        const gtLabel = this.gtLayer.querySelector('.bal-gtPosition');
+        const oursLabel = this.oursLayer.querySelector('.bal-oursPosition');
+        const bardgsLabel = this.bardgsLayer.querySelector('.bal-bardgsPosition');
 
         // 根据滑块位置决定哪些标签可见
         if (gtLabel) gtLabel.style.display = 'none';
@@ -270,18 +270,15 @@ class TripleComparison {
             if (gtLabel) gtLabel.style.display = 'block';
             if (oursLabel) oursLabel.style.display = 'block';
             if (bardgsLabel) bardgsLabel.style.display = 'block';
-        } else if (xPercent < 33 && yPercent < 33) {
-            // 左上角显示GT标签
-            if (gtLabel) gtLabel.style.display = 'block';
-        } else if (xPercent > 67 && yPercent < 33) {
-            // 右上角显示GT标签
-            if (gtLabel) gtLabel.style.display = 'block';
-        } else if (xPercent < 33 && yPercent > 67) {
-            // 左下角显示Ours标签
-            if (oursLabel) oursLabel.style.display = 'block';
-        } else if (xPercent > 67 && yPercent > 67) {
-            // 右下角显示BarDGS标签
+        } else if (xPercent < 50 && yPercent < 50) {
+            // 左上角显示BarDGS标签
             if (bardgsLabel) bardgsLabel.style.display = 'block';
+        } else if (xPercent >= 50 && yPercent < 50) {
+            // 右上角显示Ours标签
+            if (oursLabel) oursLabel.style.display = 'block';
+        } else if (yPercent >= 50) {
+            // 下方区域显示GT标签
+            if (gtLabel) gtLabel.style.display = 'block';
         }
     }
 }
