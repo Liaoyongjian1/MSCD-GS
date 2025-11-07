@@ -297,223 +297,143 @@
 </section>
 
   <script>
-    // DualSlider类定义
-    class DualSlider {
-        constructor(entryObject) {
-            const container = document.querySelector(entryObject.id);
-            if (!container) {
-                console.error('Container not found:', entryObject.id);
-                return;
-            }
-
-            const leftPanel = container.querySelector('.bal-before');
-            const rightPanel = container.querySelector('.bal-after');
-            const leftHandle = container.querySelector('.bal-handle-left');
-            const rightHandle = container.querySelector('.bal-handle-right');
-            const leftText = container.querySelector('.bal-beforePosition');
-            const rightText = container.querySelector('.bal-afterPosition');
-
-            let isDragging = false;
-            let currentHandle = null;
-
-            // 初始化位置
-            let leftPos = 33.33;
-            let rightPos = 66.66;
-
-            // 创建中间面板用于显示第三张图片
-            const middlePanel = document.createElement('div');
-            middlePanel.className = 'bal-middle';
-            middlePanel.style.cssText = `
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: ${leftPos}%;
-                width: ${rightPos - leftPos}%;
-                height: 100%;
-                z-index: 14;
-                overflow: hidden;
-                pointer-events: none;
-            `;
-
-            // 创建中间图片
-            const middleImg = document.createElement('img');
-            middleImg.src = './static/images/card_our.png';
-            middleImg.style.cssText = `
-                object-fit: cover;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                object-position: 50% 50%;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -o-user-select: none;
-                user-select: none;
-            `;
-
-            // 创建中间标签
-            const middleLabel = document.createElement('div');
-            middleLabel.className = 'bal-middlePosition middleLabel';
-            middleLabel.textContent = 'Ours';
-            middleLabel.style.cssText = `
-                background: #121212;
-                color: #fff;
-                left: 0;
-                pointer-events: none;
-                border-radius: 0.2rem;
-                padding: 2px 10px;
-                position: absolute;
-                bottom: 0;
-                margin: 1rem;
-                font-size: 1em;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -o-user-select: none;
-                user-select: none;
-            `;
-
-            middlePanel.appendChild(middleImg);
-            middlePanel.appendChild(middleLabel);
-            container.appendChild(middlePanel);
-
-            // 设置初始状态
-            if (leftPanel) leftPanel.style.width = leftPos + '%';
-            if (leftHandle) leftHandle.style.left = leftPos + '%';
-            if (rightHandle) rightHandle.style.left = rightPos + '%';
-
-            // 确保左侧inset宽度正确
-            const leftInset = container.querySelector('.bal-before-inset');
-            if (leftInset) {
-                leftInset.style.width = container.offsetWidth + 'px';
-            }
-
-            // 窗口大小改变时更新inset宽度
-            window.addEventListener('resize', () => {
-                const inset = container.querySelector('.bal-before-inset');
-                if (inset) {
-                    inset.style.width = container.offsetWidth + 'px';
-                }
-            });
-
-            // 更新滑块和面板位置
-            function updateSliderPosition(clientX) {
-                const rect = container.getBoundingClientRect();
-                const x = clientX - rect.left;
-                const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
-
-                if (currentHandle === leftHandle) {
-                    // 移动左滑块
-                    leftPos = Math.max(5, Math.min(percent, rightPos - 10));
-                    if (leftPanel) leftPanel.style.width = leftPos + '%';
-                    if (leftHandle) leftHandle.style.left = leftPos + '%';
-                    if (leftText) leftText.style.zIndex = '1';
-
-                    // 更新中间面板
-                    if (middlePanel) {
-                        middlePanel.style.left = leftPos + '%';
-                        middlePanel.style.width = (rightPos - leftPos) + '%';
-                    }
-                } else if (currentHandle === rightHandle) {
-                    // 移动右滑块
-                    rightPos = Math.max(leftPos + 10, Math.min(percent, 95));
-                    if (rightHandle) rightHandle.style.left = rightPos + '%';
-                    if (rightText) rightText.style.zIndex = '1';
-
-                    // 更新中间面板
-                    if (middlePanel) {
-                        middlePanel.style.left = leftPos + '%';
-                        middlePanel.style.width = (rightPos - leftPos) + '%';
-                    }
-                }
-            }
-
-            // 鼠标事件
-            if (leftHandle) {
-                leftHandle.addEventListener('mousedown', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    isDragging = true;
-                    currentHandle = leftHandle;
-                });
-            }
-
-            if (rightHandle) {
-                rightHandle.addEventListener('mousedown', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    isDragging = true;
-                    currentHandle = rightHandle;
-                });
-            }
-
-            document.addEventListener('mousemove', (e) => {
-                if (isDragging && currentHandle) {
-                    updateSliderPosition(e.clientX);
-                }
-            });
-
-            document.addEventListener('mouseup', () => {
-                isDragging = false;
-                currentHandle = null;
-            });
-
-            // 触摸事件
-            if (leftHandle) {
-                leftHandle.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    isDragging = true;
-                    currentHandle = leftHandle;
-                });
-            }
-
-            if (rightHandle) {
-                rightHandle.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    isDragging = true;
-                    currentHandle = rightHandle;
-                });
-            }
-
-            document.addEventListener('touchmove', (e) => {
-                if (isDragging && currentHandle) {
-                    const touch = e.touches[0];
-                    updateSliderPosition(touch.clientX);
-                }
-            });
-
-            document.addEventListener('touchend', () => {
-                isDragging = false;
-                currentHandle = null;
-            });
-
-            console.log('DualSlider initialized for:', entryObject.id);
+    // 简单的双滑块实现
+    function initDualSlider(containerId) {
+        const container = document.querySelector(containerId);
+        if (!container) {
+            console.error('Container not found:', containerId);
+            return;
         }
+
+        console.log('Initializing slider for:', containerId);
+
+        const leftPanel = container.querySelector('.bal-before');
+        const leftHandle = container.querySelector('.bal-handle-left');
+        const rightHandle = container.querySelector('.bal-handle-right');
+
+        if (!leftPanel || !leftHandle || !rightHandle) {
+            console.error('Required elements not found in:', containerId);
+            return;
+        }
+
+        let leftPos = 33.33;
+        let rightPos = 66.66;
+        let isDragging = false;
+        let dragTarget = null;
+
+        // 创建中间面板
+        const middlePanel = document.createElement('div');
+        middlePanel.style.cssText = `
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: ${leftPos}%;
+            width: ${rightPos - leftPos}%;
+            height: 100%;
+            z-index: 14;
+            overflow: hidden;
+            pointer-events: none;
+        `;
+
+        const middleImg = document.createElement('img');
+        middleImg.src = './static/images/card_our.png';
+        middleImg.style.cssText = `
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        `;
+
+        const middleLabel = document.createElement('div');
+        middleLabel.textContent = 'Ours';
+        middleLabel.style.cssText = `
+            background: #121212;
+            color: #fff;
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            padding: 2px 10px;
+            border-radius: 0.2rem;
+            font-size: 1em;
+        `;
+
+        middlePanel.appendChild(middleImg);
+        middlePanel.appendChild(middleLabel);
+        container.appendChild(middlePanel);
+
+        // 设置初始位置
+        leftPanel.style.width = leftPos + '%';
+        leftHandle.style.left = leftPos + '%';
+        rightHandle.style.left = rightPos + '%';
+
+        function updatePosition(clientX) {
+            const rect = container.getBoundingClientRect();
+            const x = clientX - rect.left;
+            const percent = (x / rect.width) * 100;
+
+            if (dragTarget === leftHandle) {
+                leftPos = Math.max(5, Math.min(percent, rightPos - 10));
+                leftPanel.style.width = leftPos + '%';
+                leftHandle.style.left = leftPos + '%';
+                middlePanel.style.left = leftPos + '%';
+                middlePanel.style.width = (rightPos - leftPos) + '%';
+            } else if (dragTarget === rightHandle) {
+                rightPos = Math.max(leftPos + 10, Math.min(percent, 95));
+                rightHandle.style.left = rightPos + '%';
+                middlePanel.style.width = (rightPos - leftPos) + '%';
+            }
+        }
+
+        // 左滑块事件
+        leftHandle.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            isDragging = true;
+            dragTarget = leftHandle;
+            console.log('Left handle grabbed');
+        });
+
+        // 右滑块事件
+        rightHandle.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            isDragging = true;
+            dragTarget = rightHandle;
+            console.log('Right handle grabbed');
+        });
+
+        // 全局鼠标移动事件
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                updatePosition(e.clientX);
+            }
+        });
+
+        // 全局鼠标释放事件
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                dragTarget = null;
+                console.log('Handle released');
+            }
+        });
+
+        console.log('Slider initialized successfully for:', containerId);
     }
 
-    // 初始化所有双滑块组件
+    // 等待DOM加载完成后初始化
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('Initializing DualSlider components...');
+        console.log('DOM loaded, initializing sliders...');
 
-        new DualSlider({
-            id: '#example1'
-        });
-        new DualSlider({
-            id: '#example2'
-        });
-        new DualSlider({
-            id: '#example4'
-        });
-        new DualSlider({
-            id: '#example5'
-        });
-
-        console.log('All DualSlider components initialized.');
+        setTimeout(() => {
+            initDualSlider('#example1');
+            initDualSlider('#example2');
+            initDualSlider('#example4');
+            initDualSlider('#example5');
+            console.log('All sliders initialized!');
+        }, 100);
     });
 
   </script>
