@@ -147,24 +147,24 @@
   </div>
 </section>
 
-<section class="section">
-	<div class="container is-max-desktop">
-	  <!-- Concurrent Work. -->
-	  <div class="columns is-centered has-text-centered">
-		<div class="column is-full-width">
-      <h2 class="title is-3" 
-        style="background: linear-gradient(to right, indigo, indigo, skyblue, indigo, indigo); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.5;">
-        Pipeline</h2>
-		  <div class="content has-text-justified">
-      <img src="./static/images/pipeline.png">
-			<p align="justify">The pipeline of our MSCD-GS. We construct an initial Gaussian model using blurred images as input. Section A: During optimization, static and dynamic Gaussians are separated using Gaussian motion distance and dynamic masks. Section B: We model static and dynamic Gaussian motion separately and design two motion-aware MLPs to predict their changes over exposure time, thereby generating multiple virtual sharp images. Section C: We also utilize the results from the deblurring network to constrain these virtual images, and these virtual sharp images are synthesized into a virtual blurred image to align with the input real image.</p>
-		  </div>
-		</div>
-	  </div>
-	</div>
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2"
+          style="background: linear-gradient(to right,  indigo, indigo, skyblue, indigo, indigo); -webkit-background-clip: text; -webkit-text-fill-color: transparent;line-height: 1.5;">
+          Motivation</h2>
+        <img src="./static/images/pipeline.png">
+      </div>
+    </div>
+    <p>
+      The pipeline of our MSCD-GS. We construct an initial Gaussian model using blurred images as input. Section A: During optimization, static and dynamic Gaussians are separated using Gaussian motion distance and dynamic masks. Section B: We model static and dynamic Gaussian motion separately and design two motion-aware MLPs to predict their changes over exposure time, thereby generating multiple virtual sharp images. Section C: We also utilize the results from the deblurring network to constrain these virtual images, and these virtual sharp images are synthesized into a virtual blurred image to align with the input real image.
+    </p>
+  </div>
+  </div>
 </section>
 
-<section class="section">
+<section class="section hero">
   <div class="container is-max-desktop">
     <div class="has-text-centered">
       <h2 class="title is-3" style="background: linear-gradient(to right, indigo, indigo, skyblue, indigo, indigo); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.5;">Visual Comparisons</h2>
