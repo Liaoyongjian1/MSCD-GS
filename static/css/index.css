@@ -1,0 +1,802 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+
+.interpolation-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.interpolation-panel .interpolation-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.interpolation-video-column {
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+}
+#interpolation-image-wrapper img {
+  border-radius: 5px;
+}
+
+.bal-container-small {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  cursor: grab;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.bal-container-big {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  cursor: grab;
+  overflow: hidden;
+}
+
+.bal-after {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bal-before {
+  display: block;
+  position: absolute;
+  top: 0;
+  /* right: 0; */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+}
+
+.bal-before-inset {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.bal-after img,
+.bal-before img,
+.bal-right img {
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-position: 50% 50%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.bal-beforePosition {
+  background: #121212;
+  color: #fff;
+  left: 0;
+  pointer-events: none;
+  border-radius: 0.2rem;
+  padding: 2px 10px;
+}
+
+.bal-afterPosition {
+  background: #121212;
+  color: #fff;
+  right: 0;
+  pointer-events: none;
+  border-radius: 0.2rem;
+  padding: 2px 10px;
+}
+
+.beforeLabel {
+  position: absolute;
+  bottom: 0;
+  margin: 1rem;
+  font-size: 1em;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.afterLabel {
+  position: absolute;
+  bottom: 0;
+  margin: 1rem;
+  font-size: 1em;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.bal-handle {
+  height: 41px;
+  width: 41px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -20px;
+  margin-top: -21px;
+  border: 2px solid #fff;
+  border-radius: 1000px;
+  z-index: 20;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgb(12, 12, 12);
+}
+
+.handle-left-arrow,
+.handle-right-arrow {
+  width: 0;
+  height: 0;
+  border: 6px inset transparent;
+  position: absolute;
+  top: 50%;
+  margin-top: -6px;
+}
+
+.handle-left-arrow {
+  border-right: 6px solid #fff;
+  left: 50%;
+  margin-left: -17px;
+}
+
+.handle-right-arrow {
+  border-left: 6px solid #fff;
+  right: 50%;
+  margin-right: -17px;
+}
+
+.bal-handle::before {
+  bottom: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgb(12, 12, 12);
+}
+
+.bal-handle::after {
+  top: 50%;
+  margin-top: 20.5px;
+  box-shadow: 0 0 5px rgb(12, 12, 12);
+}
+
+.bal-handle::before,
+.bal-handle::after {
+  content: " ";
+  display: block;
+  width: 2px;
+  background: #fff;
+  height: 9999px;
+  position: absolute;
+  left: 50%;
+  margin-left: -1.5px;
+}
+
+.section {
+  width: 100%;
+}
+
+
+/* .title.is-3{
+  color: #4f94d4;
+} */
+
+.img_tag {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+/* Triple Comparison (单滑块控制三区域) 样式 */
+.bal-right {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  z-index: 14;
+  overflow: hidden;
+}
+
+.bal-right-inset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.bal-rightPosition {
+  background: #121212;
+  color: #fff;
+  right: 0;
+  pointer-events: none;
+  border-radius: 0.2rem;
+  padding: 2px 10px;
+}
+
+.rightLabel {
+  position: absolute;
+  bottom: 0;
+  margin: 1rem;
+  font-size: 1em;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+/* "丄" shaped handle 样式 */
+.bal-handle-shape {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  z-index: 25;
+  pointer-events: auto;
+  cursor: move;
+}
+
+.handle-horizontal-bar {
+  position: absolute;
+  top: 50%;
+  left: -9999px;
+  right: -9999px;
+  height: 2px;
+  background: #fff;
+  margin-top: -1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.handle-vertical-bar {
+  position: absolute;
+  left: 50%;
+  top: -9999px;
+  bottom: -9999px;
+  width: 2px;
+  background: #fff;
+  margin-left: -1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.handle-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  margin-left: -15px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.handle-center .handle-left-arrow,
+.handle-center .handle-right-arrow,
+.handle-center .handle-top-arrow,
+.handle-center .handle-bottom-arrow {
+  width: 0;
+  height: 0;
+  border: 4px inset transparent;
+  position: absolute;
+}
+
+.handle-center .handle-left-arrow {
+  border-right: 4px solid #fff;
+  left: 50%;
+  top: 50%;
+  margin-left: -12px;
+  margin-top: -4px;
+}
+
+.handle-center .handle-right-arrow {
+  border-left: 4px solid #fff;
+  right: 50%;
+  top: 50%;
+  margin-right: -12px;
+  margin-top: -4px;
+}
+
+.handle-center .handle-top-arrow {
+  border-bottom: 4px solid #fff;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -4px;
+}
+
+.handle-center .handle-bottom-arrow {
+  border-top: 4px solid #fff;
+  bottom: 50%;
+  left: 50%;
+  margin-bottom: -12px;
+  margin-left: -4px;
+}
+
+/* Triple Comparison Styles for 丄 Shaped Single Slider */
+.bal-gt,
+.bal-ours,
+.bal-bardgs {
+  display: block !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: clip-path 0.1s ease;
+}
+
+.bal-gt {
+  z-index: 10;
+}
+
+.bal-ours {
+  z-index: 11;
+}
+
+.bal-bardgs {
+  z-index: 12;
+}
+
+.bal-gt-inset,
+.bal-ours-inset,
+.bal-bardgs-inset {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bal-gtPosition,
+.bal-oursPosition,
+.bal-bardgsPosition {
+  background: #121212;
+  color: #fff;
+  pointer-events: none;
+  border-radius: 0.2rem;
+  padding: 2px 10px;
+  position: absolute;
+  bottom: 0;
+  margin: 1rem;
+  font-size: 1em;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.gt-label,
+.ours-label,
+.bardgs-label {
+  display: none;
+}
+
+/* 丄形状滑块样式 */
+.bal-handle-shape {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  z-index: 25;
+  pointer-events: auto;
+  cursor: move;
+}
+
+.handle-horizontal-bar {
+  position: absolute;
+  top: 50%;
+  left: -9999px;
+  right: -9999px;
+  height: 2px;
+  background: #fff;
+  margin-top: -1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.handle-vertical-bar {
+  position: absolute;
+  left: 50%;
+  top: -9999px;
+  bottom: -9999px;
+  width: 2px;
+  background: #fff;
+  margin-left: -1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.handle-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  margin-left: -15px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.handle-center .handle-left-arrow,
+.handle-center .handle-right-arrow,
+.handle-center .handle-top-arrow,
+.handle-center .handle-bottom-arrow {
+  width: 0;
+  height: 0;
+  border: 4px inset transparent;
+  position: absolute;
+}
+
+.handle-center .handle-left-arrow {
+  border-right: 4px solid #fff;
+  left: 50%;
+  top: 50%;
+  margin-left: -12px;
+  margin-top: -4px;
+}
+
+.handle-center .handle-right-arrow {
+  border-left: 4px solid #fff;
+  right: 50%;
+  top: 50%;
+  margin-right: -12px;
+  margin-top: -4px;
+}
+
+.handle-center .handle-top-arrow {
+  border-bottom: 4px solid #fff;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -4px;
+}
+
+.handle-center .handle-bottom-arrow {
+  border-top: 4px solid #fff;
+  bottom: 50%;
+  left: 50%;
+  margin-bottom: -12px;
+  margin-left: -4px;
+}
+
+
+	/* 可视化对比样式 */
+	.scene-comparison {
+	  margin-bottom: 3rem;
+	}
+	.comparison-grid {
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr); /* 三列布局 */
+	  gap: 20px;
+	  max-width: 900px; /* 限制最大宽度，避免过宽 */
+	  margin: 0 auto; /* 居中显示 */
+	}
+	.image-item {
+	  position: relative;
+	  overflow: hidden;
+	  border: 1px solid #e0e0e0;
+	  border-radius: 8px;
+	}
+	.image-item img {
+	  width: 100%;
+	  height: auto;
+	  display: block;
+	}
+	.label {
+	  position: absolute;
+	  bottom: 10px;
+	  left: 10px;
+	  background-color: rgba(0, 0, 0, 0.7);
+	  color: white;
+	  padding: 4px 12px;
+	  font-size: 14px;
+	  border-radius: 4px;
+	}
+
+	/* TwentyTwenty Container 样式 - 来自temp.css */
+.twentytwenty-container {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    overflow: hidden;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    margin: 5px auto;
+    display: block;
+    min-height: 400px;
+	border: 2px solid white;
+}
+
+.twentytwenty-container img {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.twentytwenty-container * {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.twentytwenty-frame-1,
+.twentytwenty-frame-2,
+.twentytwenty-frame-3,
+.twentytwenty-frame-4 {
+    position: absolute;
+    display: block;
+    z-index: 30;
+}
+
+.twentytwenty-compare-3 .twentytwenty-frame-1 {
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    top: 0;
+    left: 0;
+    cursor: move;
+}
+
+.twentytwenty-compare-3 .twentytwenty-frame-2 {
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    top: 0;
+    right: 0;
+    cursor: move;
+}
+
+.twentytwenty-compare-3 .twentytwenty-frame-3 {
+    border-top: 1px solid white;
+    bottom: 0;
+    cursor: move;
+}
+
+.twentytwenty-overlay {
+    position: relative;
+    z-index: 25;
+    overflow: hidden;
+}
+
+.twentytwenty-1 {
+    z-index: 20;
+}
+
+.twentytwenty-2 {
+    z-index: 19;
+}
+
+.twentytwenty-3 {
+    z-index: 18;
+}
+
+.twentytwenty-handle {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -22px;
+    margin-top: -22px;
+    background: black;
+    -webkit-border-radius: 1000px;
+    -moz-border-radius: 1000px;
+    border-radius: 1000px;
+    z-index: 40;
+    cursor: move;
+}
+
+/* TwentyTwenty Labels 样式 - 来自temp.css */
+.twentytwenty-label-1,
+.twentytwenty-label-2,
+.twentytwenty-label-3 {
+    position: absolute;
+    text-shadow: 0 0 1ex black, 0 0 1ex black;
+    color: white;
+    padding: 1ex;
+    overflow: hidden;
+    text-align: center;
+}
+
+.twentytwenty-compare-3 .twentytwenty-label-3 {
+    width: 100%;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .twentytwenty-container {
+        height: 300px;
+    }
+
+    .twentytwenty-handle {
+        height: 30px;
+        width: 30px;
+        margin-left: -15px;
+        margin-top: -15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .twentytwenty-container {
+        height: 250px;
+    }
+
+    .twentytwenty-handle {
+        height: 25px;
+        width: 25px;
+        margin-left: -12px;
+        margin-top: -12px;
+    }
+}
